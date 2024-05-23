@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BanController;
 use App\Http\Controllers\BezetController;
 use App\Http\Controllers\ProductToevoegenController;
+use App\Http\Controllers\TerugbrengenController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -65,5 +66,8 @@ Route::middleware('auth')->group(function () {
 Route::get('/product/{id}', [ReservationController::class, 'show']);
 Route::post('/product/{id}', [ReservationController::class, 'store']);
 
+Route::get('/terugbrengen', [TerugbrengenController::class, 'index'])->name('admin.terugbrengen.index');
+Route::get('/terugbrengen/search', [TerugbrengenController::class, 'search'])->name('admin.terugbrengen.search');
+Route::post('/terugbrengen/search', [TerugbrengenController::class, 'search']);
 
 require __DIR__.'/auth.php';
