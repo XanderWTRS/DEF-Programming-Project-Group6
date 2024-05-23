@@ -38,19 +38,19 @@
     </tr>
   </thead>
   <tbody>
-    @forelse($products as $product)
-      <tr>
-        <td>{{ $product->title }}</td>
-        <td>
-          <button>Verwijder</button>
-          <button>Wijzig</button>
-        </td>
-      </tr>
-    @empty
-      <tr>
-        <td colspan="2">Geen producten gevonden</td>
-      </tr>
-    @endforelse
+  @foreach($products as $product)
+<tr>
+  <td>{{ $product->title }}</td>
+  <td>
+    <form action="{{ route('product.delete', ['id' => $product->id]) }}" method="POST">
+      @csrf
+      @method('DELETE')
+      <button type="submit">Verwijder</button>
+    </form>
+    <button>Wijzig</button>
+  </td>
+</tr>
+@endforeach
   </tbody>
 </table>
 

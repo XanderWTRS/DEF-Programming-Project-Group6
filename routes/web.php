@@ -9,7 +9,7 @@ use App\Http\Controllers\BezetController;
 use App\Http\Controllers\ProductToevoegenController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome'); 
 });
 
 Route::get('/home', [ProductsController::class, 'index'])
@@ -56,6 +56,9 @@ Route::get('/Producttoevoegen', function () {
 
 Route::get('/Producttoevoegen', [ProductToevoegenController::class, 'index']);
 Route::get('/products/filter/{category}', [ProductToevoegenController::class, 'filterByCategory'])->name('filter.products');
+Route::delete('/product/{id}', [ProductToevoegenController::class, 'destroy'])->name('product.delete');
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -65,6 +68,8 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/product/{id}', [ReservationController::class, 'show']);
 Route::post('/product/{id}', [ReservationController::class, 'store']);
+
+
 
 
 require __DIR__.'/auth.php';
