@@ -34,17 +34,31 @@
                 </ul>
             </nav>
         </div>
-        <div id="productenGrid">
-            @foreach ($products as $product)
-                <div class="product">
-                    <h2>{{ $product->title }}</h2>
-                    <img src="https://via.placeholder.com/150" alt="Placeholder Image">
-                    <p>Category: {{ $product->category }}</p>
-                    <p>Merk: {{ $product->merk }}</p>
-                    <p>Beschrijving: {{ $product->beschrijving }}</p>
-                </div>
-            @endforeach
-        </div>e
+        @if($products->isEmpty())
+            <p>No products found.</p>
+        @else
+            <div id="productenGrid">
+                @php
+                    $encounteredProducts = [];
+                @endphp
+                @foreach ($products as $product)
+                    @if (!isset($encounteredProducts[$product->title]) || !in_array($product->category, $encounteredProducts[$product->title]))
+                        @php
+                            $encounteredProducts[$product->title][] = $product->category;
+                        @endphp
+                        <a href="/product/{{ $product->id }}">
+                            <div class="product">
+                                <h2>{{ $product->title }}</h2>
+                                <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+                                <p>Category: {{ $product->category }}</p>
+                                <p>Merk: {{ $product->merk }}</p>
+                                <p>Beschrijving: {{ $product->beschrijving }}</p>
+                            </div>
+                        </a>
+                    @endif
+                @endforeach
+            </div>
+        @endif
     </main>
     </body>
     <!--LAYOUT FOOTER PAGE -->
