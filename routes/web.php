@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/product/{id}', [ReservationController::class, 'show']);
+Route::post('/product/{id}', [ReservationController::class, 'store']);
 
 
 require __DIR__.'/auth.php';

@@ -51,7 +51,7 @@
                                     @endphp
                                     <tr>
                                         @if (($productidsCount - $reservationCount)  != 0)
-                                            <td><input type="checkbox" name="selected_week" onchange="checkOnlyOne(this)"></td>
+                                            <td><input type="checkbox" name="selected_week" onchange="checkOnlyOne(this)" value="{{$startOfWeek->toDateString()}}"></td>
                                             @php
                                                 $avaible++;
                                             @endphp
