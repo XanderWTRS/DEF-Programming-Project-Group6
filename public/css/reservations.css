@@ -27,7 +27,12 @@ body {
     grid-row: 1/4;
 }
 
-
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 .back-btn {
     display: inline-block;
@@ -40,8 +45,7 @@ body {
 }
 
 .productTitle {
-
-font-size: 24px;
+    font-size: 24px;
     text-align: left;
     margin-left: 0;
 }
@@ -50,7 +54,6 @@ font-size: 24px;
     font-size: 24px;
     text-align: left;
     margin-left: 0;
-
 }
 
 .container img {
@@ -67,3 +70,59 @@ font-size: 24px;
     text-overflow: ellipsis;
 }
 
+.ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+button img {
+    max-width: 20px;
+    max-height: 20px;
+}
+
+.reservationTable {
+    border-collapse: separate;
+    border-spacing: 35px 8px;
+    margin-top: 40px;
+}
+
+td {
+    border-bottom: 1px solid lightgrey;
+    padding: 8px;
+    text-align: center;
+}
+
+td:first-child {
+    border-left: none;
+}
+
+td:nth-child(4) p {
+    border: 2px solid rgb(104, 104, 104);
+    border-radius: 10px;
+    padding: 5px;
+}
+
+td:nth-child(3) p {
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.groen {
+    color: green;
+    border: 1px solid green;
+}
+
+.rood {
+    color: rgb(255, 0, 0);
+    border: 1px solid red;
+}
+
+.section2 a {
+    margin-top: 20px;
+}

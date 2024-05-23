@@ -4,12 +4,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class ReservationController extends Controller
 {
     public function show($id): View{
         $product = DB::table('uitleendienst_inventaris')->where('id', $id)->first();
-
-        return view('users.reservations', ['product' => $product]);
+        $currentDate = Carbon::now();
+        $productname = $product->title;
+        $productids = DB::table('uitleendienst_inventaris')->where('title', $productname)->pluck('id');
+        $productidsCount = $productids->count();
+        $dateThreeWeeksLater = Carbon::now()->addWeeks(3)->toDateString();
+        $reserveringen = DB::table('reservations')->whereIn('id', $productids)->where('date', '>', $currentDate)->where('date', '<', $dateThreeWeeksLater)->get();
+        return view('users.reservations', compact('product','reserveringen','productidsCount'));
     }
 }

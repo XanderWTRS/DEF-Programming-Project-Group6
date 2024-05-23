@@ -1,6 +1,5 @@
 <x-app-layout>
     <!--LAYOUT HOME PAGE -->
-    <main>
         <div class="container">
             <div class="section1">
                 <h1 class="productTitle">{{ $product->merk }} {{ $product->title }}</h1>
@@ -9,10 +8,77 @@
                 <p>{{ $product->beschrijving}}</p>
             </div>
             <div class="section2">
+                <div class="content">
+                    <form action="/product/{{ $product->id }}" method="POST">
+                        @csrf
+                        <table class="reservationTable">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Week</th>
+                                    <th>Status</th>
+                                    <th>Datum</th>
+                                    <th>Aantal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php
+                                    $currentWeek = \Carbon\Carbon::now()->weekOfYear;
+                                    $reservationsCount = [];
+                                    $avaible = 0;
+
+                                    foreach ($reserveringen as $reservering) {
+                                        $startOfWeek = \Carbon\Carbon::parse($reservering->date)->startOfWeek();
+                                        $endOfWeek = $startOfWeek->copy()->addDays(5);
+                                        $weekNumber = $startOfWeek->weekOfYear;
+                                        if (isset($reservationsCount[$weekNumber])) {
+                                            $reservationsCount[$weekNumber]++;
+                                        }
+                                        else {
+                                            $reservationsCount[$weekNumber] = 1;
+                                        }
+                                    }
+
+                                @endphp
+
+                                @for ($week = $currentWeek + 1; $week <= $currentWeek + 2; $week++)
+                                    @php
+                                        $startOfWeek = \Carbon\Carbon::now()->startOfWeek()->addWeeks($week - $currentWeek);
+                                        $endOfWeek = \Carbon\Carbon::now()->endOfWeek()->addWeeks($week - $currentWeek)->subDays(2);
+                                        $weekNumber = $startOfWeek->weekOfYear;
+                                        $reservationCount = $reservationsCount[$weekNumber] ?? 0;
+
+                                    @endphp
+                                    <tr>
+                                        @if (($productidsCount - $reservationCount)  != 0)
+                                            <td><input type="checkbox" name="selected_week" onchange="checkOnlyOne(this)"></td>
+                                            @php
+                                                $avaible++;
+                                            @endphp
+                                        @else
+                                            <td></td>
+                                        @endif
+                                        <td>{{ $week }}</td>
+                                        <td>
+                                            <p class="{{ ($productidsCount - $reservationCount) > 0 ? 'groen' : 'rood' }}">
+                                                {{ ($productidsCount - $reservationCount) > 0 ? 'vrij' : 'bezet' }}
+                                            </p>
+                                        </td>
+
+                                        <td><p>{{ $startOfWeek->toDateString() }} tot {{ $endOfWeek->toDateString() }}</p></td>
+                                        <td><p>aantal {{$productidsCount - $reservationCount }}</p></td>
+                                    </tr>
+                                @endfor
+                            </tbody>
+                        </table>
+                        @if ($avaible > 0)
+                        <input type="submit" value="reservering" class="back-btn">
+                        @endif
+                    </form>
+                </div>
             </div>
 
         </div>
-    </main>
 
     <!--LAYOUT FOOTER PAGE -->
     <x-slot name='footer'>

@@ -54,4 +54,5 @@
             @endif
     </div>
 </body>
+<script src="{{ asset('js/reservations.js') }}"></script>
 </html>
