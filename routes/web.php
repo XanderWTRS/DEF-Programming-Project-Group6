@@ -14,3 +14,7 @@ Route::get('/home', function () {
 Route::get('/admin-dashboard', function () {
     return view('adminDashboard');
 })->middleware(['auth', 'verified'])->name('admin.dashboard');
+
+Route::get('/winkelmand', function() {
+    return view('winkelmand');
+})->middleware(['auth', 'verified'])->name('winkelmand');
