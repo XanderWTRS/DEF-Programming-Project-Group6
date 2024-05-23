@@ -14,12 +14,21 @@
                         <input type="hidden" name="category" id="category">
                     </form>
                 </div>
-                <form action="" method="get">
+                <form action="{{ route('home') }}" method="get">
                     <div id="selectWeek">
                         <select id="weekSelect" name="week" onchange="this.form.submit()">
-                            <!-- Week options will go here -->
+                            <?php
+                                $currentDate = date('Y-m-d');
+                                $monday = date('Y-m-d', strtotime('last monday', strtotime($currentDate)));
+                                for ($i = 1; $i < 4; $i++) {
+                                    $weekStartDate = date('Y-m-d', strtotime($monday . ' + ' . ($i * 7) . ' days'));
+                                    $weekEndDate = date('Y-m-d', strtotime($weekStartDate . ' + 4 days'));
+                                    $selected = ($weekStartDate == $selectedWeek) ? 'selected' : '';
+                                    echo '<option value="' . $weekStartDate . '" ' . $selected . '>' . $weekStartDate . ' - ' . $weekEndDate . '</option>';
+                                }
+                            ?>
                         </select>
-                        <input type="hidden" name="category">
+                        <input type="hidden" name="category" value="">
                     </div>
                 </form>
             </div>
