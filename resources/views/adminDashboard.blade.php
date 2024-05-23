@@ -19,7 +19,7 @@
     <main class="maincontainer">
         <div class="container">
             <a href="{{asset('/Klaarzetten')}}" class="Klaarzetten container1">Klaarzetten</a>
-            <a href="{{asset('/Terugbrengen')}}" class="QR-scanner container1">Terugbrengen</a>
+            <a href="{{asset('/terugbrengen')}}" class="QR-scanner container1">Terugbrengen</a>
             <a href="{{asset('/Bezetscherm')}}" class="Beschikbaarheid container1">Beschikbaarheid</a>
         </div>
         <div class="kontainer">

@@ -1,0 +1,14 @@
+.fullbodywrapper{
+    display: flex;
+
+}
+
+.wrapper{
+    justify-content: center;
+}
+
+.reservationsdiplay{
+    justify-content: center;
+    align-items: center;
+
+}
