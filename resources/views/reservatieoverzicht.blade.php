@@ -1,6 +1,7 @@
 
 <x-app-layout>
     <!--LAYOUT HOME PAGE -->
+    <link rel="stylesheet" href="{{ asset('css/overzicht.css') }}">
     <body>
         <main>
         @if($products->isEmpty())
