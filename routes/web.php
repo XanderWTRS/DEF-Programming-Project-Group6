@@ -22,3 +22,11 @@ Route::get('/winkelmand', function() {
 Route::get('/g&v_voorwaarden', function() {
     return view('g&v_voorwaarden');
 })->name('g&v_voorwaarden');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
