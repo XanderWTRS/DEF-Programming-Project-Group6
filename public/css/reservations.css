@@ -6,14 +6,15 @@ body {
 }
 
 .container {
-    display: flex;
-    height: 100vh;
+    display: flex; /* Flexbox gebruiken voor de container */
+    justify-content: space-between; /* Ruimte tussen sectie 1 en sectie 2 */
+    flex-wrap: wrap;
 }
 
 .section1,
 .section2 {
-    flex: 1;
-    padding: 20px;
+    flex-basis: calc(50% - 10px);
+    margin-right: 10px;
     box-sizing: border-box;
 }
 
@@ -44,13 +45,7 @@ body {
     background-color: #ddd;
 }
 
-.productTitle {
-    font-size: 24px;
-    text-align: left;
-    margin-left: 0;
-}
-
-.productInfo {
+.titles {
     font-size: 24px;
     text-align: left;
     margin-left: 0;
@@ -126,3 +121,25 @@ td:nth-child(3) p {
 .section2 a {
     margin-top: 20px;
 }
+
+.section3 {
+    width: 100%;
+    margin-top: 20px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+}
+
+
+
+.related.product {
+    display: flex; /* Flexbox gebruiken voor de container */
+    flex-direction: row; /* Items naast elkaar plaatsen */
+    justify-content:space-evenly;
+}
+
+.related.product a {
+    margin-right: 20px; /* Ruimte tussen de producten */
+}
+

@@ -65,6 +65,13 @@ select {
     padding-bottom: 10px;
     border-bottom: 1px solid black;
 }
+.beschikbaar{
+    display: flex;
+    flex-direction: row;
+}
+.beschikbaar object{
+    margin-right: 2px;
+}
 #productenGrid{
     display: flex;
     flex-wrap: wrap;
