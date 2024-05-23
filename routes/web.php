@@ -35,6 +35,9 @@ Route::delete('/ban/{id}', [BanController::class, 'unbanStudent']);
 
 Route::get('/Bezetscherm', [BezetController::class, 'index']);
 
+Route::get('/Klaarzetten', function () {
+    return view('Admin/Klaarzetten');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
