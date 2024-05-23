@@ -1,0 +1,51 @@
+table {
+
+    width: 80%;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.2em;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #e9e9e9;
+}
+
+tbody tr:hover {
+    background-color: #f9a602;
+}
+
+
+.status-icon img {
+    height: 20px;
+    width: 20px;
+    margin-right: 5px;
+}
+
+/*css coor de zoekbalk*/
+
+#search-bar {
+    width: 20%;
+    height: 30px;
+    margin: auto;
+    border: 2px solid black;
+}
