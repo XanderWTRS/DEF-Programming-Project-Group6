@@ -1,0 +1,1 @@
+dark mode tailwind css: (dark:bg-red-300)
