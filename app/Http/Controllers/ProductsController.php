@@ -11,8 +11,10 @@ class ProductsController extends Controller
     public function index(Request $request): View
     {
         $selectedWeek = $request->input('week');
+        $selectedCategory = $request->input('category');
+        $searchQuery = $request->input('query');
 
-        $products = DB::table('uitleendienst_inventaris')->get();
+        $query = DB::table('uitleendienst_inventaris');
 
         if ($selectedWeek) {
             $reservedProducts = DB::table('reservations')
@@ -22,6 +24,16 @@ class ProductsController extends Controller
             $query->whereNotIn('id', $reservedProducts);
         }
 
-        return view('home', compact('products', 'selectedWeek'));
+        if ($selectedCategory) {
+            $query->where('category', $selectedCategory);
+        }
+
+        if ($searchQuery) {
+            $query->where('title', 'like', '%' . $searchQuery . '%');
+        }
+
+        $products = $query->get();
+
+        return view('home', compact('products', 'selectedWeek', 'selectedCategory', 'searchQuery'));
     }
 }

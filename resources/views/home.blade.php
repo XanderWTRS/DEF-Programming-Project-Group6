@@ -2,44 +2,44 @@
     <!--LAYOUT HOME PAGE -->
     <body>
     <main>
-        <div id="filter">
+    <div id="filter">
             <div id="filter1">
                 <div class="search-container">
-                    <form id="search-form" action="" method="get">
-                        <input type="search" name="query" id="query" placeholder="Search...">
+                    <form id="search-form" action="{{ route('home') }}" method="get">
+                        <input type="search" name="query" id="query" value="{{ $searchQuery ?? '' }}" placeholder="Search...">
                         <button type="submit">
                             <img id="search" src="/ASSETS/Icons/ZoekIcon.svg" alt="Search Icon" width="20" height="15">
                         </button>
-                        <input type="hidden" name="week" id="week">
-                        <input type="hidden" name="category" id="category">
+                        <input type="hidden" name="week" id="week" value="{{ $selectedWeek }}">
+                        <input type="hidden" name="category" id="category" value="{{ $selectedCategory }}">
                     </form>
                 </div>
                 <form action="{{ route('home') }}" method="get">
                     <div id="selectWeek">
                         <select id="weekSelect" name="week" onchange="this.form.submit()">
                             <?php
-                                $currentDate = date('Y-m-d');
-                                $monday = date('Y-m-d', strtotime('last monday', strtotime($currentDate)));
-                                for ($i = 1; $i < 4; $i++) {
-                                    $weekStartDate = date('Y-m-d', strtotime($monday . ' + ' . ($i * 7) . ' days'));
-                                    $weekEndDate = date('Y-m-d', strtotime($weekStartDate . ' + 4 days'));
-                                    $selected = ($weekStartDate == $selectedWeek) ? 'selected' : '';
-                                    echo '<option value="' . $weekStartDate . '" ' . $selected . '>' . $weekStartDate . ' - ' . $weekEndDate . '</option>';
-                                }
+                            $currentDate = date('Y-m-d');
+                            $monday = date('Y-m-d', strtotime('last monday', strtotime($currentDate)));
+                            for ($i = 1; $i < 4; $i++) {
+                                $weekStartDate = date('Y-m-d', strtotime($monday . ' + ' . ($i * 7) . ' days'));
+                                $weekEndDate = date('Y-m-d', strtotime($weekStartDate . ' + 4 days'));
+                                $selected = ($weekStartDate == $selectedWeek) ? 'selected' : '';
+                                echo '<option value="' . $weekStartDate . '" ' . $selected . '>' . $weekStartDate . ' - ' . $weekEndDate . '</option>';
+                            }
                             ?>
                         </select>
-                        <input type="hidden" name="category" value="">
+                        <input type="hidden" name="category" value="{{ $selectedCategory }}">
                     </div>
                 </form>
             </div>
             <nav>
                 <ul>
-                    <li><a href="#">Video</a></li>
-                    <li><a href="#">Audio</a></li>
-                    <li><a href="#">Belichting</a></li>
-                    <li><a href="#">XR</a></li>
-                    <li><a href="#">Kits</a></li>
-                    <li><a href="#">Varia</a></li>
+                    <li><a href="{{ route('home', ['category' => 'Video', 'week' => $selectedWeek, 'query' => $searchQuery]) }}">Video</a></li>
+                    <li><a href="{{ route('home', ['category' => 'Audio', 'week' => $selectedWeek, 'query' => $searchQuery]) }}">Audio</a></li>
+                    <li><a href="{{ route('home', ['category' => 'Belichting', 'week' => $selectedWeek, 'query' => $searchQuery]) }}">Belichting</a></li>
+                    <li><a href="{{ route('home', ['category' => 'XR', 'week' => $selectedWeek, 'query' => $searchQuery]) }}">XR</a></li>
+                    <li><a href="{{ route('home', ['category' => 'Kits', 'week' => $selectedWeek, 'query' => $searchQuery]) }}">Kits</a></li>
+                    <li><a href="{{ route('home', ['category' => 'Varia', 'week' => $selectedWeek, 'query' => $searchQuery]) }}">Varia</a></li>
                 </ul>
             </nav>
         </div>
