@@ -1,5 +1,6 @@
 <x-app-layout>
     <!--LAYOUT HOME PAGE -->
+    <link rel="stylesheet" href="{{ asset('/css/home.css') }}">
     <body>
     <main>
         <div id="filter">

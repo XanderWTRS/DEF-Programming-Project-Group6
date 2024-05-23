@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="{{ asset('css/styling.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/G&V_voorwaarden.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/home.css') }}">
     <link rel="stylesheet" href="{{ asset('css/reservations.css') }}">
 
     <!-- Fonts -->
