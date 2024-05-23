@@ -32,7 +32,7 @@ class ProductsController extends Controller
             $query->where('title', 'like', '%' . $searchQuery . '%');
         }
 
-        $products = $query->get();
+        $products = $query->paginate(9);
 
         return view('home', compact('products', 'selectedWeek', 'selectedCategory', 'searchQuery'));
     }

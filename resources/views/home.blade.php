@@ -1,8 +1,7 @@
 <x-app-layout>
     <!--LAYOUT HOME PAGE -->
     <link rel="stylesheet" href="{{ asset('/css/home.css') }}">
-    <body>
-    <main>
+
         <div id="filter">
             <div id="filter1">
                 <div class="search-container">
@@ -94,8 +93,8 @@
             @endforeach
         </div>
         @endif
-    </main>
-    </body>
+        <br>{{ $products->links() }}<br>
+
     <!--LAYOUT FOOTER PAGE -->
     <x-slot name='footer'>
         <footer class="footer">
