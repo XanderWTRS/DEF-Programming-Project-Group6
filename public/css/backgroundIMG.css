@@ -1,0 +1,12 @@
+.backgroundIMG
+{
+    background-image: url("/ASSETS/Logo/ehbBackground.png");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+#colorEhB
+{
+    background-color: #e30615c6;
+}
