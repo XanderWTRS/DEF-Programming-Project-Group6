@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BanController;
 use App\Http\Controllers\BezetController;
-
+use App\Http\Controllers\ProductToevoegenController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -38,6 +38,14 @@ Route::get('/Bezetscherm', [BezetController::class, 'index']);
 Route::get('/Klaarzetten', function () {
     return view('Admin/Klaarzetten');
 });
+
+
+Route::get('/Producttoevoegen', function () {
+    return view('Admin/Producttoevoegen');
+});
+
+Route::get('/Producttoevoegen', [ProductToevoegenController::class, 'index']);
+Route::get('/products/filter/{category}', [ProductToevoegenController::class, 'filterByCategory'])->name('filter.products');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
