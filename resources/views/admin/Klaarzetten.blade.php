@@ -87,8 +87,8 @@
     </tbody>
 </table>
 
-@include('jsAdmin.Klaarzetten.Klaarzetten')
-@include('jsAdmin.Bezetscherm.Zoekbalk')
+@include('jsAdmin.Klaarzetten')
+@include('jsAdmin.Zoekbalk')
 @include('jsAdmin.Adminheader1')
 </body>
 </html>
