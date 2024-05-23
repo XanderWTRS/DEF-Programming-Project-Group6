@@ -1,0 +1,58 @@
+/*css voor de navigatie balk*/
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    flex-direction: row-reverse;
+    background-color: lightgray;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+
+    background-color: #f2f2f2;
+}
+
+.navbar .logo {
+    height: 50px;
+
+
+}
+
+.nav__links {
+
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    flex-direction: row-reverse;
+}
+
+.nav__links a {
+
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    transition: color 0.3s ease;
+    background-color: transparent;
+}
+
+
+.nav__links li {
+    background: none;
+    border: none;
+    border-radius: 0;
+}
+
+.nav__links a:hover {
+
+    color: #f9a602;
+}
+

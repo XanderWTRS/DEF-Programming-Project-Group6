@@ -1,7 +1,41 @@
 <x-app-layout>
     <!--LAYOUT HOME PAGE -->
-    <h1>HOME</h1>
-
+    <body>
+    <main>
+        <div id="filter">
+            <div id="filter1">
+                <div class="search-container">
+                    <form id="search-form" action="" method="get">
+                        <input type="search" name="query" id="query" placeholder="Search...">
+                        <button type="submit">
+                            <img id="search" src="/ASSETS/Icons/ZoekIcon.svg" alt="Search Icon" width="20" height="15">
+                        </button>
+                        <input type="hidden" name="week" id="week">
+                        <input type="hidden" name="category" id="category">
+                    </form>
+                </div>
+                <form action="" method="get">
+                    <div id="selectWeek">
+                        <select id="weekSelect" name="week" onchange="this.form.submit()">
+                            <!-- Week options will go here -->
+                        </select>
+                        <input type="hidden" name="category">
+                    </div>
+                </form>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Video</a></li>
+                    <li><a href="#">Audio</a></li>
+                    <li><a href="#">Belichting</a></li>
+                    <li><a href="#">XR</a></li>
+                    <li><a href="#">Kits</a></li>
+                    <li><a href="#">Varia</a></li>
+                </ul>
+            </nav>
+        </div>
+    </main>
+    </body>
     <!--LAYOUT FOOTER PAGE -->
     <x-slot name='footer'>
         <footer class="footer">
