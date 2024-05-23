@@ -1,0 +1,78 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    font-family:"Roboto", sans-serif;
+    font-weight: 500;
+    font-size: 0.94rem;
+}
+.body-class
+{
+    background-image: url("/ASSETS/Logo/ehbBackground.png");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+header
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    text-align: center;
+    margin-bottom: 12vh;
+}
+header img
+{
+    width: 500px;
+}
+nav
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #e30615c6;
+    border: none;
+    color: #ffffff;
+    text-align: center;
+    font-size: 17px;
+    padding: 16px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+   }
+
+   a span {
+    cursor: pointer;
+    color: #ffffff;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+    font-weight: 700;
+   }
+
+   a span:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -15px;
+    transition: 0.5s;
+   }
+
+   a:hover span {
+    padding-right: 15px;
+   }
+
+   a:hover span:after {
+    opacity: 1;
+    right: 0;
+   }
