@@ -39,7 +39,6 @@ document.addEventListener("DOMContentLoaded", function() {
             })
             .then(data => {
                 if (data.success) {
-                    // If the request was successful, remove the row from the table
                     row.remove();
                 } else {
                     console.error('Failed to unban student: ', data.message);

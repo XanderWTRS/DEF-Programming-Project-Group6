@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Ban;
 
 class BanController extends Controller
@@ -11,7 +10,7 @@ class BanController extends Controller
     {
         $bans = Ban::all();
 
-        return view('Admin.Banoverzicht', ['bans' => $bans]);
+        return view('admin.Banoverzicht', ['bans' => $bans]);
     }
 
     public function unbanStudent($id)

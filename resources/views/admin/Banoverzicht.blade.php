@@ -36,7 +36,7 @@
 </tbody>
 </table>
 @include('jsAdmin.ban')
-@include('jsAdmin.Bezetscherm.Zoekbalk')
+@include('jsAdmin.Zoekbalk')
 @include('jsAdmin.Adminheader1')
 </body>
 </html>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BanController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,6 +23,13 @@ Route::get('/winkelmand', function() {
 Route::get('/g&v_voorwaarden', function() {
     return view('g&v_voorwaarden');
 })->name('g&v_voorwaarden');
+
+Route::get('/Banoverzicht', function () {
+    return view('admin/Banoverzicht');
+});
+
+Route::get('/Banoverzicht', [BanController::class, 'index']);
+Route::delete('/ban/{id}', [BanController::class, 'unbanStudent']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
