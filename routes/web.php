@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BanController;
+use App\Http\Controllers\BezetController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -30,6 +32,9 @@ Route::get('/Banoverzicht', function () {
 
 Route::get('/Banoverzicht', [BanController::class, 'index']);
 Route::delete('/ban/{id}', [BanController::class, 'unbanStudent']);
+
+Route::get('/Bezetscherm', [BezetController::class, 'index']);
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -29,9 +29,9 @@
 
 </tbody> 
  </table> 
-    @include('jsAdmin.Bezetscherm.Chemark')
-    @include('jsAdmin.Bezetscherm.Zoekbalk')
-    @include('jsAdmin.Bezetscherm.Filterklaarzetten')
+    @include('jsAdmin.Chemark')
+    @include('jsAdmin.Zoekbalk')
+    @include('jsAdmin.Filterklaarzetten')
     @include('jsAdmin.Adminheader1')
 </body>
 </html>
