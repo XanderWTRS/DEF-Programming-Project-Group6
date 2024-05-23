@@ -36,4 +36,24 @@ class ProductsController extends Controller
 
         return view('home', compact('products', 'selectedWeek', 'selectedCategory', 'searchQuery'));
     }
+    public function index3()
+    {
+        $reservations = DB::table('reservations')
+                        ->pluck('id')
+                        ->toArray();
+        $products = DB::table('uitleendienst_inventaris')
+                        ->whereIn('id', $reservations)
+                        ->get();
+
+        // Get the week for each product
+        $productWeeks = [];
+        foreach ($products as $product) {
+            $week = DB::table('reservations')
+                    ->where('id', $product->id)
+                    ->value('date');
+            $productWeeks[$product->id] = $week;
+        }
+
+        return view('reservatieoverzicht', compact('products', 'productWeeks'));
+    }
 }

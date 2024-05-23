@@ -13,6 +13,10 @@ Route::get('/home', [ProductsController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('home');
 
+Route::get('/reservatieoverzicht', [ProductsController::class, 'index3'])
+    ->middleware(['auth', 'verified'])
+    ->name('reservatieoverzicht');
+
 Route::get('/admin-dashboard', function () {
     return view('adminDashboard');
 })->middleware(['auth', 'verified'])->name('admin.dashboard');
