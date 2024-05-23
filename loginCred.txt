@@ -1,0 +1,7 @@
+email: xander.wauters@student.ehb.be
+ww: 12345678
+role: student
+
+email: admin@ehb.be
+ww: admin12345678
+role: admin
