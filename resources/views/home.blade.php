@@ -2,7 +2,7 @@
     <!--LAYOUT HOME PAGE -->
     <body>
     <main>
-    <div id="filter">
+        <div id="filter">
             <div id="filter1">
                 <div class="search-container">
                     <form id="search-form" action="{{ route('home') }}" method="get">
@@ -46,27 +46,48 @@
         @if($products->isEmpty())
             <p>No products found.</p>
         @else
-            <div id="productenGrid">
+        <div id="productenGrid">
+            @php
+                $encounteredProducts = [];
+            @endphp
+            @foreach ($products as $product)
                 @php
-                    $encounteredProducts = [];
+                    $productKey = $product->title . '_' . $product->category;
                 @endphp
-                @foreach ($products as $product)
-                    @if (!isset($encounteredProducts[$product->title]) || !in_array($product->category, $encounteredProducts[$product->title]))
-                        @php
-                            $encounteredProducts[$product->title][] = $product->category;
-                        @endphp
-                        <a href="/product/{{ $product->id }}">
-                            <div class="product">
-                                <h2>{{ $product->title }}</h2>
-                                <img src="https://via.placeholder.com/150" alt="Placeholder Image">
-                                <p>Category: {{ $product->category }}</p>
-                                <p>Merk: {{ $product->merk }}</p>
-                                <p>Beschrijving: {{ $product->beschrijving }}</p>
-                            </div>
-                        </a>
-                    @endif
-                @endforeach
-            </div>
+                @if (!isset($encounteredProducts[$product->title]) || !in_array($product->category, $encounteredProducts[$product->title]))
+                    @php
+                        $encounteredProducts[$product->title][] = $product->category;
+                        $availability = true;
+                        $reservation = DB::table('reservations')->where('id', $product->id)->where('date', '=', $selectedWeek)->first();
+                        if ($reservation) {
+                            $availability = false;
+                        }
+                    @endphp
+                    <a href="/product/{{ $product->id }}">
+                        <div class="product">
+                            <h2>{{ $product->title }}</h2>
+                            <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+                            <p>Category: {{ $product->category }}</p>
+                            <p>Merk: {{ $product->merk }}</p>
+                            <p>Beschrijving: {{ $product->beschrijving }}</p>
+                            @if ($availability)
+                                <?php
+                                $productname = $product->title;
+                                $productids = DB::table('uitleendienst_inventaris')->where('title', $productname)->pluck('id');
+                                $productidsCount = $productids->count();
+                                $reservationCount = 0;
+
+                                foreach ($productids as $productId) {
+                                    $reservationCount += DB::table('reservations')->where('id', $productId)->count();
+                                }
+                                ?>
+                                <p>Available: {{ $productidsCount - $reservationCount }}</p>
+                            @endif
+                        </div>
+                    </a>
+                @endif
+            @endforeach
+        </div>
         @endif
     </main>
     </body>
