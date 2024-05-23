@@ -34,6 +34,17 @@
                 </ul>
             </nav>
         </div>
+        <div id="productenGrid">
+            @foreach ($products as $product)
+                <div class="product">
+                    <h2>{{ $product->title }}</h2>
+                    <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+                    <p>Category: {{ $product->category }}</p>
+                    <p>Merk: {{ $product->merk }}</p>
+                    <p>Beschrijving: {{ $product->beschrijving }}</p>
+                </div>
+            @endforeach
+        </div>e
     </main>
     </body>
     <!--LAYOUT FOOTER PAGE -->
