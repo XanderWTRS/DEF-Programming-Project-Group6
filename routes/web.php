@@ -18,3 +18,7 @@ Route::get('/admin-dashboard', function () {
 Route::get('/winkelmand', function() {
     return view('winkelmand');
 })->middleware(['auth', 'verified'])->name('winkelmand');
+
+Route::get('/g&v_voorwaarden', function() {
+    return view('g&v_voorwaarden');
+})->name('g&v_voorwaarden');
