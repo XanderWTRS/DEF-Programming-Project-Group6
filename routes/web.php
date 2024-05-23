@@ -17,6 +17,10 @@ Route::get('/reservatieoverzicht', [ProductsController::class, 'index3'])
     ->middleware(['auth', 'verified'])
     ->name('reservatieoverzicht');
 
+Route::delete('/delete/{id}', [ProductsController::class, 'delete'])
+    ->middleware(['auth', 'verified'])
+    ->name('delete');
+
 Route::get('/admin-dashboard', function () {
     return view('adminDashboard');
 })->middleware(['auth', 'verified'])->name('admin.dashboard');

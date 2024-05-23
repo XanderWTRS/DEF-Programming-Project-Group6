@@ -44,6 +44,12 @@
                                     <p>Count: {{ $productCounts[$productKey] }}</p>
                                 @endif
                             </div>
+                            <form action="{{ route('delete', ['id' => $product->id]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <input type="hidden" name="id" value="{{ $product->id }}">
+                                <button type="submit" class="delete-button">Delete</button>
+                            </form>
                         </div>
                     </a>
                 @endforeach

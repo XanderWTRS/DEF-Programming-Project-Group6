@@ -56,4 +56,21 @@ class ProductsController extends Controller
 
         return view('reservatieoverzicht', compact('products', 'productWeeks'));
     }
+    public function delete($id)
+    {
+        try {
+            $deletedRows = DB::table('reservations')
+                ->where('id', '=', $id)
+                ->delete();
+
+            if ($deletedRows > 0) {
+                return redirect('reservatieoverzicht');
+            } else {
+                return redirect('reservatieoverzicht');
+            }
+        } catch (\Exception $e) {
+            \Log::error('Error deleting product: ' . $e->getMessage());
+            return redirect('reservatieoverzicht');
+        }
+    }
 }
