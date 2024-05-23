@@ -54,6 +54,6 @@ class ReservationController extends Controller
                     'date' => $date,
                 ]);
 
-            return redirect('/home');
+            return redirect('reservatieoverzicht');
         }
 }
