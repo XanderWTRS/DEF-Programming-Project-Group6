@@ -2,9 +2,9 @@
     <!--LAYOUT HOME PAGE -->
         <div class="container">
             <div class="section1">
-                <h1 class="productTitle">{{ $product->merk }} {{ $product->title }}</h1>
+                <h1 class="titles">{{ $product->merk }} {{ $product->title }}</h1>
                 <img src="https://via.placeholder.com/500" alt="">
-                <h1 class="productInfo">product info</h1>
+                <h1 class="titles">product info</h1>
                 <p>{{ $product->beschrijving}}</p>
             </div>
             <div class="section2">
@@ -41,7 +41,7 @@
 
                                 @endphp
 
-                                @for ($week = $currentWeek + 1; $week <= $currentWeek + 2; $week++)
+                                @for ($week = $currentWeek + 1; $week <= $currentWeek + 4; $week++)
                                     @php
                                         $startOfWeek = \Carbon\Carbon::now()->startOfWeek()->addWeeks($week - $currentWeek);
                                         $endOfWeek = \Carbon\Carbon::now()->endOfWeek()->addWeeks($week - $currentWeek)->subDays(2);
@@ -78,6 +78,20 @@
                 </div>
             </div>
 
+            <div class="section3">
+                <h1 class="titles">relatated items</h1>
+                <div class="related product">
+                    @foreach ($relatedproducts as $relatedproduct)
+                        <a href="/product/{{ $relatedproduct->id }}">
+                            <div class="product">
+                                <h1>{{ $relatedproduct->title }} {{ $relatedproduct->merk }}</h1>
+                                <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+                                <p>Beschrijving: {{ $relatedproduct->beschrijving }}</p>
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
+            </div>
         </div>
 
     <!--LAYOUT FOOTER PAGE -->
