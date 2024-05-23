@@ -66,8 +66,8 @@ Route::middleware('auth')->group(function () {
 Route::get('/product/{id}', [ReservationController::class, 'show']);
 Route::post('/product/{id}', [ReservationController::class, 'store']);
 
-Route::get('/terugbrengen', [TerugbrengenController::class, 'index'])->name('admin.terugbrengen.index');
-Route::get('/terugbrengen/search', [TerugbrengenController::class, 'search'])->name('admin.terugbrengen.search');
-Route::post('/terugbrengen/search', [TerugbrengenController::class, 'search']);
+Route::get('/terugbrengen', [TerugbrengenController::class, 'index'])->middleware('admin')->name('admin.terugbrengen.index');
+Route::get('/terugbrengen/search', [TerugbrengenController::class, 'search'])->middleware('admin')->name('admin.terugbrengen.search');
+Route::post('/terugbrengen/search', [TerugbrengenController::class, 'search'])->middleware('admin');
 
 require __DIR__.'/auth.php';
