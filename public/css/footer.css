@@ -1,0 +1,53 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    font-family:"Roboto", sans-serif;
+    font-weight: 500;
+    font-size: 0.94rem;
+}
+
+.footer
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#left {
+    flex: 1;
+    margin-left: 20px;
+    padding: 0px 0 0px 0px;
+}
+
+#left ul {
+    list-style-type: none;
+}
+
+#left li {
+    margin-bottom: 5px;
+}
+#left li:last-child
+{
+    margin-bottom: 0;
+}
+
+#center-footer {
+    flex: 1;
+    text-align: center;
+}
+
+#right-footer {
+    flex: 1;
+    text-align: right;
+    margin-right: 20px;
+}
+
+.link
+{
+    cursor: pointer;
+}
+.link:hover
+{
+    color: rgb(255, 84, 84);
+}
