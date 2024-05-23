@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset('/css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/G&V_voorwaarden.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/reservations.css') }}">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -53,4 +54,5 @@
             @endif
     </div>
 </body>
+<script src="{{ asset('js/reservations.js') }}"></script>
 </html>
