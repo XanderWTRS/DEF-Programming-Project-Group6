@@ -79,10 +79,14 @@
                                 $reservationCount = 0;
 
                                 foreach ($productids as $productId) {
-                                    $reservationCount += DB::table('reservations')->where('id', $productId)->count();
+                                    // Check reservations for the selected week
+                                    $reservationCount += DB::table('reservations')->where('id', $productId)->where('date', $selectedWeek)->count();
                                 }
+
+                                // Ensure availability doesn't go below 0
+                                $availableCount = max(0, $productidsCount - $reservationCount);
                                 ?>
-                                <p>Available: {{ $productidsCount - $reservationCount }}</p>
+                                <p>Available: {{ $availableCount }}</p>
                             @endif
                         </div>
                     </a>
