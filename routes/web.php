@@ -10,7 +10,7 @@ use App\Http\Controllers\ProductToevoegenController;
 use App\Http\Controllers\TerugbrengenController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome'); 
 });
 
 Route::get('/home', [ProductsController::class, 'index'])
@@ -56,6 +56,9 @@ Route::get('/Producttoevoegen', function () {
 
 Route::get('/Producttoevoegen', [ProductToevoegenController::class, 'index']);
 Route::get('/products/filter/{category}', [ProductToevoegenController::class, 'filterByCategory'])->name('filter.products');
+Route::delete('/product/{id}', [ProductToevoegenController::class, 'destroy'])->name('product.delete');
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -69,5 +72,7 @@ Route::post('/product/{id}', [ReservationController::class, 'store']);
 Route::get('/terugbrengen', [TerugbrengenController::class, 'index'])->middleware('admin')->name('admin.terugbrengen.index');
 Route::get('/terugbrengen/search', [TerugbrengenController::class, 'search'])->middleware('admin')->name('admin.terugbrengen.search');
 Route::post('/terugbrengen/search', [TerugbrengenController::class, 'search'])->middleware('admin');
+
+
 
 require __DIR__.'/auth.php';
