@@ -27,8 +27,12 @@
     @if (Route::has('login'))
         <nav class="nav">
             @auth
-                <a href="{{ url('/home') }}" class=""><span>Home</span></a>
+                @if (Auth::user()->isAdmin())
+                    <a href="{{ url('/admin-dashboard') }}" class=""><span>Home</span></a>
                 @else
+                    <a href="{{ url('/home') }}" class=""><span>Home</span></a>
+                @endif
+            @else
                 <a href="{{ route('login') }}" class="button-welcome"><span>Log in</span></a>
 
                 @if (Route::has('register'))
