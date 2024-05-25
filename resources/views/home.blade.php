@@ -93,7 +93,9 @@
             @endforeach
         </div>
         @endif
-        <br>{{ $products->links() }}<br>
+        <div class="paginationStyle">
+            {{ $products->links('pagination::bootstrap-4') }}
+        </div>
 
     <!--LAYOUT FOOTER PAGE -->
     <x-slot name='footer'>

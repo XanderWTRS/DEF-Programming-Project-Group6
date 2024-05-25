@@ -53,7 +53,7 @@ select {
     width: 100%;
     margin: 10px;
 }
-    
+
 #filter{
     display: flex;
     flex-direction: column;
@@ -76,31 +76,40 @@ select {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
     overflow: auto;
     margin: 0 auto;
 }
 #productenGrid a {
     text-decoration: none;
-    color: black; 
-    flex: 1 33.33%; 
+    color: black;
+    flex: 1 33.33%;
     max-width: calc(33.33% - 40px);
     display: flex;
-    justify-content: center; 
-    align-items: center; 
+    justify-content: center;
+    align-items: center;
 }
 
 .product{
-    flex-direction: column; 
+    flex-direction: column;
     margin: 20px 10px   ;
     align-items: center;
     text-align: left;
     width: 200px;
-    
-} 
+
+}
 .product:hover {
     cursor: pointer;
 }
 #search:hover{
     cursor: pointer;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0 0;
 }
