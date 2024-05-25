@@ -85,7 +85,7 @@
                                 // Ensure availability doesn't go below 0
                                 $availableCount = max(0, $productidsCount - $reservationCount);
                                 ?>
-                                <p>Available: {{ $availableCount }}</p>
+                                <p>Beschikbaar: {{ $availableCount }}</p>
                             @endif
                         </div>
                     </a>
