@@ -10,7 +10,7 @@ use App\Http\Controllers\ProductToevoegenController;
 use App\Http\Controllers\TerugbrengenController;
 
 Route::get('/', function () {
-    return view('welcome'); 
+    return view('welcome');
 });
 
 Route::get('/home', [ProductsController::class, 'index'])
@@ -27,10 +27,6 @@ Route::delete('/delete/{id}', [ProductsController::class, 'delete'])
 
 Route::get('/admin-dashboard', [ProfileController::class,'page'])
 ->middleware('admin', 'auth', 'verified')->name('admin.dashboard');
-
-Route::get('/winkelmand', function() {
-    return view('winkelmand');
-})->middleware(['auth', 'verified'])->name('winkelmand');
 
 Route::get('/g&v_voorwaarden', function() {
     return view('g&v_voorwaarden');

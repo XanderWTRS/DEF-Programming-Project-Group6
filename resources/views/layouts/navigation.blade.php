@@ -42,7 +42,7 @@
                             {{ __('Profiel') }}
                         </x-dropdown-link>
 
-                        <x-dropdown-link :href="route('winkelmand')">
+                        <x-dropdown-link :href="route('reservatieoverzicht')">
                             {{ __('Winkelmand') }}
                         </x-dropdown-link>
 
