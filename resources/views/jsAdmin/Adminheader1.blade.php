@@ -11,24 +11,19 @@ function insertCSSToHead(code) {
 
 insertCSSToHead(srcToCSS);
 
-
 const AdminHeader = document.querySelector('.Adminheader');
 
 AdminHeader.innerHTML =
 `
 <nav class="navbar">
-    <ul class="nav__links header__links">
+    <ul id="navUL" class="nav__links header__links">
         <li><a href="{{asset('/Klaarzetten')}}">Klaarzetten</a></li>
         <li><a href="{{asset('/terugbrengen')}}">Terugbrengen</a></li>
         <li><a href="{{asset('/Bezetscherm')}}">Beschikbaarheid</a></li>
-        <li><a href="{{asset('/Producttoevoegen')}}">productbeheer</a></li>
-        <li><a href="{{asset('/Banoverzicht')}}">blacklist</a></li>
+        <li><a href="{{asset('/Producttoevoegen')}}">Productbeheer</a></li>
+        <li><a href="{{asset('/Banoverzicht')}}">Blacklist</a></li>
     </ul>
-    <img src="{{asset('Assets/Logo/horizontaal EhB-logo (transparante achtergrond).png')}}" alt="logoehb" class="logo">
-
-    
+    <a href="{{asset('/admin-dashboard')}}"><img src="{{asset('Assets/Logo/logo-trans.png')}}" alt="logoehb" class="logo"></a>
 </nav>
-
 `;
-
 </script>
