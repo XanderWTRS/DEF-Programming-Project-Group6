@@ -29,62 +29,18 @@
         <th>Bevestiging</th>
     </tr>
     </thead>
-    <tbody>
-    <tr>
-        <td>Matteo</td>
-        <td>   <ul>
-            <li>Camera</li>
-            <li>Laptop</li>
-            <li>Microfoon</li>
-        </ul></td>
-        <td><input type="checkbox"></td>
-    </tr>
-    <tr>
-        <td>blue</td>
-        <td>   <ul>
-            <li>Camera</li>
-            <li>Laptop</li>
-            <li>Microfoon</li>
-        </ul></td>
-        <td><input type="checkbox"></td>
-    </tr>
-    <tr>
-        <td>jordan</td>
-        <td>   <ul>
-            <li>Camera</li>
-            <li>Laptop</li>
-            <li>Microfoon</li>
-        </ul></td>
-        <td><input type="checkbox"></td>
-    </tr>
-    <tr>
-        <td>jackson</td>
-        <td>   <ul>
-            <li>Camera</li>
-            <li>Laptop</li>
-            <li>Microfoon</li>
-        </ul></td>
-        <td><input type="checkbox"></td>
-    </tr>
-    <tr>
-        <td>tab</td>
-        <td>   <ul>
-            <li>Camera</li>
-            <li>Laptop</li>
-            <li>Microfoon</li>
-        </ul></td>
-        <td><input type="checkbox"></td>
-    </tr>
-    <tr>
-        <td>max</td>
-        <td>   <ul>
-            <li>Camera</li>
-            <li>Laptop</li>
-            <li>Microfoon</li>
-        </ul></td>
-        <td><input type="checkbox"></td>
-    </tr>
-    </tbody>
+    <body>
+        <tbody>
+            @foreach($reservations as $reservation)
+                <tr>
+                    <td>{{ $reservation->name }}</td>
+                    <td>{{ $reservation->id }}</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</body>
 </table>
 
 @include('jsAdmin.Klaarzetten')
