@@ -47,13 +47,14 @@
         transition: background-color 0.3s ease, transform 0.3s ease;
         transform-style: preserve-3d;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        background-color: #fff;
+        background-color: #ffffffe0;
         border: 2px solid #fff;
     }
 
     .container a:hover {
         border-color: #e30615c6;
         transform: scale(1.1);
+        background-color: #ffffffff;
     }
 
     .container a:active {
