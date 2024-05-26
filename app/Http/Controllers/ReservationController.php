@@ -29,31 +29,32 @@ class ReservationController extends Controller
     }
 
     public function store(Request $request , $id)
-        {
-            $selected = Carbon::parse($request->input('selected_week'));
+    {
+        $selected = Carbon::parse($request->input('selected_week'));
 
-            $product = DB::table('uitleendienst_inventaris')->where('id', $id)->first();
-            $productname = $product->title;
-            $productids = DB::table('uitleendienst_inventaris')->where('title', $productname)->pluck('id');
+        $product = DB::table('uitleendienst_inventaris')->where('id', $id)->first();
+        $productname = $product->title;
+        $productids = DB::table('uitleendienst_inventaris')->where('title', $productname)->pluck('id');
 
-            $startOfWeek = $selected->startOfWeek();
+        $startOfWeek = $selected->startOfWeek();
 
-            foreach ($productids as $productid) {
-                $reserveringen = DB::table('reservations')
-                    ->where('id', $productid)
-                    ->where('date', '>=', $startOfWeek)
-                    ->get();
-                if ($reserveringen->isEmpty()) {
-                    $product = $productid;
-                }
+        foreach ($productids as $productid) {
+            $reserveringen = DB::table('reservations')
+                ->where('id', $productid)
+                ->where('date', '>=', $startOfWeek)
+                ->get();
+            if ($reserveringen->isEmpty()) {
+                $product = $productid;
             }
-
-            $date = $selected;
-            DB::table('reservations')->insert([
-                    'id' => $product,
-                    'date' => $date,
-                ]);
-
-            return redirect('reservatieoverzicht');
         }
+
+        $date = $selected;
+        DB::table('reservations')->insert([
+                'id' => $product,
+                'date' => $date,
+                'name' => auth()->user()->name,
+            ]);
+
+        return redirect('reservatieoverzicht');
+    }
 }

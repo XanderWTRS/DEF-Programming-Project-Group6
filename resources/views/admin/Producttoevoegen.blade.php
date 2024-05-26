@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Producttoevoegen | Admin</title>
+  <title>Product Beheer | Admin</title>
   <link rel="icon" href="{{ asset('Assets/Logo/logo.png') }}" type="image/png">
   <link rel="stylesheet" href="{{ asset('css/index.css') }}">
   <link rel="stylesheet" href="{{ asset('css/Admin/Producttoevoegen.css') }}">
@@ -28,11 +28,12 @@
 </div>
 <nav class="zoek">
   <input type="text" id="search" placeholder="Zoek producten...">
-  <button onclick="window.location.href='#nowhere'">Product toevoegen</button>
+  <button class="buttonToevoegen" onclick="window.location.href='#nowhere'">Product toevoegen</button>
 </nav>
 <table>
   <thead>
     <tr>
+      <th>Product ID</th>
       <th>Productnaam</th>
       <th>Acties</th>
     </tr>
@@ -40,14 +41,15 @@
   <tbody>
   @foreach($products as $product)
 <tr>
+  <td>{{$product->id}}</td>
   <td>{{ $product->title }}</td>
-  <td>
+  <td id="buttonTD">
+    <button class="buttonWijzig">Wijzig</button>
     <form action="{{ route('product.delete', ['id' => $product->id]) }}" method="POST">
       @csrf
       @method('DELETE')
-      <button type="submit">Verwijder</button>
+      <button type="submit" class="buttonVerwijder">Verwijder</button>
     </form>
-    <button>Wijzig</button>
   </td>
 </tr>
 @endforeach

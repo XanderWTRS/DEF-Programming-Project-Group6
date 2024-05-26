@@ -5,7 +5,17 @@
                 <h1 class="titles">{{ $product->merk }} {{ $product->title }}</h1>
                 <img src="https://via.placeholder.com/500" alt="">
                 <h1 class="titles">product info</h1>
-                <p>{{ $product->beschrijving}}</p>
+                <p>
+                    Ontdek de perfecte combinatie van functionaliteit en stijl met ons nieuwste product. Ontworpen met oog voor detail en gemaakt van hoogwaardige materialen, biedt dit product alles wat je nodig hebt voor een optimale ervaring. Of je het nu thuis, op kantoor of onderweg gebruikt, het voldoet aan al je verwachtingen en meer.
+                    <br><br>
+                    <b>Belangrijkste kenmerken:</b>
+                    <br>
+                    - Uitstekende kwaliteit: Gemaakt van duurzame materialen voor langdurig gebruik.<br>
+                    - Elegant design: Modern en stijlvol ontwerp dat in elke omgeving past.<br>
+                    - Gebruiksvriendelijk: Eenvoudig te installeren en te gebruiken, zelfs voor beginners.<br>
+                    - Veelzijdig: Geschikt voor diverse toepassingen en situaties.<br>
+                    - Betaalbaar: Uitstekende prijs-kwaliteitverhouding voor een product van deze klasse.<br>
+                    </p><br><br>
             </div>
             <div class="section2">
                 <div class="content">
@@ -41,7 +51,7 @@
 
                                 @endphp
 
-                                @for ($week = $currentWeek + 1; $week <= $currentWeek + 4; $week++)
+                                @for ($week = $currentWeek + 1; $week <= $currentWeek + 2; $week++)
                                     @php
                                         $startOfWeek = \Carbon\Carbon::now()->startOfWeek()->addWeeks($week - $currentWeek);
                                         $endOfWeek = \Carbon\Carbon::now()->endOfWeek()->addWeeks($week - $currentWeek)->subDays(2);
