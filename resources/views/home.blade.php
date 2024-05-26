@@ -64,13 +64,10 @@
                         }
                     @endphp
                     <a href="/product/{{ $product->id }}">
-                        <div class="product">
-                            <h2>{{ $product->title }}</h2>
-                            <img src="https://via.placeholder.com/150" alt="Placeholder Image">
-                            <p>Category: {{ $product->category }}</p>
-                            <p>Merk: {{ $product->merk }}</p>
-                            <p>Beschrijving: {{ $product->beschrijving }}</p>
-                            @if ($availability)
+                        <div class="product card">
+                            <div id="product-head">
+                                <h2>{{ $product->title }}</h2>
+                                @if ($availability)
                                 <?php
                                 $productname = $product->title;
                                 $productids = DB::table('uitleendienst_inventaris')->where('title', $productname)->pluck('id');
@@ -85,8 +82,21 @@
                                 // Ensure availability doesn't go below 0
                                 $availableCount = max(0, $productidsCount - $reservationCount);
                                 ?>
-                                <p>Beschikbaar: {{ $availableCount }}</p>
+                                <div id="product-con">
+                                    @if($availableCount == 0)
+                                        <img id="product-con-img" src="{{asset('Assets/Icons/red-circle.png')}}">
+                                        <p id="product-count">{{ $availableCount }}</p>
+                                    @else
+                                        <img id="product-con-img" src="{{asset('Assets/Icons/green-circle.png')}}">
+                                        <p id="product-count">{{ $availableCount }}</p>
+                                    @endif
+                                </div>
                             @endif
+                            </div>
+                            <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+                            <p class="product-desc">Category: {{ $product->category }}</p>
+                            <p class="product-desc">Merk: {{ $product->merk }}</p>
+                            <p class="product-desc">Beschrijving: {{ $product->beschrijving }}</p>
                         </div>
                     </a>
                 @endif
