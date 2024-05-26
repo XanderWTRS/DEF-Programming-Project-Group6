@@ -24,6 +24,28 @@ body {
     padding-left: 0px;
     display: inline-block;
 }
+.dropbtn {
+    background-color: #ffffff;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.dropbtn:hover {
+    opacity: 0.8;
+}
+
+.dropbtn:active {
+    opacity: 0.6;
+}
 
 .dropdown-content {
     display: none;
@@ -62,20 +84,6 @@ table th {
     color: black;
 }
 
-button {
-    border: 1px solid black;
-    display: inline-block;
-    background-color: white;
-    color: black;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-button:hover {
-    background-color: #f2f2f2;
-}
-
 #search {
     margin-right: 10px;
 }
@@ -87,9 +95,55 @@ button:hover {
     justify-content: space-between;
 }
 table th:nth-child(1) {
-    width: 70%;
+    width: 10%;
 }
 
 table th:nth-child(2) {
-    width: 30%;
+    width: 70%;
+}
+
+table th:nth-child(3) {
+    width: 20%;
+}
+.buttonToevoegen, .buttonVerwijder, .buttonWijzig
+{
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.buttonToevoegen:hover, .buttonVerwijder:hover, .buttonWijzig:hover
+{
+    opacity: 0.8;
+}
+
+.buttonToevoegen:active, .buttonVerwijder:active, .buttonWijzig:active
+{
+    opacity: 0.6;
+}
+
+.buttonToevoegen
+{
+    background-color: rgb(58, 216, 58);
+}
+.buttonVerwijder
+{
+    background-color: rgb(255, 37, 37);
+}
+.buttonWijzig
+{
+    background-color: rgb(255, 180, 40);
+}
+
+#buttonTD
+{
+    display: flex;
+    justify-content: space-between;
 }
