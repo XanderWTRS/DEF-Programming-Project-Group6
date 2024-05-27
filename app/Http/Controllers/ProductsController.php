@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class ProductsController extends Controller
 {
@@ -49,11 +50,11 @@ class ProductsController extends Controller
     {
         $user = auth()->user()->name;
 
-        // Calculate expiration time (e.g., 1 hour from now)
         $expirationTime = now()->addHour();
 
         $reservations = DB::table('reservations')
                         ->where('name', $user)
+                        ->whereNotNull('expires_at')
                         ->pluck('id')
                         ->toArray();
 
@@ -77,6 +78,20 @@ class ProductsController extends Controller
         }
 
         return view('reservatieoverzicht', compact('products', 'productWeeks'));
+    }
+    public function timestamp(){
+        $user = auth()->user()->name;
+        $reservationIds = DB::table('reservations')
+            ->where('name', $user)
+            ->whereNotNull('expires_at')
+            ->pluck('id')
+            ->toArray();
+        
+        DB::table('reservations')
+            ->whereIn('id', $reservationIds)
+            ->update(['expires_at' => null]);
+
+        return redirect('reservatieoverzicht');
     }
     public function delete($id)
     {

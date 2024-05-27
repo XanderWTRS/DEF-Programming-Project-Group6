@@ -26,7 +26,7 @@
                         }
                     @endphp
                 @endforeach
-
+                
                 @foreach ($uniqueProducts as $productKey => $product)
                     <a href="/product/{{ $product->id }}">
                         <div class="product">
@@ -62,10 +62,14 @@
                 <input type="checkbox" id="g-v-overeenkomst" name="g-v-overeenkomst">
                 <label for="g-v-overeenkomst">G & V overeenkomst</label>
             </div>
-            <button type="button">Submit</button>
+            <form action="{{ route('timestamp') }}" method="POST">
+                @csrf
+                <button type="submit">Submit</button>
+            </form>
         </div>
         </main>
     </body>
+    <script src="{{ asset('js/timestamps.js') }}"></script>
     <!--LAYOUT FOOTER PAGE -->
     <x-slot name='footer'>
         <footer class="footer">
@@ -80,7 +84,5 @@
             <div id="center-footer"><span class="link">&#169; Erasmus Hogeschool Brussel</span></div>
             <div id="right-footer"><a href="{{ route('g&v_voorwaarden') }}" class="link">Gebruiks- en Verlies overeenkomst</a></div>
         </footer>
-        </footer>
     </x-slot>
-
 </x-app-layout>
