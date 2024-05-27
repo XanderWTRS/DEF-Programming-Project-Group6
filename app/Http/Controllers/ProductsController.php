@@ -58,14 +58,14 @@ class ProductsController extends Controller
             $product = DB::table('uitleendienst_inventaris')->where('id', $reservation->id)->first();
             $found = false;
             foreach ($producten as $key => $item) {
-                if ($item->date == $reservation->date && $item->title == $product->title) {
+                if ($item->date == $reservation->date && $item->title == $product->title && $reservation->expires_at !== null) {
                     $producten[$key]->count++;
                     $count++;
                     $found = true;
                     break;
                 }
             }
-            if (!$found) {
+            if (!$found && $reservation->expires_at !== null) {
                 $producten[$i] = (object) [
                     'id' => $reservation->id,
                     'date' => $reservation->date,
