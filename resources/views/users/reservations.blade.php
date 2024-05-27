@@ -61,7 +61,7 @@
                                     @endphp
                                     <tr>
                                         @if (($productidsCount - $reservationCount)  != 0)
-                                            <td><input type="checkbox" name="selected_week" onchange="checkOnlyOne(this)" value="{{$startOfWeek->toDateString()}}"></td>
+                                            <td><input type="checkbox" class="weekCheckbox" name="selected_week" onchange="checkOnlyOne(this)" value="{{$startOfWeek->toDateString()}}"></td>
                                             @php
                                                 $avaible++;
                                             @endphp
@@ -82,12 +82,12 @@
                             </tbody>
                         </table>
                         @if ($avaible > 0)
-                        <input type="submit" value="reservering" class="back-btn">
+                            <input type="submit" id="submitButton" value="reservering" disabled>
+
                         @endif
                     </form>
                 </div>
             </div>
-
             <div class="section3">
                 <h1 class="titles">relatated items</h1>
                 <div class="related product">
