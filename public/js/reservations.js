@@ -7,3 +7,26 @@ function checkOnlyOne(checkbox) {
         }
     });
 }
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    const checkboxes = document.querySelectorAll('.weekCheckbox');
+    const submitButton = document.getElementById('submitButton');
+
+    const updateSubmitButtonState = () => {
+        const atLeastOneChecked = Array.from(checkboxes).some(cb => cb.checked);
+        submitButton.disabled = !atLeastOneChecked;
+
+        if (atLeastOneChecked) {
+            startFunction();
+        }
+    };
+
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateSubmitButtonState);
+    });
+});
+
+function startFunction() {
+    // Your function code here
+    console.log("At least one checkbox is now checked!");
+}
