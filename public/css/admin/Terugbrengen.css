@@ -1,15 +1,9 @@
-.fullbodywrapper{
-    display: flex;
-
-}
-
 .wrapper{
     margin: 10px;
-    justify-content: center;
+    display: flex;
 }
 
 .reservationsdiplay{
     margin: 10px;
-    justify-content: center;
 
 }
