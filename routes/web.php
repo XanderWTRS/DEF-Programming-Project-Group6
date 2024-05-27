@@ -8,9 +8,10 @@ use App\Http\Controllers\BanController;
 use App\Http\Controllers\BezetController;
 use App\Http\Controllers\ProductToevoegenController;
 use App\Http\Controllers\TerugbrengenController;
+use App\Http\Controllers\AddproductInventarisController;
+use App\Http\Controllers\TelaatController;
 use App\Models\Klaarzetten;
 use App\Http\Controllers\KlaarzettenController;
-use App\Http\Controllers\AddproductInventarisController;
 use App\Http\Controllers\ModifyproductController;
 
 Route::get('/', function () {
@@ -21,9 +22,13 @@ Route::get('/home', [ProductsController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('home');
 
-Route::get('/reservatieoverzicht', [ProductsController::class, 'index3'])
+    Route::get('/reservatieoverzicht', [ProductsController::class, 'index3'])
     ->middleware(['auth', 'verified'])
     ->name('reservatieoverzicht');
+
+Route::post('/reservatieoverzicht', [ProductsController::class, 'timestamp'])
+    ->middleware(['auth', 'verified'])
+    ->name('timestamp');
 
 Route::delete('/delete/{id}', [ProductsController::class, 'delete'])
     ->middleware(['auth', 'verified'])
@@ -87,6 +92,11 @@ Route::put('/Modifyproduct/{id}', [ModifyproductController::class, 'update'])->m
 
 Route::get('/Klaarzetten', [KlaarzettenController::class, 'index']);
 Route::get('/filter-reservations', [KlaarzettenController::class, 'filter']);
+
+Route::get('/Telaat', function () {
+    return view('A  dmin/Telaat');
+});
+Route::get('/Telaat', [TelaatController::class, 'index']);
 
 
 require __DIR__.'/auth.php';
