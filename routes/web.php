@@ -72,5 +72,7 @@ Route::get('/terugbrengen/search', [TerugbrengenController::class, 'search'])->m
 Route::post('/terugbrengen/search', [TerugbrengenController::class, 'search'])->middleware('admin');
 
 Route::get('/Klaarzetten', [KlaarzettenController::class, 'index']);
+Route::get('/filter-reservations', [KlaarzettenController::class, 'filter']);
+
 
 require __DIR__.'/auth.php';
