@@ -1,10 +1,12 @@
 <x-app-layout>
     <!--LAYOUT HOME PAGE -->
+    <link rel="stylesheet" href="{{ asset('css/reservations.css') }}">
+    <div class="main-container">
         <div class="container">
             <div class="section1">
                 <h1 class="titles">{{ $product->merk }} {{ $product->title }}</h1>
                 <img src="https://via.placeholder.com/500" alt="">
-                <h1 class="titles">product info</h1>
+                <h1 class="titles">Product Informatie</h1>
                 <p>
                     Ontdek de perfecte combinatie van functionaliteit en stijl met ons nieuwste product. Ontworpen met oog voor detail en gemaakt van hoogwaardige materialen, biedt dit product alles wat je nodig hebt voor een optimale ervaring. Of je het nu thuis, op kantoor of onderweg gebruikt, het voldoet aan al je verwachtingen en meer.
                     <br><br>
@@ -61,7 +63,7 @@
                                     @endphp
                                     <tr>
                                         @if (($productidsCount - $reservationCount)  != 0)
-                                            <td><input type="checkbox" name="selected_week" onchange="checkOnlyOne(this)" value="{{$startOfWeek->toDateString()}}"></td>
+                                            <td><input type="checkbox" class="weekCheckbox" name="selected_week" onchange="checkOnlyOne(this)" value="{{$startOfWeek->toDateString()}}"></td>
                                             @php
                                                 $avaible++;
                                             @endphp
@@ -82,27 +84,25 @@
                             </tbody>
                         </table>
                         @if ($avaible > 0)
-                        <input type="submit" value="reservering" class="back-btn">
+                            <input type="submit" id="submitButton" value="Reserveer" disabled>
+
                         @endif
                     </form>
                 </div>
             </div>
         </div>
         <div class="section3">
-            <h1 class="titles">relatated items</h1>
+            <h1 class="titles">Gerelateerde Producten</h1>
             <div class="related-product">
                 @foreach ($relatedproducts as $relatedproduct)
-                    <a href="/product/{{ $relatedproduct->id }}">
-                        <div class="product">
-                            <h1 id="productTitle">{{ $relatedproduct->title }} {{ $relatedproduct->merk }}</h1>
+                    <a class="product" href="/product/{{ $relatedproduct->id }}">
+                            <h1 id="product-title">{{ $relatedproduct->title }} {{ $relatedproduct->merk }}</h1>
                             <img src="https://via.placeholder.com/150" alt="Placeholder Image">
-                            <p>Beschrijving: {{ $relatedproduct->beschrijving }}</p>
-                        </div>
                     </a>
                 @endforeach
             </div>
         </div>
-
+    </div>
     <!--LAYOUT FOOTER PAGE -->
     <x-slot name='footer'>
         <footer class="footer">

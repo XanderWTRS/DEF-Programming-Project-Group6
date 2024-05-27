@@ -15,7 +15,16 @@ class ProductsController extends Controller
         $searchQuery = $request->input('query');
 
         $query = DB::table('uitleendienst_inventaris');
-
+        if ($selectedWeek === null) {
+            $selectedWeek = DB::table('reservations')
+            ->orderBy('date')
+            ->value('date');
+            $reservedProducts = DB::table('reservations')
+            ->where('date', '=', $selectedWeek)
+            ->pluck('id')
+            ->toArray();
+        $query->whereNotIn('id', $reservedProducts);
+        }
         if ($selectedWeek) {
             $reservedProducts = DB::table('reservations')
                 ->where('date', '=', $selectedWeek)
@@ -38,19 +47,32 @@ class ProductsController extends Controller
     }
     public function index3()
     {
+        $user = auth()->user()->name;
+
+        // Calculate expiration time (e.g., 1 hour from now)
+        $expirationTime = now()->addHour();
+
         $reservations = DB::table('reservations')
+                        ->where('name', $user)
                         ->pluck('id')
                         ->toArray();
+
         $products = DB::table('uitleendienst_inventaris')
                         ->whereIn('id', $reservations)
                         ->get();
 
-        // Get the week for each product
         $productWeeks = [];
+
         foreach ($products as $product) {
+            // Set expiration timestamp for each reservation
+            DB::table('reservations')
+                ->where('id', $product->id)
+                ->update(['expires_at' => $expirationTime]);
+
             $week = DB::table('reservations')
                     ->where('id', $product->id)
                     ->value('date');
+            
             $productWeeks[$product->id] = $week;
         }
 

@@ -12,6 +12,7 @@ use App\Models\Klaarzetten;
 use App\Http\Controllers\KlaarzettenController;
 use App\Http\Controllers\AddproductInventarisController;
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -78,5 +79,7 @@ Route::get('/Addproduct/create', [AddproductInventarisController::class, 'create
 Route::post('/Addproduct/store', [AddproductInventarisController::class, 'store'])->middleware('admin')->name('admin.Addproduct.store');
 
 Route::get('/Klaarzetten', [KlaarzettenController::class, 'index']);
+Route::get('/filter-reservations', [KlaarzettenController::class, 'filter']);
+
 
 require __DIR__.'/auth.php';
