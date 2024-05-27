@@ -21,9 +21,11 @@ class ProductToevoegenController extends Controller
     }
 
     public function destroy($id)
-{
+    {
     $product = ProductToevoegen::findOrFail($id);
     $product->delete();
     return redirect()->back()->with('success', 'Product succesvol verwijderd.');
-}
+    }
+
+    
 }
