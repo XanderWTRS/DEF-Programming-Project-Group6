@@ -48,7 +48,6 @@ class ProductsController extends Controller
     public function index3()
     {
         $user = auth()->user()->name;
-        // $expirationTime = now()->addHour();
         $reservations = DB::table('reservations')
                         ->where('name', $user)
                         ->get();
@@ -80,9 +79,6 @@ class ProductsController extends Controller
                 $i++;
             }
         }
-        // DB::table('reservations')
-        //         ->where('id', $product->id)
-        //         ->update(['expires_at' => $expirationTime]);
 
 
         return view('reservatieoverzicht', compact('producten'));
