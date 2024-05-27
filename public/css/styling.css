@@ -4,9 +4,13 @@
 }
 .app-styling
 {
-    background-color: #fbeff1;
+    background-color: #ffffff;
 }
 .hover-styling-class:hover
 {
     background-color: #ff00002d;
+}
+
+body {
+    font-family:"Roboto", sans-serif;
 }
