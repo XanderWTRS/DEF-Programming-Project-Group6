@@ -17,7 +17,15 @@
     <input type="text" id="search-bar" placeholder="Zoek op naam of product...">
     
 
-    <table>   
+    <table> 
+        
+    <thead>
+            <tr>
+                <th>Product</th>
+                <th>Status</th>
+                <th>Student</th>
+            </tr>
+        </thead>
     <tbody>
         @forelse($products as $product)
         <tr>
@@ -29,6 +37,7 @@
 
 </tbody> 
  </table> 
+    @include('jsAdmin.Bezetscherm')
     @include('jsAdmin.Chemark')
     @include('jsAdmin.Zoekbalk')
     @include('jsAdmin.Filterklaarzetten')
