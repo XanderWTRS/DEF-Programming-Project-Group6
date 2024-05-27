@@ -7,15 +7,17 @@ body {
 
 .container {
     display: flex; /* Flexbox gebruiken voor de container */
+    flex-direction: row;
     justify-content: space-between; /* Ruimte tussen sectie 1 en sectie 2 */
     flex-wrap: wrap;
 }
-
+.section1
+{
+    max-width: 50vw;
+}
 .section1,
 .section2 {
-    flex-basis: calc(50% - 10px);
-    margin-right: 10px;
-    box-sizing: border-box;
+    border: 1px solid black;
 }
 
 .section2 {
@@ -122,37 +124,33 @@ td:nth-child(3) p {
     margin-top: 20px;
 }
 
-.section3 {
-    width: 100%;
-    margin-top: 20px;
-    margin: 0 auto;
+.section3
+{
+    border: 1px solid black;
+}
+
+.product
+{
     display: flex;
-    flex-direction: row;
-    list-style: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    width: 200px;
+}
+.product h1
+{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.productTitle
+{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-
-
-.related.product {
-    display: flex; /* Flexbox gebruiken voor de container */
-    flex-direction: row; /* Items naast elkaar plaatsen */
-    justify-content:space-evenly;
-}
-
-.related.product a {
-    margin-right: 20px; /* Ruimte tussen de producten */
-}
-
-.shake {
-    animation: shake 1s;
-    background-color: red;
-    color: white;
-}
-
-@keyframes shake {
-    0% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    50% { transform: translateX(5px); }
-    75% { transform: translateX(-5px); }
-    100% { transform: translateX(0); }
+.related-product
+{
+    display: flex;
 }

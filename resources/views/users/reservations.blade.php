@@ -87,20 +87,19 @@
                     </form>
                 </div>
             </div>
-
-            <div class="section3">
-                <h1 class="titles">relatated items</h1>
-                <div class="related product">
-                    @foreach ($relatedproducts as $relatedproduct)
-                        <a href="/product/{{ $relatedproduct->id }}">
-                            <div class="product">
-                                <h1>{{ $relatedproduct->title }} {{ $relatedproduct->merk }}</h1>
-                                <img src="https://via.placeholder.com/150" alt="Placeholder Image">
-                                <p>Beschrijving: {{ $relatedproduct->beschrijving }}</p>
-                            </div>
-                        </a>
-                    @endforeach
-                </div>
+        </div>
+        <div class="section3">
+            <h1 class="titles">relatated items</h1>
+            <div class="related-product">
+                @foreach ($relatedproducts as $relatedproduct)
+                    <a href="/product/{{ $relatedproduct->id }}">
+                        <div class="product">
+                            <h1 id="productTitle">{{ $relatedproduct->title }} {{ $relatedproduct->merk }}</h1>
+                            <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+                            <p>Beschrijving: {{ $relatedproduct->beschrijving }}</p>
+                        </div>
+                    </a>
+                @endforeach
             </div>
         </div>
 
