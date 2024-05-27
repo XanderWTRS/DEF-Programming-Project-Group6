@@ -167,18 +167,22 @@ td:nth-child(3) p {
     color: white;
     cursor: not-allowed;
     opacity: 0.6;
+    margin-left: 32px;
+    margin-top: 10px;
 }
 
 /* Style for the enabled submit button */
 #submitButton {
     display: inline-block;
     text-decoration: none;
-    color: #333;
+    color: white;
     background-color: rgb(0, 167, 75);
     padding: 10px 20px;
     border-radius: 20px;
     cursor: pointer;
     opacity: 1;
     transition: background-color 0.3s, opacity 0.3s;
+    margin-left: 32px;
+    margin-top: 10px;
 }
 

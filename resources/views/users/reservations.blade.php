@@ -84,7 +84,7 @@
                             </tbody>
                         </table>
                         @if ($avaible > 0)
-                            <input type="submit" id="submitButton" value="reservering" disabled>
+                            <input type="submit" id="submitButton" value="Reserveer" disabled>
 
                         @endif
                     </form>
