@@ -12,7 +12,7 @@ use App\Http\Controllers\AddproductInventarisController;
 use App\Http\Controllers\TelaatController;
 use App\Models\Klaarzetten;
 use App\Http\Controllers\KlaarzettenController;
-
+use App\Http\Controllers\ModifyproductController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -82,6 +82,13 @@ Route::delete('/terugbrengen/delete/{id}', [TerugbrengenController::class, 'dest
 Route::get('/Addproduct', function () {return view('admin/Addproduct');})->middleware('admin');
 Route::get('/Addproduct/create', [AddproductInventarisController::class, 'create'])->middleware('admin')->name('admin.Addproduct.create');
 Route::post('/Addproduct/store', [AddproductInventarisController::class, 'store'])->middleware('admin')->name('admin.Addproduct.store');
+
+Route::get('/Modifyproduct', function () {return view('admin/Modifyproduct');})->middleware('admin');
+Route::get('/Modifyproduct/{id}', [ModifyproductController::class, 'edit'])->middleware('admin')->name('Modifyproduct.edit');
+Route::put('/Modifyproduct/{id}', [ModifyproductController::class, 'update'])->middleware('admin')->name('Modifyproduct.update');
+
+
+
 
 Route::get('/Klaarzetten', [KlaarzettenController::class, 'index']);
 Route::get('/filter-reservations', [KlaarzettenController::class, 'filter']);
