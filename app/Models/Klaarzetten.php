@@ -14,5 +14,12 @@ class Klaarzetten extends Model
     protected $fillable = [
         'name',
         'date',
+        'id',
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(Bezet::class, 'id', 'id');
+    }
+    
 }

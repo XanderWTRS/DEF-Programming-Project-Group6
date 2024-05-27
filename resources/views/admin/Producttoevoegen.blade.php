@@ -6,7 +6,7 @@
   <title>Product Beheer | Admin</title>
   <link rel="icon" href="{{ asset('Assets/Logo/logo.png') }}" type="image/png">
   <link rel="stylesheet" href="{{ asset('css/index.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/Admin/Producttoevoegen.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/admin/Producttoevoegen.css') }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
@@ -28,7 +28,7 @@
 </div>
 <nav class="zoek">
   <input type="text" id="search" placeholder="Zoek producten...">
-  <button class="buttonToevoegen" onclick="window.location.href='#nowhere'">Product toevoegen</button>
+  <button class="buttonToevoegen" onclick="window.location.href='{{asset('/Addproduct')}}'">Product toevoegen</button>
 </nav>
 <table>
   <thead>
