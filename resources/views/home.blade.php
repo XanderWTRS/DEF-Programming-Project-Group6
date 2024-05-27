@@ -6,7 +6,7 @@
             <div id="filter1">
                 <div class="search-container">
                     <form id="search-form" action="{{ route('home') }}" method="get">
-                        <input type="search" name="query" id="query" value="{{ $searchQuery ?? '' }}" placeholder="Search...">
+                        <input class="search-input" type="search" name="query" id="query" value="{{ $searchQuery ?? '' }}" placeholder="Search...">
                         <button type="submit">
                             <img id="search" src="/ASSETS/Icons/ZoekIcon.svg" alt="Search Icon" width="20" height="15">
                         </button>
@@ -32,14 +32,14 @@
                     </div>
                 </form>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="{{ route('home', ['category' => 'Video', 'week' => $selectedWeek, 'query' => $searchQuery]) }}">Video</a></li>
-                    <li><a href="{{ route('home', ['category' => 'Audio', 'week' => $selectedWeek, 'query' => $searchQuery]) }}">Audio</a></li>
-                    <li><a href="{{ route('home', ['category' => 'Belichting', 'week' => $selectedWeek, 'query' => $searchQuery]) }}">Belichting</a></li>
-                    <li><a href="{{ route('home', ['category' => 'XR', 'week' => $selectedWeek, 'query' => $searchQuery]) }}">XR</a></li>
-                    <li><a href="{{ route('home', ['category' => 'Kits', 'week' => $selectedWeek, 'query' => $searchQuery]) }}">Kits</a></li>
-                    <li><a href="{{ route('home', ['category' => 'Varia', 'week' => $selectedWeek, 'query' => $searchQuery]) }}">Varia</a></li>
+            <nav class="nav-bar">
+                <ul class="nav-items">
+                    <li class="nav-item"><a href="{{ route('home', ['category' => 'Video', 'week' => $selectedWeek, 'query' => $searchQuery]) }}">Video</a></li>
+                    <li class="nav-item"><a href="{{ route('home', ['category' => 'Audio', 'week' => $selectedWeek, 'query' => $searchQuery]) }}">Audio</a></li>
+                    <li class="nav-item"><a href="{{ route('home', ['category' => 'Belichting', 'week' => $selectedWeek, 'query' => $searchQuery]) }}">Belichting</a></li>
+                    <li class="nav-item"><a href="{{ route('home', ['category' => 'XR', 'week' => $selectedWeek, 'query' => $searchQuery]) }}">XR</a></li>
+                    <li class="nav-item"><a href="{{ route('home', ['category' => 'Kits', 'week' => $selectedWeek, 'query' => $searchQuery]) }}">Kits</a></li>
+                    <li class="nav-item"><a href="{{ route('home', ['category' => 'Varia', 'week' => $selectedWeek, 'query' => $searchQuery]) }}">Varia</a></li>
                 </ul>
             </nav>
         </div>
