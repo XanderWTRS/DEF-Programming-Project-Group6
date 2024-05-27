@@ -13,14 +13,14 @@ class BezetController extends Controller
         $products = Bezet::all();
         
         foreach ($products as $product) {
-         
             $reservation = Reservation::where('id', $product->id)->first();
             
-    
             if ($reservation) {
                 $product->status = 'Niet beschikbaar'; 
+                $product->student_name = $reservation->name;
             } else {
                 $product->status = 'Beschikbaar'; 
+                $product->student_name = null;
             }
         }
 

@@ -23,7 +23,7 @@
         <tr>
             <td>{{ $product->title }}</td>
             <td><span class="status-icon"></span>{{ $product->status }}</td>
-            <td>Matteo</td>
+            <td>{{ $product->student_name ?? '-' }}</td>
         </tr>
 @endforeach
 
