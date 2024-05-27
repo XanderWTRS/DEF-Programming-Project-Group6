@@ -107,7 +107,7 @@
         </div>
         @endif
         <div class="paginationStyle">
-            {{ $products->links('pagination::bootstrap-4') }}
+            {{ $products->appends(['week' => $selectedWeek, 'category' => $selectedCategory, 'query' => $searchQuery])->links('pagination::bootstrap-4') }}
         </div>
 
     <!--LAYOUT FOOTER PAGE -->
