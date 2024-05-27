@@ -49,10 +49,12 @@ class ReservationController extends Controller
         }
 
         $date = $selected;
+        $expirationTime = now()->addHour();
         DB::table('reservations')->insert([
                 'id' => $product,
                 'date' => $date,
                 'name' => auth()->user()->name,
+                'expires_at' => $expirationTime
             ]);
 
         return redirect('reservatieoverzicht');

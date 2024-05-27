@@ -4,59 +4,35 @@
     <link rel="stylesheet" href="{{ asset('css/overzicht.css') }}">
     <body>
         <main>
-        @if($products->isEmpty())
-            <p>No products found.</p>
-        @else
-            <div id="productenGrid">
-                @php
-                    $productCounts = [];
-                    $uniqueProducts = [];
-                @endphp
-                @foreach ($products as $product)
-                    @php
-                        $productKey = $product->title . '-' . $product->category;
-                        if (is_object($product) && property_exists($product, 'date')) {
-                            $productKey .= '-' . $product->date;
-                        }
-                        if (!isset($productCounts[$productKey])) {
-                            $productCounts[$productKey] = 1;
-                            $uniqueProducts[$productKey] = $product;
-                        } else {
-                            $productCounts[$productKey]++; 
-                        }
-                    @endphp
-                @endforeach
-                
-                @foreach ($uniqueProducts as $productKey => $product)
-                    <a href="/product/{{ $product->id }}">
-                        <div class="product">
-                            <div class="product-image">
-                                <h2>{{ $product->title }}</h2>
-                                <img src="https://via.placeholder.com/150" alt="Placeholder Image">
-                            </div>
-                            <div class="product-info">
-                                <p>Category: {{ $product->category }}</p>
-                                <p>Merk: {{ $product->merk }}</p>
-                                <p>Beschrijving: {{ $product->beschrijving }}</p>
-                                @if (is_object($productWeeks) && property_exists($productWeeks, $product->id))
-                                    <p>Reserved Week: {{ $productWeeks[$product->id] }}</p>
-                                @endif
-                                @if ($productCounts[$productKey] > 1)
-                                    <p>Count: {{ $productCounts[$productKey] }}</p>
-                                @endif
-                            </div>
-                            <form action="{{ route('delete', ['id' => $product->id]) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <input type="hidden" name="id" value="{{ $product->id }}">
-                                <button type="submit" class="delete-button">Delete</button>
-                            </form>
-                        </div>
-                    </a>
-                @endforeach
-            </div>
-        @endif
-
+                @if(empty($producten))
+                <p>No products found.</p>
+                @else
+                    <div id="productenGrid">
+                        @foreach ($producten as $product)
+                            <a href="/product/{{ $product->id }}">
+                                <div class="product">
+                                    <div class="product-image">
+                                        <h2>{{ $product->title }}</h2>
+                                        <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+                                    </div>
+                                    <div class="product-info">
+                                        <p>Category: {{ $product->category }}</p>
+                                        <p>Merk: {{ $product->merk }}</p>
+                                        <p>Beschrijving: {{ $product->beschrijving }}</p>
+                                        <p>datum: {{ $product->date}}</p>
+                                        <p>count: {{ $product->count}}</p>
+                                    </div>
+                                    <form action="{{ route('delete', ['id' => $product->id]) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="hidden" name="id" value="{{ $product->id }}">
+                                        <button type="submit" class="delete-button">Delete</button>
+                                    </form>
+                                </div>
+                            </a>
+                        @endforeach
+                    </div>
+                @endif
         <div class="bottom-right">
             <div class="gv">
                 <input type="checkbox" id="g-v-overeenkomst" name="g-v-overeenkomst">
