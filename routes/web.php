@@ -8,6 +8,8 @@ use App\Http\Controllers\BanController;
 use App\Http\Controllers\BezetController;
 use App\Http\Controllers\ProductToevoegenController;
 use App\Http\Controllers\TerugbrengenController;
+use App\Models\Klaarzetten;
+use App\Http\Controllers\KlaarzettenController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -69,6 +71,6 @@ Route::get('/terugbrengen', [TerugbrengenController::class, 'index'])->middlewar
 Route::get('/terugbrengen/search', [TerugbrengenController::class, 'search'])->middleware('admin')->name('admin.terugbrengen.search');
 Route::post('/terugbrengen/search', [TerugbrengenController::class, 'search'])->middleware('admin');
 
-
+Route::get('/Klaarzetten', [KlaarzettenController::class, 'index']);
 
 require __DIR__.'/auth.php';
