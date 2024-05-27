@@ -20,7 +20,7 @@ class ReservationController extends Controller
         ->where('id', '!=', $product->id)
         ->groupBy('title')
         ->inRandomOrder()
-        ->limit(3)
+        ->limit(5)
         ->get();
 
         $dateThreeWeeksLater = Carbon::now()->addWeeks(3)->toDateString();

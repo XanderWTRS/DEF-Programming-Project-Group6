@@ -24,6 +24,20 @@ class TerugbrengenController extends Controller
             return redirect()->back()->with('error', 'Reservation not found.');
         }
 
-        return view('Admin.Terugbrengen', ['reservation' => $reservation]);
+        return view('Admin.Terugbrengen', ['reservation' => $reservation, 'searchTerm' => $searchTerm]);
     }
+
+
+    public function destroy($id)
+    {
+        $reservation = TerugbrengenReservatie::find($id);
+        
+        if ($reservation) {
+            $reservation->delete();
+            return redirect()->route('admin.terugbrengen.index')->with('success', 'Reservation deleted successfully.');
+        }
+
+        return redirect()->route('admin.terugbrengen.index')->with('error', 'Reservation not found.');
+    }
+
 }

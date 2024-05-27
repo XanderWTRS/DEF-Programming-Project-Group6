@@ -1,3 +1,10 @@
 dark mode tailwind css: (dark:bg-red-300)
 
-datum selecteren als je product wilt uitlenen.
+
+
+Q&A:
+Product niet beschikbaar wel zien in homepage?
+
+
+BUG:
+Tijd aanpassen = producten in toekomst of verleden reserveren.
