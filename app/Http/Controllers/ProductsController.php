@@ -47,6 +47,7 @@ class ProductsController extends Controller
     }
     public function index3()
     {
+        //test
         $user = auth()->user()->name;
         $reservations = DB::table('reservations')
                         ->where('name', $user)
