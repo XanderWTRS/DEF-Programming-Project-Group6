@@ -17,19 +17,16 @@
                 <form action="{{ route('home') }}" method="get">
                     <div id="selectWeek">
                         <select id="weekSelect" name="week" onchange="this.form.submit()">
-                        <?php
+                            <?php
                             $currentDate = date('Y-m-d');
                             $monday = date('Y-m-d', strtotime('last monday', strtotime($currentDate)));
-                            if (date('N', strtotime($currentDate)) == 1) {
-                                $monday = date('Y-m-d', strtotime($monday . ' + 7 days'));
-                            }
                             for ($i = 1; $i < 4; $i++) {
                                 $weekStartDate = date('Y-m-d', strtotime($monday . ' + ' . ($i * 7) . ' days'));
                                 $weekEndDate = date('Y-m-d', strtotime($weekStartDate . ' + 4 days'));
                                 $selected = ($weekStartDate == $selectedWeek) ? 'selected' : '';
                                 echo '<option value="' . $weekStartDate . '" ' . $selected . '>' . $weekStartDate . ' - ' . $weekEndDate . '</option>';
                             }
-                        ?>
+                            ?>
                         </select>
                         <input type="hidden" name="category" value="{{ $selectedCategory }}">
                     </div>
@@ -67,7 +64,7 @@
                         }
                     @endphp
                     <a href="/product/{{ $product->id }}">
-                        <div class="product-card">
+                        <div class="product card">
                             <div id="product-head">
                                 <h2>{{ $product->title }}</h2>
                                 @if ($availability)
@@ -107,7 +104,7 @@
         </div>
         @endif
         <div class="paginationStyle">
-            {{ $products->links('pagination::bootstrap-4') }}
+            {{ $products->appends(['week' => $selectedWeek, 'category' => $selectedCategory, 'query' => $searchQuery])->links('pagination::bootstrap-4') }}
         </div>
 
     <!--LAYOUT FOOTER PAGE -->
