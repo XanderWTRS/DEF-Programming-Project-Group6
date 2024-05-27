@@ -47,20 +47,32 @@ class ProductsController extends Controller
     }
     public function index3()
     {
-        $user= auth()->user()->name;
+        $user = auth()->user()->name;
+
+        // Calculate expiration time (e.g., 1 hour from now)
+        $expirationTime = now()->addHour();
 
         $reservations = DB::table('reservations')
                         ->where('name', $user)
                         ->pluck('id')
                         ->toArray();
+
         $products = DB::table('uitleendienst_inventaris')
                         ->whereIn('id', $reservations)
                         ->get();
+
         $productWeeks = [];
+
         foreach ($products as $product) {
+            // Set expiration timestamp for each reservation
+            DB::table('reservations')
+                ->where('id', $product->id)
+                ->update(['expires_at' => $expirationTime]);
+
             $week = DB::table('reservations')
                     ->where('id', $product->id)
                     ->value('date');
+            
             $productWeeks[$product->id] = $week;
         }
 
