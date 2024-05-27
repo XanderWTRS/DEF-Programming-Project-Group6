@@ -47,14 +47,15 @@ class ProductsController extends Controller
     }
     public function index3()
     {
+        $user= auth()->user()->name;
+
         $reservations = DB::table('reservations')
+                        ->where('name', $user)
                         ->pluck('id')
                         ->toArray();
         $products = DB::table('uitleendienst_inventaris')
                         ->whereIn('id', $reservations)
                         ->get();
-
-        // Get the week for each product
         $productWeeks = [];
         foreach ($products as $product) {
             $week = DB::table('reservations')
