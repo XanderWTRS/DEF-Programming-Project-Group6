@@ -15,7 +15,16 @@ class ProductsController extends Controller
         $searchQuery = $request->input('query');
 
         $query = DB::table('uitleendienst_inventaris');
-
+        if ($selectedWeek === null) {
+            $selectedWeek = DB::table('reservations')
+            ->orderBy('date')
+            ->value('date');
+            $reservedProducts = DB::table('reservations')
+            ->where('date', '=', $selectedWeek)
+            ->pluck('id')
+            ->toArray();
+        $query->whereNotIn('id', $reservedProducts);
+        }
         if ($selectedWeek) {
             $reservedProducts = DB::table('reservations')
                 ->where('date', '=', $selectedWeek)
