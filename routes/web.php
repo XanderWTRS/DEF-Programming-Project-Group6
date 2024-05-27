@@ -11,6 +11,7 @@ use App\Http\Controllers\TerugbrengenController;
 use App\Models\Klaarzetten;
 use App\Http\Controllers\KlaarzettenController;
 
+
 Route::get('/', function () {
     return view('welcome');
 });

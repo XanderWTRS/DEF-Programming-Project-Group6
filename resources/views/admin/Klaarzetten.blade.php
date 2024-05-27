@@ -31,7 +31,7 @@
             @foreach($reservations as $reservation)
                 <tr>
                     <td>{{ $reservation->name }}</td>
-                    <td>{{ $reservation->id }}</td>
+                    <td>{{ $reservation->product->title }}</td>
                     <td>{{ $reservation->date }}</td>
                     <td><input type="checkbox"></td>
                 </tr>
