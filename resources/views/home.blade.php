@@ -63,42 +63,40 @@
                             $availability = false;
                         }
                     @endphp
-                    <a href="/product/{{ $product->id }}">
-                        <div class="product card">
-                            <div id="product-head">
-                                <h2>{{ $product->title }}</h2>
-                                @if ($availability)
-                                <?php
-                                $productname = $product->title;
-                                $productids = DB::table('uitleendienst_inventaris')->where('title', $productname)->pluck('id');
-                                $productidsCount = $productids->count();
-                                $reservationCount = 0;
+                    <div class="product card" onclick="window.location.href='/product/{{ $product->id }}'">
+                        <div id="product-head">
+                            <h2>{{ $product->title }}</h2>
+                            @if ($availability)
+                            <?php
+                            $productname = $product->title;
+                            $productids = DB::table('uitleendienst_inventaris')->where('title', $productname)->pluck('id');
+                            $productidsCount = $productids->count();
+                            $reservationCount = 0;
+                            foreach ($productids as $productId) {
 
-                                foreach ($productids as $productId) {
-                                    // Check reservations for the selected week
-                                    $reservationCount += DB::table('reservations')->where('id', $productId)->where('date', $selectedWeek)->count();
-                                }
+                                // Check reservations for the selected week
+                                $reservationCount += DB::table('reservations')->where('id', $productId)->where('date', $selectedWeek)->count();
+                            }
+                            // Ensure availability doesn't go below 0
 
-                                // Ensure availability doesn't go below 0
-                                $availableCount = max(0, $productidsCount - $reservationCount);
-                                ?>
-                                <div id="product-con">
-                                    @if($availableCount == 0)
-                                        <img id="product-con-img" src="{{asset('Assets/Icons/red-circle.png')}}">
-                                        <p id="product-count">{{ $availableCount }}</p>
-                                    @else
-                                        <img id="product-con-img" src="{{asset('Assets/Icons/green-circle.png')}}">
-                                        <p id="product-count">{{ $availableCount }}</p>
-                                    @endif
-                                </div>
-                            @endif
+                            $availableCount = max(0, $productidsCount - $reservationCount);
+                            ?>
+                            <div id="product-con">
+                                @if($availableCount == 0)
+                                    <img id="product-con-img" src="{{asset('Assets/Icons/red-circle.png')}}">
+                                    <p id="product-count">{{ $availableCount }}</p>
+                                @else
+                                    <img id="product-con-img" src="{{asset('Assets/Icons/green-circle.png')}}">
+                                    <p id="product-count">{{ $availableCount }}</p>
+                                @endif
                             </div>
-                            <img src="https://via.placeholder.com/150" alt="Placeholder Image">
-                            <p class="product-desc">Category: {{ $product->category }}</p>
-                            <p class="product-desc">Merk: {{ $product->merk }}</p>
-                            <p class="product-desc">Beschrijving: {{ $product->beschrijving }}</p>
+                        @endif
                         </div>
-                    </a>
+                        <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+                        <p class="product-desc">Category: {{ $product->category }}</p>
+                        <p class="product-desc">Merk: {{ $product->merk }}</p>
+                        <p class="product-desc">Beschrijving: {{ $product->beschrijving }}</p>
+                    </div>
                 @endif
             @endforeach
         </div>
