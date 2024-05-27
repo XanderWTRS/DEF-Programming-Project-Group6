@@ -37,6 +37,15 @@
 
 </tbody> 
  </table> 
+
+ 
+ {{-- Laat de paginatie knoppen zien --}}
+    {{ $products->links() }}
+
+    {{-- Toon het nummer van de huidige pagina --}}
+    <span>Pagina: {{ $products->currentPage() }}</span>
+
+    
     @include('jsAdmin.Bezetscherm')
     @include('jsAdmin.Chemark')
     @include('jsAdmin.Zoekbalk')
