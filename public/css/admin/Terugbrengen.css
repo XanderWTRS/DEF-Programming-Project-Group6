@@ -4,11 +4,12 @@
 }
 
 .wrapper{
+    margin: 10px;
     justify-content: center;
 }
 
 .reservationsdiplay{
+    margin: 10px;
     justify-content: center;
-    align-items: center;
 
 }

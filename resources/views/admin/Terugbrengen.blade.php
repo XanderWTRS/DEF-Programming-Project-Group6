@@ -29,30 +29,43 @@
             </form>
         </div>
         <div class="reservationsdiplay">
-        @isset($reservation)
-            @if (!$reservation)
-            <p>No results found.</p>
-            @else
-                <h1>Reservation Details</h1>
-                <p>ID: {{ $reservation->id }}</p>
-                <p>Other Reservation Data: {{ $reservation->other_data }}</p>
-        
-                <h2>Uitleendienst Inventaris</h2>
-                @if($reservation->uitleendienstInventaris->isEmpty())
-                    <p>No items found for this reservation.</p>
+            @isset($reservation)
+                @if (!$reservation)
+                    <p>No results found.</p>
                 @else
-                    <ul>
-                        @foreach($reservation->uitleendienstInventaris as $item)
-                            <li>{{ $item->merk }} {{ $item->title }} - {{ $item->category }} - {{ $item->beschrijving }}</li>
-                        @endforeach
-                    </ul>
+                    <h1>Reservation Details</h1>
+                    <p>ID: {{ $reservation->id }}</p>
+                    <p> {{ $reservation->name }}</p>
+                    <p>Date: {{ $reservation->date }}</p>
+                    <p>{{ $reservation->other_data }}</p>
+            
+                    @if($reservation->uitleendienstInventaris->isEmpty())
+                        <p>No items found for this reservation.</p>
+                    @else
+                            @foreach($reservation->uitleendienstInventaris as $item)
+                                <p>{{ $item->merk }}, {{ $item->title }} - {{ $item->category }} - {{ $item->beschrijving }}</p>
+                            
+                            @endforeach
+                    @endif
+
+                    <form method="POST" action="{{ route('admin.reservation.delete', $reservation->id) }}" onsubmit="return confirm('Are you sure you want to delete this reservation?');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">Delete Reservation</button>
+                    </form>
+                    @if(session('success'))
+                        <p style="color: green;">{{ session('success') }}</p>
+                    @endif
+
+                    @if(session('error'))
+                        <p style="color: red;">{{ session('error') }}</p>
+                    @endif
                 @endif
-            @endif
-        @endisset
+            @endisset
         </div>
     </div>
     
 </body>
-    <script src="{{asset('js/Admin/Terugbrengen.js')}}"></script>
+    <script src="{{asset('admin/Terugbrengen.js')}}"></script>
     @include('jsAdmin.Adminheader1')
 </html>

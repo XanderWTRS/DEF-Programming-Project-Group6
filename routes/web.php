@@ -70,6 +70,8 @@ Route::post('/product/{id}', [ReservationController::class, 'store']);
 Route::get('/terugbrengen', [TerugbrengenController::class, 'index'])->middleware('admin')->name('admin.terugbrengen.index');
 Route::get('/terugbrengen/search', [TerugbrengenController::class, 'search'])->middleware('admin')->name('admin.terugbrengen.search');
 Route::post('/terugbrengen/search', [TerugbrengenController::class, 'search'])->middleware('admin');
+Route::delete('/terugbrengen/delete/{id}', [TerugbrengenController::class, 'destroy'])->middleware('admin')->name('admin.reservation.delete');
+
 
 Route::get('/Klaarzetten', [KlaarzettenController::class, 'index']);
 Route::get('/filter-reservations', [KlaarzettenController::class, 'filter']);
