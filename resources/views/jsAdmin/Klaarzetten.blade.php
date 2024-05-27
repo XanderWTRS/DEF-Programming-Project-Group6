@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 row.innerHTML = `
                     <td>${reservation.name}</td>
                     <td>${reservation.product ? reservation.product.title : 'Product niet gevonden'}</td>
-                    <td>${reservation.date}</td>
+                    <td>${reservation.id}</td>
                     <td><input type="checkbox"></td>
                 `;
                 tableBody.appendChild(row);

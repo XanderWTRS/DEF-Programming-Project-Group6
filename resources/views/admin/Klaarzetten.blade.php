@@ -24,6 +24,7 @@
             <tr>
                 <th>Student</th>
                 <th>Producten</th>
+                <th>ID</th>
                 <th>Bevestiging</th>
             </tr>
         </thead>
@@ -32,7 +33,7 @@
                 <tr>
                     <td>{{ $reservation->name }}</td>
                     <td>{{ $reservation->product->title }}</td>
-                    <td>{{ $reservation->date }}</td>
+                    <td>{{ $reservation->id }}</td>
                     <td><input type="checkbox"></td>
                 </tr>
             @endforeach
