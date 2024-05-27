@@ -8,9 +8,10 @@ use App\Http\Controllers\BanController;
 use App\Http\Controllers\BezetController;
 use App\Http\Controllers\ProductToevoegenController;
 use App\Http\Controllers\TerugbrengenController;
+use App\Http\Controllers\AddproductInventarisController;
+use App\Http\Controllers\TelaatController;
 use App\Models\Klaarzetten;
 use App\Http\Controllers\KlaarzettenController;
-use App\Http\Controllers\AddproductInventarisController;
 
 
 Route::get('/', function () {
@@ -84,6 +85,11 @@ Route::post('/Addproduct/store', [AddproductInventarisController::class, 'store'
 
 Route::get('/Klaarzetten', [KlaarzettenController::class, 'index']);
 Route::get('/filter-reservations', [KlaarzettenController::class, 'filter']);
+
+Route::get('/Telaat', function () {
+    return view('A  dmin/Telaat');
+});
+Route::get('/Telaat', [TelaatController::class, 'index']);
 
 
 require __DIR__.'/auth.php';
