@@ -40,12 +40,26 @@
             </div>
             <form action="{{ route('timestamp') }}" method="POST">
                 @csrf
-                <button type="submit">Submit</button>
+                <button type="submit" onclick="confirmTimestamp()">Submit</button>
             </form>
         </div>
         </main>
     </body>
-    <script src="{{ asset('js/timestamps.js') }}"></script>
+    <script>
+        function confirmTimestamp() {
+            var reservedItems = document.querySelectorAll('.product');
+            var message = 'The following items will be reserved:\n';
+            reservedItems.forEach(function(item) {
+                var title = item.querySelector('h2').textContent;
+                var date = item.querySelectorAll('p')[3].textContent;
+                message += '- ' + title +  ' ('+date+')'+'\n';
+            });
+            alert(message);
+        }
+    </script>
+
+
+
     <!--LAYOUT FOOTER PAGE -->
     <x-slot name='footer'>
         <footer class="footer">
@@ -53,6 +67,9 @@
             <ul>
                 <li>Erasmus Hogeschool Brussel</li>
                 <li>Nijverheidskaai 170</li>
+                @if(!empty($product->date))
+                    <li>Datum: {{ $product->date }}</li>
+                @endif
                 <li>1070 Anderlecht</li>
                 <li>02 559 15 00</li>
             </ul>
