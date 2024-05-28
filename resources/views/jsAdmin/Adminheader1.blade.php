@@ -21,6 +21,7 @@ AdminHeader.innerHTML =
         <li><a href="{{asset('/terugbrengen')}}">Terugbrengen</a></li>
         <li><a href="{{asset('/Bezetscherm')}}">Beschikbaarheid</a></li>
         <li><a href="{{asset('/Producttoevoegen')}}">Productbeheer</a></li>
+        <li><a href="{{asset('/Telaat')}}">Telaat</a></li>
         <li><a href="{{asset('/Banoverzicht')}}">Blacklist</a></li>
     </ul>
     <a href="{{asset('/admin-dashboard')}}"><img src="{{asset('Assets/Logo/logo-trans.png')}}" alt="logoehb" class="logo"></a>
