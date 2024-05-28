@@ -12,7 +12,7 @@ use App\Http\Controllers\AddproductInventarisController;
 use App\Http\Controllers\TelaatController;
 use App\Models\Klaarzetten;
 use App\Http\Controllers\KlaarzettenController;
-use App\Http\Controllers\ModifyproductController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -62,6 +62,8 @@ Route::get('/Producttoevoegen', function () {
 Route::get('/Producttoevoegen', [ProductToevoegenController::class, 'index']);
 Route::get('/products/filter/{category}', [ProductToevoegenController::class, 'filterByCategory'])->name('filter.products');
 Route::delete('/product/{id}', [ProductToevoegenController::class, 'destroy'])->name('product.delete');
+Route::patch('/product/update', [ProductToevoegenController::class, 'update'])->name('product.update');
+
 
 
 
@@ -82,10 +84,6 @@ Route::delete('/terugbrengen/delete/{id}', [TerugbrengenController::class, 'dest
 Route::get('/Addproduct', function () {return view('admin/Addproduct');})->middleware('admin');
 Route::get('/Addproduct/create', [AddproductInventarisController::class, 'create'])->middleware('admin')->name('admin.Addproduct.create');
 Route::post('/Addproduct/store', [AddproductInventarisController::class, 'store'])->middleware('admin')->name('admin.Addproduct.store');
-
-Route::get('/Modifyproduct', function () {return view('admin/Modifyproduct');})->middleware('admin');
-Route::get('/Modifyproduct/{id}', [ModifyproductController::class, 'edit'])->middleware('admin')->name('Modifyproduct.edit');
-Route::put('/Modifyproduct/{id}', [ModifyproductController::class, 'update'])->middleware('admin')->name('Modifyproduct.update');
 
 
 
