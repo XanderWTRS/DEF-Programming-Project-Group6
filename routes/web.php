@@ -98,7 +98,4 @@ Route::get('/Telaat', [TelaatController::class, 'index']);
 
 Route::post('/ban', [BanController::class, 'banUser'])->name('ban');
 
-
 require __DIR__.'/auth.php';
-
-/*test*/
