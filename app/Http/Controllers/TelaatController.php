@@ -17,7 +17,7 @@ class TelaatController extends Controller
          $fourDaysAgo = $today->copy()->subDays(4);
  
          // Selecteer alleen reserveringen die ouder zijn dan vier dagen geleden
-         $telaats = Telaat::select('id', 'name', 'date')
+         $telaats = Telaat::select('id', 'name', 'date', 'user_id')
                              ->whereDate('date', '<=', $fourDaysAgo)
                              ->get();
 return view('admin.Telaat', compact('telaats'));
