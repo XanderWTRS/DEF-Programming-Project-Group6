@@ -22,7 +22,7 @@ Route::get('/home', [ProductsController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('home');
 
-    Route::get('/reservatieoverzicht', [ProductsController::class, 'index3'])
+Route::get('/reservatieoverzicht', [ProductsController::class, 'index3'])
     ->middleware(['auth', 'verified'])
     ->name('reservatieoverzicht');
 
