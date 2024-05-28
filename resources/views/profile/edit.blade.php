@@ -1,4 +1,3 @@
-use Carbon\Carbon;
 <x-app-layout>
     <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
     <x-slot name="header">
@@ -29,7 +28,7 @@ use Carbon\Carbon;
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <h2 class="text-lg font-medium text-gray-900">Reserved items</h2>
                 <ul>
-                @foreach($reservationsWithProducts as $reservation)
+                @foreach($reservationsWithProducts->unique('title', 'category', 'date') as $reservation)
                     <li class="reservation-list" style="border-bottom: 1px solid #cccc;
                     padding: 8px;">{{ $reservation->title }} <br>
                         @if(($reservation->category) !== '')
@@ -39,6 +38,9 @@ use Carbon\Carbon;
                             Beschrijving: {{ $reservation->beschrijving }} <br>               
                         @endif
                         Datum: {{ $reservation->date }} tot {{ Carbon\Carbon::parse($reservation->date)->addDays(4)->format("y-m-d") }}<br>
+                        @if(count($reservationsWithProducts->where('title', $reservation->title)->where('category', $reservation->category)->where('date', $reservation->date)) > 1)
+                            Count: {{ count($reservationsWithProducts->where('title', $reservation->title)->where('category', $reservation->category)->where('date', $reservation->date)) }}<br>
+                        @endif
                     </li>
                     <br>
                 @endforeach
