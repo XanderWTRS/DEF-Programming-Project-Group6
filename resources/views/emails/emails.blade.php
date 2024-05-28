@@ -3,7 +3,6 @@
 <head>
     <title>Reservation Mail</title>
     <style>
-        /* Voeg hier alleen CSS toe die door alle e-mailclients wordt ondersteund */
         .email-container {
             font-family: Arial, sans-serif;
             color: #333;

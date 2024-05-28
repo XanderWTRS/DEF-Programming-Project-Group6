@@ -23,7 +23,7 @@ class ReservationController extends Controller
         ->limit(5)
         ->get();
 
-        $dateThreeWeeksLater = Carbon::now()->addWeeks(3)->toDateString();
+        $dateThreeWeeksLater = Carbon::now()->addWeeks(8)->toDateString();
         $reserveringen = DB::table('reservations')->whereIn('id', $productids)->where('date', '>', $currentDate)->where('date', '<', $dateThreeWeeksLater)->get();
         return view('users.reservations', compact('product','reserveringen','productidsCount','relatedproducts'));
     }
@@ -31,17 +31,15 @@ class ReservationController extends Controller
     public function store(Request $request , $id)
     {
         $selected = Carbon::parse($request->input('selected_week'));
-
         $product = DB::table('uitleendienst_inventaris')->where('id', $id)->first();
         $productname = $product->title;
         $productids = DB::table('uitleendienst_inventaris')->where('title', $productname)->pluck('id');
-
         $startOfWeek = $selected->startOfWeek();
 
         foreach ($productids as $productid) {
             $reserveringen = DB::table('reservations')
                 ->where('id', $productid)
-                ->where('date', '>=', $startOfWeek)
+                ->where('date', '=', $startOfWeek)
                 ->get();
             if ($reserveringen->isEmpty()) {
                 $product = $productid;
@@ -55,7 +53,6 @@ class ReservationController extends Controller
                 'date' => $date,
                 'user_id' => auth()->user()->id,
                 'name' => auth()->user()->name,
-                'user_id' => auth()->user()->id,
                 'expires_at' => $expirationTime
             ]);
 

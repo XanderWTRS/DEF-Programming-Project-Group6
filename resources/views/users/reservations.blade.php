@@ -52,8 +52,20 @@
                                     }
 
                                 @endphp
+                                @php
+                                    if (auth()->check()) {
+                                        $userRole = auth()->user()->role;
+                                        if ($userRole == 'student') {
+                                            $available = 2;
+                                        } else {
+                                            $available = 5;
+                                        }
+                                    } else {
+                                        $available = 0;
 
-                                @for ($week = $currentWeek + 1; $week <= $currentWeek + 2; $week++)
+                                    }
+                                @endphp
+                                @for ($week = $currentWeek + 1; $week <= $currentWeek + $available ; $week++)
                                     @php
                                         $startOfWeek = \Carbon\Carbon::now()->startOfWeek()->addWeeks($week - $currentWeek);
                                         $endOfWeek = \Carbon\Carbon::now()->endOfWeek()->addWeeks($week - $currentWeek)->subDays(2);
