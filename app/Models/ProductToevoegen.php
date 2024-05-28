@@ -9,4 +9,13 @@ class ProductToevoegen extends Model
 {
     use HasFactory;
     protected $table = 'uitleendienst_inventaris';
+
+    public $timestamps = false;
+
+    protected $fillable = [
+        'title',
+        'beschrijving',
+        'category',
+        'merk'
+    ];
 }

@@ -17,18 +17,36 @@
     <input type="text" id="search-bar" placeholder="Zoek op naam of product...">
     
 
-    <table>   
+    <table> 
+        
+    <thead>
+            <tr>
+                <th>Product</th>
+                <th>Status</th>
+                <th>Student</th>
+            </tr>
+        </thead>
     <tbody>
         @forelse($products as $product)
         <tr>
             <td>{{ $product->title }}</td>
             <td><span class="status-icon"></span>{{ $product->status }}</td>
-            <td>Matteo</td>
+            <td>{{ $product->student_name ?? '-' }}</td>
         </tr>
 @endforeach
 
 </tbody> 
  </table> 
+
+ 
+ {{-- Laat de paginatie knoppen zien --}}
+    {{ $products->links() }}
+
+    {{-- Toon het nummer van de huidige pagina --}}
+    <span>Pagina: {{ $products->currentPage() }}</span>
+
+    
+    @include('jsAdmin.Bezetscherm')
     @include('jsAdmin.Chemark')
     @include('jsAdmin.Zoekbalk')
     @include('jsAdmin.Filterklaarzetten')

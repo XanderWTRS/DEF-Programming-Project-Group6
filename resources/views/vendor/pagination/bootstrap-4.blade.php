@@ -1,4 +1,5 @@
 @if ($paginator->hasPages())
+<link rel="stylesheet" href="{{ asset('/css/pagination.css') }}">
     <nav>
         <ul class="pagination">
             {{-- Previous Page Link --}}

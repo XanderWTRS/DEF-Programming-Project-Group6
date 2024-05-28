@@ -40,12 +40,34 @@
             </div>
             <form action="{{ route('timestamp') }}" method="POST">
                 @csrf
-                <button type="submit">Submit</button>
+                <button type="submit" id="submit-button" onclick="confirmTimestamp()" disabled>Submit</button>
             </form>
         </div>
         </main>
     </body>
-    <script src="{{ asset('js/timestamps.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var checkbox = document.getElementById('g-v-overeenkomst');
+            var submitButton = document.getElementById('submit-button');
+
+            checkbox.addEventListener('change', function() {
+                submitButton.disabled = !this.checked;
+            });
+        });
+        function confirmTimestamp() {
+            var reservedItems = document.querySelectorAll('.product');
+            var message = 'The following items will be reserved:\n';
+            reservedItems.forEach(function(item) {
+                var title = item.querySelector('h2').textContent;
+                var date = item.querySelectorAll('p')[3].textContent;
+                message += '- ' + title +  ' ('+date+')'+'\n';
+            });
+            alert(message);
+        }
+    </script>
+
+
+
     <!--LAYOUT FOOTER PAGE -->
     <x-slot name='footer'>
         <footer class="footer">
@@ -55,6 +77,7 @@
                 <li>Nijverheidskaai 170</li>
                 <li>1070 Anderlecht</li>
                 <li>02 559 15 00</li>
+                <li>xander.wauters@student.ehb.be<li>
             </ul>
             </div>
             <div id="center-footer"><span class="link">&#169; Erasmus Hogeschool Brussel</span></div>
