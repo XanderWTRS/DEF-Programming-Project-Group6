@@ -10,17 +10,17 @@ class BezetController extends Controller
 {
     public function index()
     {
-        $products = Bezet::all();
+        $products = Bezet::paginate(20);
         
         foreach ($products as $product) {
-         
             $reservation = Reservation::where('id', $product->id)->first();
             
-    
             if ($reservation) {
                 $product->status = 'Niet beschikbaar'; 
+                $product->student_name = $reservation->name;
             } else {
                 $product->status = 'Beschikbaar'; 
+                $product->student_name = null;
             }
         }
 
