@@ -13,32 +13,39 @@
 </head>
 <body>
     <header class="Adminheader"></header>
-    <div id="top-controls">
-        <label for="week-select">Selecteer week:</label>
-        <input type="week" id="week-select">
-        <button id="filter-button">Filter</button>
-        <input type="text" id="search" placeholder="Zoek student">
-    </div>
-    <table>
-        <thead>
-            <tr>
-                <th>Student</th>
-                <th>Producten</th>
-                <th>ID</th>
-                <th>Bevestiging</th>
-            </tr>
-        </thead>
-        <tbody id="reservation-table-body">
-            @foreach($reservations as $reservation)
+    <div class="container">
+        <div id="top-controls">
+            <div class="calendar">
+                <label for="week-select">Selecteer week:</label>
+                <input type="week" id="week-select">
+                <button id="filter-button">Filter</button>
+            </div>
+            <div class="searching">
+                <input type="text" id="search" placeholder="Zoek student">
+            </div>
+        </div>
+        <table>
+            <thead>
                 <tr>
-                    <td>{{ $reservation->name }}</td>
-                    <td>{{ $reservation->product->title }}</td>
-                    <td>{{ $reservation->id }}</td>
-                    <td><input type="checkbox"></td>
+                    <th>Student</th>
+                    <th>Producten</th>
+                    <th>ID</th>
+                    <th>Bevestiging</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody id="reservation-table-body">
+                @foreach($reservations as $reservation)
+                    <tr>
+                        <td>{{ $reservation->name }}</td>
+                        <td>{{ $reservation->product->title }}</td>
+                        <td>{{ $reservation->id }}</td>
+                        <td><input type="checkbox"></td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+    
     
     @include('jsAdmin.Klaarzetten')
     @include('jsAdmin.Zoekbalk')
