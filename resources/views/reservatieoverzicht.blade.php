@@ -40,12 +40,20 @@
             </div>
             <form action="{{ route('timestamp') }}" method="POST">
                 @csrf
-                <button type="submit" onclick="confirmTimestamp()">Submit</button>
+                <button type="submit" id="submit-button" onclick="confirmTimestamp()" disabled>Submit</button>
             </form>
         </div>
         </main>
     </body>
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var checkbox = document.getElementById('g-v-overeenkomst');
+            var submitButton = document.getElementById('submit-button');
+
+            checkbox.addEventListener('change', function() {
+                submitButton.disabled = !this.checked;
+            });
+        });
         function confirmTimestamp() {
             var reservedItems = document.querySelectorAll('.product');
             var message = 'The following items will be reserved:\n';
