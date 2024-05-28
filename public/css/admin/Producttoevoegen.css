@@ -69,28 +69,21 @@ body {
 
 table {
     width: 80%;
-    border-collapse: collapse;
+    border-collapse: collapse; /* Change to collapse to avoid double borders */
     margin: 20px auto;
 }
 
 table th, table td {
     padding: 8px;
     text-align: left;
-    border: 1px solid black;
+    border: 1px solid black; /* Adds a border around each cell */
+    background-color: white; /* Ensures background color is white */
 }
 
 table th {
-    background-color: white;
     color: black;
 }
 
-
-
-/*
-#search {
-    margin-right: 10px;
-}
-*/
 .zoek {
     width: 80%;
     margin: 20px auto;
@@ -184,4 +177,12 @@ table th:nth-child(3) {
 {
     display: flex;
     justify-content: space-between;
+}
+
+button.buttonWijzig.btn.btn-primary
+{
+    background-color: rgb(255, 180, 40);
+    border: 1px solid rgb(255, 180, 40);
+    margin-right: 4px;
+    margin-left: -2px;
 }
