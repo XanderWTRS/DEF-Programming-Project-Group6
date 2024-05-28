@@ -24,7 +24,11 @@
         <div class="wrapper input_form">
             <form method="POST" action="{{ route('admin.terugbrengen.search') }}">
                 @csrf
-                <input type="text" name="search" placeholder="Enter the product id"><br>
+                <div id="search-container">
+                    <input id="search-bar" type="text" name="search" placeholder="Geef het product id"><br>
+                    <img id="search" src="/ASSETS/Icons/ZoekIcon.svg" alt="Search Icon" width="20" height="15">
+                </div>
+
                 <button type="submit">Search</button>
             </form>
         </div>
@@ -33,38 +37,43 @@
                 @if (!$reservation)
                     <p>No results found.</p>
                 @else
-                    <h1>Reservation Details</h1>
-                    <p>ID: {{ $reservation->id }}</p>
-                    <p> {{ $reservation->name }}</p>
-                    <p>Date: {{ $reservation->date }}</p>
-                    <p>{{ $reservation->other_data }}</p>
-            
-                    @if($reservation->uitleendienstInventaris->isEmpty())
-                        <p>No items found for this reservation.</p>
-                    @else
-                            @foreach($reservation->uitleendienstInventaris as $item)
-                                <p>{{ $item->merk }}, {{ $item->title }} - {{ $item->category }} - {{ $item->beschrijving }}</p>
-                            
-                            @endforeach
-                    @endif
+                    <div class="main-container">
+                        <h1>Reservation Details</h1>
+                        <div class="small-container">
+                            <p><b>ID:</b> {{ $reservation->id }}</p>
+                            <p><b>Student:</b> {{ $reservation->name }}</p>
+                            <p><b>Date:</b> {{ $reservation->date }}</p>
+                            <p>{{ $reservation->other_data }}</p>
 
-                    <form method="POST" action="{{ route('admin.reservation.delete', $reservation->id) }}" onsubmit="return confirm('Are you sure you want to delete this reservation?');">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit">Delete Reservation</button>
-                    </form>
-                    @if(session('success'))
-                        <p style="color: green;">{{ session('success') }}</p>
-                    @endif
 
-                    @if(session('error'))
-                        <p style="color: red;">{{ session('error') }}</p>
-                    @endif
+                            @if($reservation->uitleendienstInventaris->isEmpty())
+                                <p>No items found for this reservation.</p>
+                             @else
+                                @foreach($reservation->uitleendienstInventaris as $item)
+                                    <p>{{ $item->merk }}, {{ $item->title }} - {{ $item->category }} - {{ $item->beschrijving }}</p>
+                                @endforeach
+                            @endif
+                        </div>
+
+
+                        <form method="POST" action="{{ route('admin.reservation.delete', $reservation->id) }}" onsubmit="return confirm('Are you sure you want to delete this reservation?');">
+                            @csrf
+                            @method('DELETE')
+                            <button id="deleteButton" type="submit">Delete Reservation</button>
+                        </form>
+                        @if(session('success'))
+                            <p style="color: green;">{{ session('success') }}</p>
+                        @endif
+
+                        @if(session('error'))
+                            <p style="color: red;">{{ session('error') }}</p>
+                        @endif
+                    </div>
                 @endif
             @endisset
         </div>
     </div>
-    
+
 </body>
     <script src="{{asset('admin/Terugbrengen.js')}}"></script>
     @include('jsAdmin.Adminheader1')

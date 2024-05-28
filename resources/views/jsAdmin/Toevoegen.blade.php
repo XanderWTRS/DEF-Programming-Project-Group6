@@ -6,7 +6,7 @@ searchInput.addEventListener('input', function() {
     let searchValue = searchInput.value.toLowerCase();
 
     for (let row of tableRows) {
-        let productName = row.cells[0].textContent.toLowerCase();
+        let productName = row.cells[1].textContent.toLowerCase();
 
         if (productName.includes(searchValue)) {
             row.style.display = '';

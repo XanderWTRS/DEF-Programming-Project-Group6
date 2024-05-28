@@ -45,9 +45,27 @@ input[type="checkbox"] {
     width: 30px;
     height: 30px;
 }
-#top-controls {
+
+.container{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    margin: 20px;    
+}
+
+.calendar{
+    height: 60px;
+}
+
+.searching{
+    height: 30px;
+}
+
+
+#top-controls {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    height: 100px;
 }
 
 #search {

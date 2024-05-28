@@ -28,6 +28,6 @@ class AddproductInventarisController extends Controller
             'beschrijving' => $request->input('beschrijving'),
         ]);
 
-        return redirect()->route('Producttoevoegen')->with('success', 'Product added successfully.');
+        return redirect('/Producttoevoegen')->with('success', 'Product added successfully.');
     }
 }

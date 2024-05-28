@@ -5,9 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Ban extends Model
+class ResDone extends Model
 {
     use HasFactory;
-    protected $table = 'bans';
+
     public $timestamps = false;
+
+    protected $fillable = ['id', 'name', 'date'];
+
+    protected $table = 'res_done';
 }
