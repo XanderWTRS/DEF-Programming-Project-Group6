@@ -54,6 +54,7 @@ class ReservationController extends Controller
                 'id' => $product,
                 'date' => $date,
                 'name' => auth()->user()->name,
+                'user_id' => auth()->user()->id,
                 'expires_at' => $expirationTime
             ]);
 
