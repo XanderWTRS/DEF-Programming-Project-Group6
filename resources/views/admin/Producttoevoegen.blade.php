@@ -24,7 +24,7 @@
   <a href="{{ route('filter.products', 'Tools') }}">Tools</a>
   <a href="{{ route('filter.products', 'Belichting') }}">Belichting</a>
   <a href="{{ route('filter.products', 'Audio') }}">Audio</a>
-    <!-- Voeg hier meer categorieën toe -->
+
   </div>
 </div>
 <nav class="zoek">
@@ -36,6 +36,9 @@
     <tr>
       <th>Product ID</th>
       <th>Productnaam</th>
+      <th>Beschrijving</th>
+      <th>Category</th>
+      <th>Merk</th>
       <th>Acties</th>
     </tr>
   </thead>
