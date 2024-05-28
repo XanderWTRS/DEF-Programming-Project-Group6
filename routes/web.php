@@ -100,3 +100,5 @@ Route::post('/ban', [BanController::class, 'banUser'])->name('ban');
 
 
 require __DIR__.'/auth.php';
+
+/*test*/
