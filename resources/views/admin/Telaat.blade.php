@@ -30,6 +30,7 @@
         @foreach($telaats as $telaat)
             <tr>
                 <td>{{ $telaat->name }}</td>
+                <td>{{ $telaat->user_id }}</td>
                 <td>{{ $telaat->date }}</td>    
                 <td>te laat</td>
                 <td> <button type="button">Ban</button> </td>

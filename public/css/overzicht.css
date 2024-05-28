@@ -30,15 +30,20 @@ a {
     align-items: center; 
     background-color: white;
     padding: 10px;
-    justify-content: space-between; /* Add this to evenly distribute items */
+    justify-content: space-between;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
 }
 
 .delete-button {
-    background-color: grey;
+    background-color: darkred;
     color: white;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
+    
+}
+.delete-button:hover {
+    background-color: red;
 }
 
 
@@ -48,4 +53,14 @@ a {
     justify-content: flex-end;
     align-items: flex-end; /* Align items to the end */
     padding-bottom: 10px;
+}
+.bottom-right button {
+    padding: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    width: 11.4vw;
+    margin: 0px auto;
+    margin-left: 10px;
+    border-radius: 16px;
+    background-color: white;
+    z-index: 1;
 }

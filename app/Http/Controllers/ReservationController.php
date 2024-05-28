@@ -53,6 +53,7 @@ class ReservationController extends Controller
         DB::table('reservations')->insert([
                 'id' => $product,
                 'date' => $date,
+                'user_id' => auth()->user()->id,
                 'name' => auth()->user()->name,
                 'expires_at' => $expirationTime
             ]);
