@@ -75,11 +75,9 @@
             <ul>
                 <li>Erasmus Hogeschool Brussel</li>
                 <li>Nijverheidskaai 170</li>
-                @if(!empty($product->date))
-                    <li>Datum: {{ $product->date }}</li>
-                @endif
                 <li>1070 Anderlecht</li>
                 <li>02 559 15 00</li>
+                <li>xander.wauters@student.ehb.be<li>
             </ul>
             </div>
             <div id="center-footer"><span class="link">&#169; Erasmus Hogeschool Brussel</span></div>
