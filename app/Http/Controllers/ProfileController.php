@@ -12,9 +12,6 @@ use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
     public function edit(Request $request): View
     {
         $user = auth()->user()->name;
@@ -23,24 +20,19 @@ class ProfileController extends Controller
             ->whereNull('expires_at')
             ->get();
 
-        // Join the reservations and products tables
         $reservationsWithProducts = DB::table('reservations')   
             ->join('uitleendienst_inventaris', 'reservations.id', '=', 'uitleendienst_inventaris.id')
             ->where('reservations.name', $user)
             ->whereNull('reservations.expires_at')
             ->select('reservations.id', 'reservations.date', 'uitleendienst_inventaris.title','uitleendienst_inventaris.beschrijving', 'uitleendienst_inventaris.category')
             ->get();
-
+        
         return view('profile.edit', [
             'user' => $request->user(),
             'reservationsWithProducts' => $reservationsWithProducts,
         ]);
     }
 
-
-    /**
-     * Update the user's profile information.
-     */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $request->user()->fill($request->validated());
@@ -54,9 +46,6 @@ class ProfileController extends Controller
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
-    /**
-     * Delete the user's account.
-     */
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [
