@@ -67,16 +67,20 @@
                     _token: token // Voeg de CSRF-token toe aan het verzoek
                 },
                 success: function(response){
-                    // Handel het antwoord af
-                    if(response.success){
-                        alert('Gebruiker is verbannen.');
-                        
-                        // Verberg de rij nadat de gebruiker is verbannen
-                        currentRow.hide(); // Verberg de huidige rij
-                    } else {
-                        alert('Er is een fout opgetreden bij het verbannen van de gebruiker.');
-                    }
-                },
+    // Handel het antwoord af
+    if(response.success){
+        alert('Gebruiker is verbannen.');
+
+        // Verberg de rij nadat de gebruiker is verbannen
+        currentRow.hide(); // Verberg de huidige rij
+        
+        // Update de status van de gebruiker in de tabel
+        currentRow.find('td:eq(3)').text('banned'); // Annamende dat de statuskolom de vierde kolom is
+    } else {
+        alert('Er is een fout opgetreden bij het verbannen van de gebruiker.');
+    }
+},
+
                 error: function(xhr, status, error){
                     console.error(xhr.responseText);
                     alert('Er is een fout opgetreden bij het verbannen van de gebruiker.');

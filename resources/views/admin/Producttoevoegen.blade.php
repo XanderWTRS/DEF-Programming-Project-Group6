@@ -28,7 +28,10 @@
   </div>
 </div>
 <nav class="zoek">
-  <input type="text" id="search" placeholder="Zoek producten...">
+  <div id="search-container">
+    <input type="text" id="search" placeholder="Zoek producten...">
+    <img id="imgsearch" src="/ASSETS/Icons/ZoekIcon.svg" alt="Search Icon" width="20" height="15">
+  </div>
   <button class="buttonToevoegen" onclick="window.location.href='{{asset('/Addproduct')}}'">Product toevoegen</button>
 </nav>
 <table>
