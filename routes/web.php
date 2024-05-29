@@ -65,7 +65,9 @@ Route::delete('/product/{id}', [ProductToevoegenController::class, 'destroy'])->
 Route::patch('/product/update', [ProductToevoegenController::class, 'update'])->name('product.update');
 
 
-
+Route::middleware('auth')->group(function () {
+    Route::get('/itemlist', [ProfileController::class, 'edit2'])->name('itemlist');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

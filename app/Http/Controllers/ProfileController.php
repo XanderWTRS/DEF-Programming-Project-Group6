@@ -14,6 +14,12 @@ class ProfileController extends Controller
 {
     public function edit(Request $request): View
     {
+        return view('profile.edit', [
+            'user' => $request->user(),
+        ]);
+    }
+    public function edit2(Request $request): View
+    {
         $user = auth()->user()->name;
         $reservations = DB::table('reservations')
             ->where('name', $user)
@@ -27,7 +33,7 @@ class ProfileController extends Controller
             ->select('reservations.id', 'reservations.date', 'uitleendienst_inventaris.title','uitleendienst_inventaris.beschrijving', 'uitleendienst_inventaris.category')
             ->get();
         
-        return view('profile.edit', [
+        return view('itemlist', [
             'user' => $request->user(),
             'reservationsWithProducts' => $reservationsWithProducts,
         ]);
