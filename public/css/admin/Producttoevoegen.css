@@ -10,10 +10,10 @@ nav.zoek{
     margin-bottom: -10px;
 }
 
-.navbar {
-    background-color: white;
-    color: black;
-    padding: 15px;
+nav.navbar li
+{
+    position: relative;
+    top: 10px;
 }
 
 .nav__links a {
@@ -109,10 +109,6 @@ table td {
     z-index: 1;
     margin: 20px 0px;
     width: 30vw;
-}
-
-.nav.navbar {
-    margin-top: 0;
 }
 
 img#imgsearch {

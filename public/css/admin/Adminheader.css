@@ -43,7 +43,6 @@ html, body {
 .nav__links li {
     background: none;
     border: none;
-    margin-top: 16px;
 }
 
 .nav__links a:hover {
