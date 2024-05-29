@@ -12,7 +12,7 @@ use App\Http\Controllers\AddproductInventarisController;
 use App\Http\Controllers\TelaatController;
 use App\Models\Klaarzetten;
 use App\Http\Controllers\KlaarzettenController;
-
+use App\Http\Controllers\UsersbanController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -105,6 +105,9 @@ Route::post('/ban', [BanController::class, 'banUser'])->name('ban');
 Route::post('/unbanUser', [BanController::class, 'unbanUser'])->middleware(['auth', 'verified', 'admin'])->name('unban.user');
 Route::delete('/ban/{user_id}', [BanController::class, 'unbanStudent']);
 
+
+Route::get('/Users', [UsersbanController::class, 'index'])->name('gebruikersoverzicht');
+Route::post('/banUser', [BanController::class, 'banUser'])->name('banUser');
 
 
   
