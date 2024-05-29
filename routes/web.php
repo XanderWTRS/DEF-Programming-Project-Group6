@@ -46,7 +46,7 @@ Route::get('/Banoverzicht', function () {
 });
 
 Route::get('/Banoverzicht', [BanController::class, 'index']);
-Route::delete('/ban/{id}', [BanController::class, 'unbanStudent']);
+Route::delete('/ban/{user_id}', [BanController::class, 'unbanStudent']);
 
 Route::get('/Bezetscherm', [BezetController::class, 'index']);
 
@@ -65,7 +65,9 @@ Route::delete('/product/{id}', [ProductToevoegenController::class, 'destroy'])->
 Route::patch('/product/update', [ProductToevoegenController::class, 'update'])->name('product.update');
 
 
-
+Route::middleware('auth')->group(function () {
+    Route::get('/itemlist', [ProfileController::class, 'edit2'])->name('itemlist');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -97,8 +99,8 @@ Route::get('/Telaat', function () {
 Route::get('/Telaat', [TelaatController::class, 'index']);
 
 Route::post('/ban', [BanController::class, 'banUser'])->name('ban');
+Route::delete('/ban/{name}', [BanController::class, 'unbanStudent']);
 
 
+  
 require __DIR__.'/auth.php';
-
-/*test*/

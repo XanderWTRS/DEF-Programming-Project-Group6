@@ -15,31 +15,31 @@ class BanController extends Controller
         return view('admin.Banoverzicht', ['bans' => $bans]);
     }
 
-    public function unbanStudent($id)
-    {
-        $ban = Ban::find($id);
-        if ($ban) {
-            $ban->delete();
-            return response()->json(['success' => true]);
-        } else {
-            return response()->json(['success' => false, 'message' => 'Student niet gevonden.']);
-        }
+    public function unbanStudent($name)
+{
+    $ban = Ban::where('name', $name)->first();
+    if ($ban) {
+        $ban->delete();
+        return response()->json(['success' => true]);
+    } else {
+        return response()->json(['success' => false, 'message' => 'Student niet gevonden.']);
     }
+}
 
     public function banUser(Request $request)
     {
         // Verkrijg de gegevens van het verzoek
         $userId = $request->input('user_id');
         $name = $request->input('name');
-
+    
         // Opslaan van de gegevens in de bans tabel
         $ban = new Ban();
         $ban->user_id = $userId;
         $ban->name = $name;
-        $ban->status = 'banned';
+        $ban->status = 'banned'; // Update de status naar 'banned'
         $ban->save();
-
-        // Geef een succesvol antwoord terug naar de client
+    
         return response()->json(['success' => true]);
     }
+    
 }
