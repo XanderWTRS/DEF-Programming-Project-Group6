@@ -26,7 +26,7 @@
     @foreach($bans as $ban)
 <tr data-student-name="{{ $ban->name }}">
     <td>{{ $ban->name }}</td>
-    <td>25/11/2024</td>
+    <td>{{ $ban->date }}</td>
     <td>
     <button class="unban-btn" data-userid="{{ $ban->user_id }}">Unban</button>
     </td>
