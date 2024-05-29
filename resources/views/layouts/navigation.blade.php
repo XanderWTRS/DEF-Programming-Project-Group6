@@ -1,12 +1,12 @@
 <nav x-data="{ open: false }" class="nav-styling">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('home') }}">
-                        <img src="{{ asset('assets/logo/logo.png') }}" style="width: 70px"/>
+                        <img id="logo-img" src="{{ asset('Assets/Logo/Logo_text_wit_trans.svg') }}" style="width: auto; height: 60px"/>
                     </a>
                 </div>
 
