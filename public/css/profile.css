@@ -1,4 +1,4 @@
-.reservation-list li {
+.reservation-list ul {
     padding-bottom: 10px;
     border-bottom: 1px solid black;
 }
