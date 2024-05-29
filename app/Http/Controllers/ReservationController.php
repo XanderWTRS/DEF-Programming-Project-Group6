@@ -10,15 +10,27 @@ class ReservationController extends Controller
 {
     public function show($id): View{
         $currentDate = Carbon::now();
-        $product = DB::table('uitleendienst_inventaris')->where('id', $id)->first();
+        $productid = $id;
+
         $banned = DB::table('bans')->where('user_id', auth()->user()->id)->pluck('status')->first();
-        $productname = $product->title;
-        $productids = DB::table('uitleendienst_inventaris')->where('title', $productname)->pluck('id');
-        $productidsCount = $productids->count();
+
+        $product = DB::table('uitleendienst_inventaris')
+            ->select('title', 'category', 'merk')
+            ->where('id', $id)
+            ->first();
+
+        $productids = DB::table('uitleendienst_inventaris')
+            ->where('title', $product->title)
+            ->pluck('id')
+            ->toArray();
+        
+        $productidsCount = count($productids);
+
+
         $relatedproducts = DB::table('uitleendienst_inventaris')
         ->selectRaw('MAX(merk) AS merk, title, MAX(category) AS category, MAX(beschrijving) AS beschrijving, MAX(id) AS id')
         ->where('category', $product->category)
-        ->where('id', '!=', $product->id)
+        ->where('id', '!=', $id)
         ->groupBy('title')
         ->inRandomOrder()
         ->limit(5)
@@ -26,7 +38,7 @@ class ReservationController extends Controller
 
         $dateThreeWeeksLater = Carbon::now()->addWeeks(8)->toDateString();
         $reserveringen = DB::table('reservations')->whereIn('id', $productids)->where('date', '>', $currentDate)->where('date', '<', $dateThreeWeeksLater)->get();
-        return view('users.reservations', compact('product','reserveringen','productidsCount','relatedproducts','banned'));
+        return view('users.reservations', compact('product','reserveringen','productidsCount','relatedproducts','banned','productid'));
     }
 
     public function store(Request $request, $id)
