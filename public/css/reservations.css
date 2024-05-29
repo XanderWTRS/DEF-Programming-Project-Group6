@@ -1,47 +1,22 @@
-.main-container
-{
-    margin-left: 5vw;
-    margin-right: 5vw;
-}
-
 .container {
-    display: flex; /* Flexbox gebruiken voor de container */
-    flex-direction: row;
-    justify-content: space-between; /* Ruimte tussen sectie 1 en sectie 2 */
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
     flex-wrap: wrap;
-    margin-top: 30px;
 }
-.section1
+.section1, .section2, .section3
 {
-    max-width: 40vw;
-}
-.section2
-{
-    width: 40vw;
-}
-.section1, .section2, .section3 {
-    padding-left: 10px;
-    border-radius: 16px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    margin: 10px;
+    padding: 20px;
 }
 
 .section2 {
-    flex-direction: column;
-    align-items: center;
-    display: grid;
     grid-template-rows: repeat(4, 1fr);
 }
 .section2 .content {
     grid-row: 1/4;
 }
-
-.content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 
 .titles {
     font-size: 24px;
@@ -120,16 +95,6 @@ td:nth-child(3) p {
 .section2 a {
     margin-top: 20px;
 }
-
-.section3
-{
-    padding-bottom: 20px;
-    margin-bottom: 40px;
-    margin-top: 30px;
-    width: 100%;
-    padding-left: 10px;
-}
-
 .product {
     display: flex;
     flex-direction: column;
@@ -162,7 +127,7 @@ td:nth-child(3) p {
     display: flex;
 }
 
-#submitButton:disabled {
+#reservationbutton:disabled {
     background-color: rgb(255, 0, 0);
     color: white;
     cursor: not-allowed;
@@ -171,8 +136,7 @@ td:nth-child(3) p {
     margin-top: 10px;
 }
 
-/* Style for the enabled submit button */
-#submitButton {
+#reservationbutton {
     display: inline-block;
     text-decoration: none;
     color: white;
@@ -186,3 +150,8 @@ td:nth-child(3) p {
     margin-top: 10px;
 }
 
+@media screen and (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+  }

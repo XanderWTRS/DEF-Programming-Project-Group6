@@ -1,7 +1,6 @@
 <x-app-layout>
     <!--LAYOUT HOME PAGE -->
     <link rel="stylesheet" href="{{ asset('css/reservations.css') }}">
-    <div class="main-container">
         <div class="container">
             <div class="section1">
                 <h1 class="titles">{{ $product->merk }} {{ $product->title }}</h1>
@@ -20,7 +19,6 @@
                     </p><br><br>
             </div>
             <div class="section2">
-                <div class="content">
                     <form action="/product/{{ $product->id }}" method="POST">
                         @csrf
                         <table class="reservationTable">
@@ -38,7 +36,6 @@
                                     $currentWeek = \Carbon\Carbon::now()->weekOfYear;
                                     $reservationsCount = [];
 
-
                                     foreach ($reserveringen as $reservering) {
                                         $startOfWeek = \Carbon\Carbon::parse($reservering->date)->startOfWeek();
                                         $endOfWeek = $startOfWeek->copy()->addDays(5);
@@ -50,12 +47,10 @@
                                             $reservationsCount[$weekNumber] = 1;
                                         }
                                     }
-
                                 @endphp
                                 @php
                                     $available = 0;
                                     $shownweeks = 0;
-
                                     if (auth()->check()) {
                                         $userRole = auth()->user()->role;
                                         $available = ($userRole == 'student') ? 2 : 4;
@@ -92,25 +87,23 @@
                             </tbody>
                         </table>
                         @if ($shownweeks > 0)
-                            <input type="submit" id="submitButton" value="Reserveer" disabled>
+                            <input type="submit" id="reservationbutton" value="Reserveer" disabled>
 
                         @endif
                     </form>
+            </div>
+            <div class="section3">
+                <h1 class="titles">Gerelateerde Producten</h1>
+                <div class="related-product">
+                    @foreach ($relatedproducts as $relatedproduct)
+                        <a class="product" href="/product/{{ $relatedproduct->id }}">
+                                <h1 id="product-title">{{ $relatedproduct->title }} {{ $relatedproduct->merk }}</h1>
+                                <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+                        </a>
+                    @endforeach
                 </div>
             </div>
         </div>
-        <div class="section3">
-            <h1 class="titles">Gerelateerde Producten</h1>
-            <div class="related-product">
-                @foreach ($relatedproducts as $relatedproduct)
-                    <a class="product" href="/product/{{ $relatedproduct->id }}">
-                            <h1 id="product-title">{{ $relatedproduct->title }} {{ $relatedproduct->merk }}</h1>
-                            <img src="https://via.placeholder.com/150" alt="Placeholder Image">
-                    </a>
-                @endforeach
-            </div>
-        </div>
-    </div>
     <!--LAYOUT FOOTER PAGE -->
     <x-slot name='footer'>
         <footer class="footer">
