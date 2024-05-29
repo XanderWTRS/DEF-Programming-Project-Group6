@@ -34,6 +34,10 @@ Route::delete('/delete/{id}', [ProductsController::class, 'delete'])
     ->middleware(['auth', 'verified'])
     ->name('delete');
 
+Route::delete('/annuleer/{id}', [ProductsController::class, 'annuleer'])
+    ->middleware(['auth', 'verified'])
+    ->name('annuleer');
+
 Route::get('/admin-dashboard', [ProfileController::class,'page'])
 ->middleware('admin', 'auth', 'verified')->name('admin.dashboard');
 

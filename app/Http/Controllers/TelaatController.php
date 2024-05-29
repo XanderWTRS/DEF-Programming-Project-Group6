@@ -27,3 +27,5 @@ class TelaatController extends Controller
 return view('admin.Telaat', compact('telaats'));
     }
 }
+
+//test

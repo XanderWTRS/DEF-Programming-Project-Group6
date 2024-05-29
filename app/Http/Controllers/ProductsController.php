@@ -144,6 +144,7 @@ class ProductsController extends Controller
         try {
             $deletedRows = DB::table('reservations')
                 ->where('id', '=', $id)
+                ->whereDate('date', '>', now())
                 ->delete();
 
             if ($deletedRows > 0) {
@@ -154,6 +155,23 @@ class ProductsController extends Controller
         } catch (\Exception $e) {
             \Log::error('Error deleting product: ' . $e->getMessage());
             return redirect('reservatieoverzicht');
+        }
+    }
+    public function annuleer($id)
+    {
+        try {
+            $deletedRows = DB::table('reservations')
+                ->where('id', '=', $id)
+                ->delete();
+
+            if ($deletedRows > 0) {
+                return redirect('itemlist');
+            } else {
+                return redirect('itemlist');
+            }
+        } catch (\Exception $e) {
+            \Log::error('Error deleting product: ' . $e->getMessage());
+            return redirect('itemlist');
         }
     }
 }

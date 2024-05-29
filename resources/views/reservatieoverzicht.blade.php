@@ -35,7 +35,7 @@
                 @endif
         <div class="bottom-right">
             <div class="gv">
-                <input type="checkbox" id="g-v-overeenkomst" name="g-v-overeenkomst">
+                <input type="checkbox" id="checkbox" data-route="{{ route('g&v_voorwaarden') }}">
                 <label for="g-v-overeenkomst">G & V overeenkomst</label>
             </div>
             <form action="{{ route('timestamp') }}" method="POST">
@@ -47,12 +47,17 @@
     </body>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var checkbox = document.getElementById('g-v-overeenkomst');
+            var checkbox = document.getElementById('checkbox');
             var submitButton = document.getElementById('submit-button');
 
             checkbox.addEventListener('change', function() {
+                var route = this.getAttribute('data-route').replace(/&amp;/g, '&');
+                if (this.checked) {
+                    window.location.href = route;
+                }
                 submitButton.disabled = !this.checked;
             });
+
         });
         function confirmTimestamp() {
             var reservedItems = document.querySelectorAll('.product');
