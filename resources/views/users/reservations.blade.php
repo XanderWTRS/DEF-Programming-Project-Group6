@@ -22,7 +22,7 @@
                     <form action="/product/{{$productid}}" method="POST">
                         @csrf
                         <table class="reservationTable">
-                            @if ($banned->status == 'banned')
+                            @if ($banned && $banned->status == 'banned')
                                 <p class="titles banned">Je bent gebanned tot {{$banned->date}} en kan geen reservaties maken</p>
                             @endif
                             <thead>
