@@ -12,7 +12,7 @@ class ReservationController extends Controller
         $currentDate = Carbon::now();
         $productid = $id;
 
-        $banned = DB::table('bans')->where('user_id', auth()->user()->id)->pluck('status')->first();
+        $banned = DB::table('bans')->where('user_id', auth()->user()->id)->first();
 
         $product = DB::table('uitleendienst_inventaris')
             ->select('title', 'category', 'merk')
@@ -23,7 +23,7 @@ class ReservationController extends Controller
             ->where('title', $product->title)
             ->pluck('id')
             ->toArray();
-        
+
         $productidsCount = count($productids);
 
 
