@@ -19,7 +19,7 @@
                     </p><br><br>
             </div>
             <div class="section2">
-                    <form action="/product/{{ $product->id }}" method="POST">
+                    <form action="/product/{{$productid}}" method="POST">
                         @csrf
                         <table class="reservationTable">
                             <thead>
