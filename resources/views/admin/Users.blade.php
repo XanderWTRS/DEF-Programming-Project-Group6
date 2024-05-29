@@ -16,6 +16,7 @@
 <header class="Adminheader"></header>
 <div id="search-container">
     <input type="text" id="search" placeholder="Zoek gebruiker">
+    <button id="goToOtherPage">Ga naar andere pagina</button>
 </div>
 <table>
     <thead>

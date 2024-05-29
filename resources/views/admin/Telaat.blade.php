@@ -24,7 +24,6 @@
                         <th>date</th>
                         <th>Status</th>
                         <th>Action</th>
-                        <th>testingthis</th>
                     </tr>
             </thead>
             <tbody>
