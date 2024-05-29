@@ -1,4 +1,22 @@
+/* Keep existing styles */
 .reservation-list ul {
     padding-bottom: 10px;
     border-bottom: 1px solid black;
+}
+
+.annuleer-button {  
+    background-color: #e3342f;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    float: right;
+    margin-top: -80px;
+}
+
+
+
+.annuleer-button:hover {
+    background-color: #cc1f1a;
 }

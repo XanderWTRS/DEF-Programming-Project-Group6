@@ -24,11 +24,11 @@
                             Count: {{ count($reservationsWithProducts->where('title', $reservation->title)->where('category', $reservation->category)->where('date', $reservation->date)) }}<br>
                         @endif
                     </li>
-                    <form action="{{ route('annuleer', ['id' => $reservation->id]) }}" method="POST">
+                    <form action="{{ route('annuleer', ['id' => $reservation->id]) }}" method="POST" class="annuleer-form">
                         @csrf
                         @method('DELETE')
                         <input type="hidden" name="id" value="{{ $reservation->id }}">
-                        <button type="submit" class="delete-button">Annuleer</button>
+                        <button type="submit" class="annuleer-button">Annuleer</button>
                     </form>
                 @endforeach
                 </ul>
