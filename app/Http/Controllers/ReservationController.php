@@ -11,6 +11,7 @@ class ReservationController extends Controller
     public function show($id): View{
         $currentDate = Carbon::now();
         $product = DB::table('uitleendienst_inventaris')->where('id', $id)->first();
+        $banned = DB::table('bans')->where('user_id', auth()->user()->id)->pluck('status')->first();
         $productname = $product->title;
         $productids = DB::table('uitleendienst_inventaris')->where('title', $productname)->pluck('id');
         $productidsCount = $productids->count();
@@ -25,7 +26,7 @@ class ReservationController extends Controller
 
         $dateThreeWeeksLater = Carbon::now()->addWeeks(8)->toDateString();
         $reserveringen = DB::table('reservations')->whereIn('id', $productids)->where('date', '>', $currentDate)->where('date', '<', $dateThreeWeeksLater)->get();
-        return view('users.reservations', compact('product','reserveringen','productidsCount','relatedproducts'));
+        return view('users.reservations', compact('product','reserveringen','productidsCount','relatedproducts','banned'));
     }
 
     public function store(Request $request, $id)

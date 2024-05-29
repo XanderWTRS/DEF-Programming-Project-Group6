@@ -37,7 +37,7 @@
                                 @php
                                     $currentWeek = \Carbon\Carbon::now()->weekOfYear;
                                     $reservationsCount = [];
-                                    $avaible = 0;
+
 
                                     foreach ($reserveringen as $reservering) {
                                         $startOfWeek = \Carbon\Carbon::parse($reservering->date)->startOfWeek();
@@ -53,16 +53,12 @@
 
                                 @endphp
                                 @php
+                                    $available = 0;
+                                    $shownweeks = 0;
+
                                     if (auth()->check()) {
                                         $userRole = auth()->user()->role;
-                                        if ($userRole == 'student') {
-                                            $available = 2;
-                                        } else {
-                                            $available = 5;
-                                        }
-                                    } else {
-                                        $available = 0;
-
+                                        $available = ($userRole == 'student') ? 2 : 4;
                                     }
                                 @endphp
                                 @for ($week = $currentWeek + 1; $week <= $currentWeek + $available ; $week++)
@@ -74,10 +70,10 @@
 
                                     @endphp
                                     <tr>
-                                        @if (($productidsCount - $reservationCount)  != 0)
+                                        @if (($productidsCount - $reservationCount)  != 0 && $banned != 'banned')
                                             <td><input type="checkbox" class="weekCheckbox" name="selected_week" onchange="checkOnlyOne(this)" value="{{$startOfWeek->toDateString()}}"></td>
                                             @php
-                                                $avaible++;
+                                                $shownweeks++;
                                             @endphp
                                         @else
                                             <td></td>
@@ -95,7 +91,7 @@
                                 @endfor
                             </tbody>
                         </table>
-                        @if ($avaible > 0)
+                        @if ($shownweeks > 0)
                             <input type="submit" id="submitButton" value="Reserveer" disabled>
 
                         @endif
