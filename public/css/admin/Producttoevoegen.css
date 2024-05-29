@@ -6,6 +6,9 @@ body {
     min-height: 100vh;
 }
 
+nav.zoek{
+    margin-bottom: -10px;
+}
 
 .navbar {
     background-color: white;
@@ -20,10 +23,11 @@ body {
 }
 
 .dropdown {
-    margin: 20px;
+    margin: 10px;
     padding-left: 0px;
     display: inline-block;
 }
+
 .dropbtn {
     background-color: #ffffff;
     color: black;
@@ -53,7 +57,7 @@ body {
     min-width: 160px;
     z-index: 1;
     background-color: white;
-    box-shadow:  4px 8px  rgba(0,0,0,0.1);
+    box-shadow: 4px 8px rgba(0,0,0,0.1);
 }
 
 .dropdown-content a {
@@ -69,19 +73,23 @@ body {
 
 table {
     width: 80%;
-    border-collapse: collapse; /* Change to collapse to avoid double borders */
+    border-collapse: collapse; /* Collapse borders to avoid double borders */
     margin: 20px auto;
 }
 
 table th, table td {
     padding: 8px;
     text-align: left;
-    border: 1px solid black; /* Adds a border around each cell */
-    background-color: white; /* Ensures background color is white */
 }
 
 table th {
     color: black;
+    border: 1px solid black;
+}
+
+table td {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
 }
 
 .zoek {
@@ -90,7 +98,6 @@ table th {
     display: flex;
     justify-content: space-between;
 }
-
 
 #search {
     padding: 10px;
@@ -104,21 +111,18 @@ table th {
     width: 30vw;
 }
 
-.nav.navbar
-{
+.nav.navbar {
     margin-top: 0;
 }
 
-img#imgsearch
-{
+img#imgsearch {
     left: -30px;
     margin-top: 35px;
     position: relative;
     z-index: 2;
 }
 
-#search-container
-{
+#search-container {
     display: flex;
     justify-content: center;
 }
@@ -134,8 +138,8 @@ table th:nth-child(2) {
 table th:nth-child(3) {
     width: 20%;
 }
-.buttonToevoegen, .buttonVerwijder, .buttonWijzig
-{
+
+.buttonToevoegen, .buttonVerwijder, .buttonWijzig {
     border: none;
     color: white;
     padding: 10px 20px;
@@ -148,41 +152,45 @@ table th:nth-child(3) {
     border-radius: 5px;
 }
 
-.buttonToevoegen:hover, .buttonVerwijder:hover, .buttonWijzig:hover
-{
+.buttonToevoegen:hover, .buttonVerwijder:hover, .buttonWijzig:hover {
     opacity: 0.8;
 }
 
-.buttonToevoegen:active, .buttonVerwijder:active, .buttonWijzig:active
-{
+.buttonToevoegen:active, .buttonVerwijder:active, .buttonWijzig:active {
     opacity: 0.6;
 }
 
-.buttonToevoegen
-{
+.buttonToevoegen {
     background-color: rgb(58, 216, 58);
     margin: 20px 0px;
     height: 45px;
 }
-.buttonVerwijder
-{
+
+.buttonVerwijder {
     background-color: rgb(255, 37, 37);
 }
-.buttonWijzig
-{
+
+.buttonWijzig {
     background-color: rgb(255, 180, 40);
 }
 
-#buttonTD
-{
+#buttonTD {
     display: flex;
     justify-content: space-between;
 }
 
-button.buttonWijzig.btn.btn-primary
-{
+button.buttonWijzig.btn.btn-primary {
     background-color: rgb(255, 180, 40);
     border: 1px solid rgb(255, 180, 40);
     margin-right: 4px;
     margin-left: -2px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table td:nth-child(5)
+{
+    border-right: none;
 }
