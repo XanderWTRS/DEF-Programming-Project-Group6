@@ -12,7 +12,6 @@ $(document).ready(function() {
             },
             success: function(response) {
                 if (response.success) {
-                    // Verwijder de rij uit de tabel
                     $(this).closest('tr').remove();
                     alert('Gebruiker succesvol verwijderd.');
                 } else {
