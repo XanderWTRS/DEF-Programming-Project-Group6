@@ -85,8 +85,8 @@
                 <li>programmingprojectgroup6@gmail.com<li>
             </ul>
             </div>
-            <div id="center-footer"><a href="https://www.erasmushogeschool.be" class="link">&#169; Erasmushogeschool Brussel</a></div>
-            <div id="right-footer"><a href="{{ route('g&v_voorwaarden') }}" class="link">Gebruiks- en Verlies overeenkomst</a></div>
+            <div id="center-footer"><a href="https://www.erasmushogeschool.be" class="link" style="color: white;">&#169; Erasmushogeschool Brussel</a></div>
+            <div id="right-footer"><a href="{{ route('g&v_voorwaarden') }}" class="link" style="color: white;">Gebruiks- en Verlies overeenkomst</a></div>
         </footer>
     </x-slot>
 </x-app-layout>
