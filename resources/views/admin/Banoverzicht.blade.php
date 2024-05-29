@@ -12,7 +12,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-  <!--<link rel="stylesheet" href="../../STYLES/Admin/Banscherm.css">-->
     <link rel="stylesheet" href="{{asset('css/admin/Banoverzicht.css')}}">
 </head>
 <body>
@@ -25,11 +24,11 @@
     
     <tbody>
     @foreach($bans as $ban)
-<tr data-student-name="{{ $ban->name }}"> <!-- Verander 'id' naar 'name' -->
+<tr data-student-name="{{ $ban->name }}">
     <td>{{ $ban->name }}</td>
     <td>25/11/2024</td>
     <td>
-        <button class="unban-btn" data-student-name="{{ $ban->name }}">Unban</button> <!-- Voeg de gebruikersnaam toe als data-attribuut -->
+    <button class="unban-btn" data-userid="{{ $ban->user_id }}">Unban</button>
     </td>
 </tr>
 @endforeach
@@ -42,67 +41,3 @@
 @include('jsAdmin.Adminheader1')
 </body>
 </html>
-
-
-<!--<tr>
-        <th>Student</th>
-        <th>duur</th>
-        <th>ban/unban</th>
-    </thead>
-    <tbody>
-    <tr>
-        <td>Matteo</td>
-        <td>25/11/2024</td>
-        <td>
-            <button onclick="unbanStudent('Matteo')">Unban</button>
-        </td>
-    </tr>
-    <tr>
-            <td>Bob</td>
-        <td>26/11/2024</td>
-        <td>
-            <button onclick="unbanStudent('Student2')">Unban</button>
-        </td>
-    </tr>
-    <tr>
-        <td>Max</td>
-        <td>27/11/2024</td>
-        <td>
-            <button onclick="unbanStudent('Student3')">Unban</button>
-        </td>
-    </tr>
-    <tr>
-        <td>Max</td>
-        <td>27/11/2024</td>
-        <td>
-            <button onclick="unbanStudent('Student3')">Unban</button>
-        </td>
-    </tr>
-    <tr>
-        <td>Max</td>
-        <td>27/11/2024</td>
-        <td>
-            <button onclick="unbanStudent('Student3')">Unban</button>
-        </td>
-    </tr>
-    <tr>
-        <td>Max</td>
-        <td>27/11/2024</td>
-        <td>
-            <button onclick="unbanStudent('Student3')">Unban</button>
-        </td>
-    </tr>
-
-
-
-    @foreach($bans as $ban)
-    <tr>
-        <td>{{$ban}}</td>
-        <td> 25/11/2024 </td>
-        <td>
-            <button onclick="unbanStudent('{{$ban}}')">Unban</button>
-        </td>
-    </tr>
-@endforeach
-
--->

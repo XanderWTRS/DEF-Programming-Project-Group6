@@ -19,6 +19,7 @@
                             Beschrijving: {{ $reservation->beschrijving }} <br>               
                         @endif
                         Datum: {{ $reservation->date }} tot {{ Carbon\Carbon::parse($reservation->date)->addDays(4)->format("y-m-d") }}<br>
+                        Inlevering in: {{ floor(Carbon\Carbon::now()->diffInDays(Carbon\Carbon::parse($reservation->date)->addDays(5))) }} days<br>
                         @if(count($reservationsWithProducts->where('title', $reservation->title)->where('category', $reservation->category)->where('date', $reservation->date)) > 1)
                             Count: {{ count($reservationsWithProducts->where('title', $reservation->title)->where('category', $reservation->category)->where('date', $reservation->date)) }}<br>
                         @endif

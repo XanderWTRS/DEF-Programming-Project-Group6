@@ -97,9 +97,10 @@ Route::get('/Telaat', function () {
     return view('A  dmin/Telaat');
 });
 Route::get('/Telaat', [TelaatController::class, 'index']);
-
 Route::post('/ban', [BanController::class, 'banUser'])->name('ban');
-Route::delete('/ban/{name}', [BanController::class, 'unbanStudent']);
+Route::post('/unbanUser', [BanController::class, 'unbanUser'])->middleware(['auth', 'verified', 'admin'])->name('unban.user');
+Route::delete('/ban/{user_id}', [BanController::class, 'unbanStudent']);
+
 
 
   

@@ -1,44 +1,27 @@
-<script>    
-document.addEventListener("DOMContentLoaded", function() {
-    let searchInput = document.getElementById('search');
-    let tableRows = document.querySelectorAll('table tbody tr');
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-    searchInput.addEventListener('input', function() {
-        let searchValue = searchInput.value.toLowerCase();
-
-        for (let row of tableRows) {
-            let studentName = row.cells[0].textContent.toLowerCase();
-
-            if (studentName.includes(searchValue)) {
-                row.style.display = '';
-            } else {
-                row.style.display = 'none';
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.unban-btn').click(function() {
+        var userId = $(this).data('userid');
+        
+        $.ajax({
+            url: '/ban/' + userId,
+            type: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(response) {
+                if (response.success) {
+                    $(this).closest('tr').remove();
+                    alert('Gebruiker succesvol verwijderd.');
+                } else {
+                    alert('Er is een fout opgetreden: ' + response.message);
+                }
+            }.bind(this),
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+                alert('Er is een fout opgetreden bij het verwijderen van de gebruiker.');
             }
-        }
-    });
-
-    const unbanButtons = document.querySelectorAll('.unban-btn'); // Update de selector
-    unbanButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const studentName = this.getAttribute('data-student-name'); // Haal de gebruikersnaam op van het data-attribuut
-
-            fetch('/ban/' + encodeURIComponent(studentName), { // Verzend de gebruikersnaam als onderdeel van de URL
-                method: 'DELETE',
-                headers: {
-                    'X-CSRF-TOKEN': csrfToken,
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Row verwijderen
-                    const row = this.closest('tr');
-                    row.remove();
-                }
-            })
-            .catch(error => console.error('Error:', error));
         });
     });
 });
