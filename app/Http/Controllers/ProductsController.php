@@ -112,7 +112,7 @@ class ProductsController extends Controller
             }
             if (!$found) {
                 $startDate = Carbon::parse($reservation->date);
-                $endDate = $startDate->copy()->addDays(5)->format('Y-m-d');
+                $endDate = $startDate->copy()->addDays(4)->format('Y-m-d');
 
                 $producten[$i] = (object) [
                     'id' => $reservation->id,
