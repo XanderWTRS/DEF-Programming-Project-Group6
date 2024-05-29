@@ -47,26 +47,26 @@ Route::get('/g&v_voorwaarden', function() {
 
 Route::get('/Banoverzicht', function () {
     return view('admin/Banoverzicht');
-});
+})->middleware('admin');
 
-Route::get('/Banoverzicht', [BanController::class, 'index']);
-Route::delete('/ban/{user_id}', [BanController::class, 'unbanStudent']);
+Route::get('/Banoverzicht', [BanController::class, 'index'])->middleware('admin');
+Route::delete('/ban/{user_id}', [BanController::class, 'unbanStudent'])->middleware('admin');
 
-Route::get('/Bezetscherm', [BezetController::class, 'index']);
+Route::get('/Bezetscherm', [BezetController::class, 'index'])->middleware('admin');
 
 Route::get('/Klaarzetten', function () {
     return view('Admin/Klaarzetten');
-});
+})->middleware('admin');
 
 
 Route::get('/Producttoevoegen', function () {
     return view('Admin/Producttoevoegen');
-});
+})->middleware('admin');
 
-Route::get('/Producttoevoegen', [ProductToevoegenController::class, 'index']);
-Route::get('/products/filter/{category}', [ProductToevoegenController::class, 'filterByCategory'])->name('filter.products');
-Route::delete('/product/{id}', [ProductToevoegenController::class, 'destroy'])->name('product.delete');
-Route::patch('/product/update', [ProductToevoegenController::class, 'update'])->name('product.update');
+Route::get('/Producttoevoegen', [ProductToevoegenController::class, 'index'])->middleware('admin');
+Route::get('/products/filter/{category}', [ProductToevoegenController::class, 'filterByCategory'])->middleware('admin')->name('filter.products');
+Route::delete('/product/{id}', [ProductToevoegenController::class, 'destroy'])->middleware('admin')->name('product.delete');
+Route::patch('/product/update', [ProductToevoegenController::class, 'update'])->middleware('admin')->name('product.update');
 
 
 Route::middleware('auth')->group(function () {
@@ -94,16 +94,16 @@ Route::post('/Addproduct/store', [AddproductInventarisController::class, 'store'
 
 
 
-Route::get('/Klaarzetten', [KlaarzettenController::class, 'index']);
-Route::get('/filter-reservations', [KlaarzettenController::class, 'filter']);
+Route::get('/Klaarzetten', [KlaarzettenController::class, 'index'])->middleware('admin');
+Route::get('/filter-reservations', [KlaarzettenController::class, 'filter'])->middleware('admin');
 
 Route::get('/Telaat', function () {
     return view('A  dmin/Telaat');
-});
-Route::get('/Telaat', [TelaatController::class, 'index']);
-Route::post('/ban', [BanController::class, 'banUser'])->name('ban');
+})->middleware('admin');
+Route::get('/Telaat', [TelaatController::class, 'index'])->middleware('admin');
+Route::post('/ban', [BanController::class, 'banUser'])->name('ban')->middleware('admin');
 Route::post('/unbanUser', [BanController::class, 'unbanUser'])->middleware(['auth', 'verified', 'admin'])->name('unban.user');
-Route::delete('/ban/{user_id}', [BanController::class, 'unbanStudent']);
+Route::delete('/ban/{user_id}', [BanController::class, 'unbanStudent'])->middleware('admin');
 
 
 Route::get('/Users', [UsersbanController::class, 'index'])->name('gebruikersoverzicht');

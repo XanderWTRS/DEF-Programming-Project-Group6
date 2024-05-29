@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 class ProductsController extends Controller
 {
+    // functie voor het ophalen van de producten uit de database
     public function index(Request $request): View
     {
         $selectedWeek = $request->input('week');
@@ -47,9 +48,9 @@ class ProductsController extends Controller
 
         return view('home', compact('products', 'selectedWeek', 'selectedCategory', 'searchQuery'));
     }
+    // functie voor het ophalen van de reserveringen van de gebruiker
     public function index3()
     {
-        //test
         $user = auth()->user()->name;
         $reservations = DB::table('reservations')
                         ->where('name', $user)
@@ -88,7 +89,8 @@ class ProductsController extends Controller
         }
         return view('reservatieoverzicht', compact('producten'));
     }
-
+    // functie voor het versturen van een mail naar de gebruiker met de reserveringen
+    // en het updaten van de reserveringen in de database zodat ze niet meer verlopen
     public function timestamp(){
         $user = auth()->user()->name;
         $reservations = DB::table('reservations')
@@ -112,7 +114,7 @@ class ProductsController extends Controller
             }
             if (!$found) {
                 $startDate = Carbon::parse($reservation->date);
-                $endDate = $startDate->copy()->addDays(5)->format('Y-m-d');
+                $endDate = $startDate->copy()->addDays(4)->format('Y-m-d');
 
                 $producten[$i] = (object) [
                     'id' => $reservation->id,
@@ -139,12 +141,12 @@ class ProductsController extends Controller
 
         return redirect('home');
     }
+    // functie voor het deleten van een item uit de winkelmand aan de hand van het id
     public function delete($id)
     {
         try {
             $deletedRows = DB::table('reservations')
                 ->where('id', '=', $id)
-                ->whereDate('date', '>', now())
                 ->delete();
 
             if ($deletedRows > 0) {
@@ -157,11 +159,14 @@ class ProductsController extends Controller
             return redirect('reservatieoverzicht');
         }
     }
+    // functie voor het annuleren van een reservering aan de hand van het id
+    // ook toegevoeg dat er enkel geannuleerd kan worden als de datum van de reservering nog niet is verstreken
     public function annuleer($id)
     {
         try {
             $deletedRows = DB::table('reservations')
                 ->where('id', '=', $id)
+                ->whereDate('date', '>', now())
                 ->delete();
 
             if ($deletedRows > 0) {
