@@ -8,7 +8,7 @@
                 <p>No products found.</p>
                 @else
                     <div id="productenGrid">
-                        // Loop door de products and toon ze met alle info (title, category, merk, beschrijving, date, enddate, count)
+                        <!-- Loop door de products and toon ze met alle info (title, category, merk, beschrijving, date, enddate, count)-->
                         @foreach ($producten as $product)
                             <a href="/product/{{ $product->id }}">
                                 <div class="product">
@@ -46,6 +46,7 @@
         </div>
         </main>
     </body>
+    <!-- JS code dat gaat kijken of checkbox is gechecked, g&v_overeenkomst toont en ook een alert toont bij het klikken van de submit knop-->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var checkbox = document.getElementById('checkbox');

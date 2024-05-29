@@ -7,9 +7,9 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <ul>
+                <!--Loop door alle unieke reservaties en toon info over elk product (ook een check voor als er geen category en bechrijving is) -->
                 @foreach($reservationsWithProducts->unique('title', 'category', 'date') as $reservation)
-                    <li class="reservation-list" style="border-bottom: 1px solid #cccc;
-                    padding: 8px;">{{ $reservation->title }} <br>
+                    <li class="reservation-list">{{ $reservation->title }} <br>
                         @if(($reservation->category) !== '')
                             Category: {{$reservation->category}} <br>
                         @endif
