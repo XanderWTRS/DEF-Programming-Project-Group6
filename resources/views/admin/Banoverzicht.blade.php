@@ -24,15 +24,17 @@
     <thead>
     
     <tbody>
-@foreach($bans as $ban)
-<tr data-student-id="{{ $ban->id }}">
+    @foreach($bans as $ban)
+<tr data-student-name="{{ $ban->name }}"> <!-- Verander 'id' naar 'name' -->
     <td>{{ $ban->name }}</td>
     <td>25/11/2024</td>
     <td>
-        <button>Unban</button>
+        <button class="unban-btn" data-student-name="{{ $ban->name }}">Unban</button> <!-- Voeg de gebruikersnaam toe als data-attribuut -->
     </td>
 </tr>
 @endforeach
+
+
 </tbody>
 </table>
 @include('jsAdmin.ban')
