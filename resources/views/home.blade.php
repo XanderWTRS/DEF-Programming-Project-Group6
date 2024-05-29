@@ -4,6 +4,7 @@
 
         <div id="filter">
             <div id="filter1">
+                <!-- search filter dat ook week en categorie door geeft-->
                 <div class="search-container">
                     <form id="search-form" action="{{ route('home') }}" method="get">
                         <input class="search-input" type="search" name="query" id="query" value="{{ $searchQuery ?? '' }}" placeholder="Search...">
@@ -14,6 +15,7 @@
                         <input type="hidden" name="category" id="category" value="{{ $selectedCategory }}">
                     </form>
                 </div>
+                <!-- dropdown voor de verschillende weken-->
                 <form action="{{ route('home') }}" method="get">
                     <div id="selectWeek">
                         <select id="weekSelect" name="week" onchange="this.form.submit()">
@@ -32,6 +34,7 @@
                     </div>
                 </form>
             </div>
+            <!-- navigatie voor de verschillende categorien-->
             <nav class="nav-bar">
                 <ul class="nav-items">
                     <li class="nav-item"><a href="{{ route('home', ['category' => 'Video', 'week' => $selectedWeek, 'query' => $searchQuery]) }}">Video</a></li>
@@ -43,9 +46,11 @@
                 </ul>
             </nav>
         </div>
+
         @if($products->isEmpty())
             <p>No products found.</p>
         @else
+        <!-- pweergave van producten -->
         <div id="productenGrid">
             @php
                 $encounteredProducts = [];
@@ -97,6 +102,7 @@
             @endforeach
         </div>
         @endif
+        <!-- pagination (filter worden meegegeven naar de volgende pagina) -->
         <div class="paginationStyle">
             {{ $products->appends(['week' => $selectedWeek, 'category' => $selectedCategory, 'query' => $searchQuery])->links('pagination::bootstrap-4') }}
         </div>

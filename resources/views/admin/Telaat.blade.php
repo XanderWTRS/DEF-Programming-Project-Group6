@@ -18,30 +18,29 @@
         </div>
         <table>
             <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Student ID</th>
-                    <th>date</th>
-                    <th>Status</th>
-                <th>Action</th>
-                </tr>
+                    <tr>
+                        <th>Name</th>
+                        <th>Student ID</th>
+                        <th>date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
             </thead>
             <tbody>
-            @php $uniqueUserIds = array(); @endphp
-    @foreach($telaats as $telaat)
-        @if(!in_array($telaat->user_id, $uniqueUserIds))
-            @php $uniqueUserIds[] = $telaat->user_id; @endphp
-            <tr>
-                <td>{{ $telaat->name }}</td>
-                <td>{{ $telaat->user_id }}</td>
-                <td>{{ $telaat->date }}</td>    
-                <td>{{ $telaat->status }}</td>
-                <td><button type="button" class="ban-btn" data-userid="{{ $telaat->user_id }}" data-username="{{ $telaat->name }}">Ban</button></td>
-            </tr>
-        @endif
-    @endforeach
-
-    </tbody>
+                    @php $uniqueUserIds = array(); @endphp
+                        @foreach($telaats as $telaat)
+                            @if(!in_array($telaat->user_id, $uniqueUserIds))
+                                @php $uniqueUserIds[] = $telaat->user_id; @endphp
+                                <tr>
+                                    <td>{{ $telaat->name }}</td>
+                                    <td>{{ $telaat->user_id }}</td>
+                                    <td>{{ $telaat->date }}</td>    
+                                    <td>{{ $telaat->status }}</td>
+                                    <td><button type="button" class="ban-btn" data-userid="{{ $telaat->user_id }}" data-username="{{ $telaat->name }}">Ban</button></td>
+                                </tr>
+                            @endif
+                        @endforeach
+            </tbody>
         </table>
         @include('jsAdmin.Zoekbalk')
         @include('jsAdmin.Adminheader1')

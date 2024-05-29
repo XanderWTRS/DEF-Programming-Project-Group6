@@ -22,6 +22,9 @@
                     <form action="/product/{{$productid}}" method="POST">
                         @csrf
                         <table class="reservationTable">
+                            @if ($banned->status == 'banned')
+                                <p class="titles banned">Je bent gebanned tot {{$banned->date}} en kan geen reservaties maken</p>
+                            @endif
                             <thead>
                                 <tr>
                                     <th></th>
@@ -65,7 +68,7 @@
 
                                     @endphp
                                     <tr>
-                                        @if (($productidsCount - $reservationCount)  != 0 && $banned != 'banned')
+                                        @if (($productidsCount - $reservationCount)  != 0 && $banned->status != 'banned')
                                             <td><input type="checkbox" class="weekCheckbox" name="selected_week" onchange="checkOnlyOne(this)" value="{{$startOfWeek->toDateString()}}"></td>
                                             @php
                                                 $shownweeks++;
