@@ -10,11 +10,11 @@ function checkOnlyOne(checkbox) {
 
 document.addEventListener('DOMContentLoaded', (event) => {
     const checkboxes = document.querySelectorAll('.weekCheckbox');
-    const submitButton = document.getElementById('submitButton');
+    const reservationbutton = document.getElementById('reservationbutton');
 
-    const updateSubmitButtonState = () => {
+    const updatereservationbuttonState = () => {
         const atLeastOneChecked = Array.from(checkboxes).some(cb => cb.checked);
-        submitButton.disabled = !atLeastOneChecked;
+        reservationbutton.disabled = !atLeastOneChecked;
 
         if (atLeastOneChecked) {
             startFunction();
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     };
 
     checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', updateSubmitButtonState);
+        checkbox.addEventListener('change', updatereservationbuttonState);
     });
 });
 

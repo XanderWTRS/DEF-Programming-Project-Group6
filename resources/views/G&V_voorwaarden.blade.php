@@ -51,13 +51,14 @@
             <footer class="footer">
                 <div id="left">
                     <ul>
-                        <li>Erasmus Hogeschool Brussel</li>
+                        <li>Erasmushogeschool Brussel</li>
                         <li>Nijverheidskaai 170</li>
                         <li>1070 Anderlecht</li>
                         <li>02 559 15 00</li>
+                        <li>programmingprojectgroup6@gmail.com<li>
                     </ul>
                 </div>
-                <div id="center-footer"><span class="link">&#169; Erasmus Hogeschool Brussel</span></div>
+                <div id="center-footer"><a href="https://www.erasmushogeschool.be" class="link">&#169; Erasmushogeschool Brussel</a></div>
                 <div id="right-footer"><span class="link">Gebruiks- en Verlies overeenkomst</span></div>
             </footer>
         </span>

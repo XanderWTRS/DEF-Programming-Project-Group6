@@ -1,6 +1,7 @@
 .nav-styling
 {
-    background-color: #ff00002d;
+    background-color: #dd1a1a;
+    color: white;
 }
 .app-styling
 {
@@ -8,5 +9,11 @@
 }
 .hover-styling-class:hover
 {
-    background-color: #ff00002d;
+    background-color: #dd1a1a;
+    color: white;
+}
+
+#logo-img
+{
+    margin-left: -60px;
 }

@@ -49,5 +49,8 @@
 }
 .link:hover
 {
-    color: rgb(255, 84, 84);
+    color: white;
+    text-decoration: underline;
+    text-decoration-color: white;
+    text-underline-offset: 4px;
 }

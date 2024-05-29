@@ -35,7 +35,7 @@
                 @endif
         <div class="bottom-right">
             <div class="gv">
-                <input type="checkbox" id="g-v-overeenkomst" name="g-v-overeenkomst">
+                <input type="checkbox" id="checkbox" data-route="{{ route('g&v_voorwaarden') }}">
                 <label for="g-v-overeenkomst">G & V overeenkomst</label>
             </div>
             <form action="{{ route('timestamp') }}" method="POST">
@@ -47,12 +47,17 @@
     </body>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var checkbox = document.getElementById('g-v-overeenkomst');
+            var checkbox = document.getElementById('checkbox');
             var submitButton = document.getElementById('submit-button');
 
             checkbox.addEventListener('change', function() {
+                var route = this.getAttribute('data-route').replace(/&amp;/g, '&');
+                if (this.checked) {
+                    window.location.href = route;
+                }
                 submitButton.disabled = !this.checked;
             });
+
         });
         function confirmTimestamp() {
             var reservedItems = document.querySelectorAll('.product');
@@ -73,15 +78,15 @@
         <footer class="footer">
             <div id="left">
             <ul>
-                <li>Erasmus Hogeschool Brussel</li>
+                <li>Erasmushogeschool Brussel</li>
                 <li>Nijverheidskaai 170</li>
                 <li>1070 Anderlecht</li>
                 <li>02 559 15 00</li>
-                <li>xander.wauters@student.ehb.be<li>
+                <li>programmingprojectgroup6@gmail.com<li>
             </ul>
             </div>
-            <div id="center-footer"><span class="link">&#169; Erasmus Hogeschool Brussel</span></div>
-            <div id="right-footer"><a href="{{ route('g&v_voorwaarden') }}" class="link">Gebruiks- en Verlies overeenkomst</a></div>
+            <div id="center-footer"><a href="https://www.erasmushogeschool.be" class="link" style="color: white;">&#169; Erasmushogeschool Brussel</a></div>
+            <div id="right-footer"><a href="{{ route('g&v_voorwaarden') }}" class="link" style="color: white;">Gebruiks- en Verlies overeenkomst</a></div>
         </footer>
     </x-slot>
 </x-app-layout>
