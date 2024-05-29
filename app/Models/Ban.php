@@ -10,4 +10,5 @@ class Ban extends Model
     use HasFactory;
     protected $table = 'bans';
     public $timestamps = false;
+    protected $primaryKey = 'user_id';
 }
