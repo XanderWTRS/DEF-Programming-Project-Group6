@@ -8,6 +8,7 @@
                 <p>No products found.</p>
                 @else
                     <div id="productenGrid">
+                        // Loop door de products and toon ze met alle info (title, category, merk, beschrijving, date, enddate, count)
                         @foreach ($producten as $product)
                             <a href="/product/{{ $product->id }}">
                                 <div class="product">

@@ -1,12 +1,10 @@
 <x-app-layout>
     <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             {{ __('Gereserveerde items:') }}
-        </h2>
-    </x-slot>
-
+    </h2>
     <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <ul>
                 @foreach($reservationsWithProducts->unique('title', 'category', 'date') as $reservation)
