@@ -1,9 +1,13 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
 /*css voor de navigatie balk*/
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px;
     flex-direction: row-reverse;
     position: sticky;
     top: 0;
@@ -11,11 +15,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
-html, body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto', sans-serif;
-}
+
 
 .navbar .logo {
     width: auto;
