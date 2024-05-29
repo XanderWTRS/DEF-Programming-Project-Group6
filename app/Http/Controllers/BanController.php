@@ -15,6 +15,7 @@ class BanController extends Controller
         return view('admin.Banoverzicht', ['bans' => $bans]);
     }
 
+
     public function unbanStudent($userId)
 {
     $ban = Ban::where('user_id', $userId)->first();
@@ -44,4 +45,18 @@ public function banUser(Request $request)
     return response()->json(['success' => true]);
 }
     
+
+public function autoUnbanUsers()
+{
+    $expiredBans = Ban::whereDate('date', '<', Carbon::today())->get();
+
+    foreach ($expiredBans as $ban) {
+        $ban->delete();
+    }
+}
+
+public function __construct()
+{
+    $this->autoUnbanUsers();
+}
 }

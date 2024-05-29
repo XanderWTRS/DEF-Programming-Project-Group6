@@ -12,7 +12,7 @@ $(document).ready(function() {
             },
             success: function(response) {
                 if (response.success) {
-                    $(this).closest('tr').remove();
+                    $(this).closest('tr').remove(); 
                     alert('Gebruiker succesvol verwijderd.');
                 } else {
                     alert('Er is een fout opgetreden: ' + response.message);
@@ -25,4 +25,5 @@ $(document).ready(function() {
         });
     });
 });
+
 </script>
