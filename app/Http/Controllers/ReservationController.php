@@ -28,34 +28,64 @@ class ReservationController extends Controller
         return view('users.reservations', compact('product','reserveringen','productidsCount','relatedproducts'));
     }
 
-    public function store(Request $request , $id)
+    public function store(Request $request, $id)
     {
-        $selected = Carbon::parse($request->input('selected_week'));
-        $product = DB::table('uitleendienst_inventaris')->where('id', $id)->first();
-        $productname = $product->title;
-        $productids = DB::table('uitleendienst_inventaris')->where('title', $productname)->pluck('id');
-        $startOfWeek = $selected->startOfWeek();
-
-        foreach ($productids as $productid) {
-            $reserveringen = DB::table('reservations')
-                ->where('id', $productid)
-                ->where('date', '=', $startOfWeek)
-                ->get();
-            if ($reserveringen->isEmpty()) {
-                $product = $productid;
+        try {
+            $selected = Carbon::parse($request->input('selected_week'));
+            $product = DB::table('uitleendienst_inventaris')->where('id', $id)->first();
+            if (!$product) {
+                return redirect('reservatieoverzicht')->with('error', 'Product not found.');
             }
+            $productname = $product->title;
+            $productids = DB::table('uitleendienst_inventaris')->where('title', $productname)->pluck('id');
+            $startOfWeek = $selected->startOfWeek();
+
+            if (auth()->check()) {
+                $userRole = auth()->user()->role;
+                if ($userRole == 'student') {
+                    $available = 2;
+                } else {
+                    $available = 4;
+                }
+            } else {
+                $available = 0;
+            }
+
+            if ($startOfWeek > Carbon::now()->startOfWeek()->addWeeks($available) || $startOfWeek < Carbon::now()->startOfWeek()) {
+                return redirect()->back()->with(['error' => 'Je kan geen producten reserveren in het op deze week', 'alert' => 'Not permitted']);
+            } else {
+                $reserved = false;
+                foreach ($productids as $productid) {
+                    $reserveringen = DB::table('reservations')
+                        ->where('id', $productid)
+                        ->where('date', '=', $startOfWeek)
+                        ->get();
+                    if ($reserveringen->isEmpty()) {
+                        $product = $productid;
+                        $reserved = true;
+                        break;
+                    }
+                }
+
+                if (!$reserved) {
+                    return redirect()->back()->with('error', 'No available product found for the selected week.');
+                }
+
+                $date = $selected;
+                $expirationTime = now()->addHour();
+                DB::table('reservations')->insert([
+                    'id' => $product,
+                    'date' => $date,
+                    'user_id' => auth()->user()->id,
+                    'name' => auth()->user()->name,
+                    'expires_at' => $expirationTime
+                ]);
+
+                return redirect('reservatieoverzicht')->with('success', 'Reservation created successfully.');
+            }
+        } catch (\Exception $e) {
+            Log::error('Error creating reservation: ' . $e->getMessage());
+            return redirect('home')->with('error', 'An error occurred while creating the reservation.');
         }
-
-        $date = $selected;
-        $expirationTime = now()->addHour();
-        DB::table('reservations')->insert([
-                'id' => $product,
-                'date' => $date,
-                'user_id' => auth()->user()->id,
-                'name' => auth()->user()->name,
-                'expires_at' => $expirationTime
-            ]);
-
-        return redirect('reservatieoverzicht');
     }
 }
