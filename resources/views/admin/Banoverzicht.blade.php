@@ -17,12 +17,14 @@
 <body>
 <header class="Adminheader"></header>
 <div id="search-container">
-    <input type="text" id="search" placeholder="Zoek student">
+<input type="text" id="search-bar" placeholder="Zoek student">
+    <button id="reset-search-btn">Reset</button>
 </div>
 <table>
     <thead>
     <tr>
         <th>Naam</th>
+        <th>Student ID</th>
         <th>Einddatum</th>
         <th>Actie</th>
     </tr>
@@ -31,6 +33,7 @@
     @foreach($bans as $ban)
 <tr data-student-name="{{ $ban->name }}">
     <td>{{ $ban->name }}</td>
+    <td>{{ $ban->user_id }}</td>
     <td>{{ $ban->date }}</td>
     <td>
     <button class="unban-btn" data-userid="{{ $ban->user_id }}">Unban</button>
