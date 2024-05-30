@@ -52,7 +52,9 @@ Route::get('/Banoverzicht', function () {
 Route::get('/Banoverzicht', [BanController::class, 'index'])->middleware('admin');
 Route::delete('/ban/{user_id}', [BanController::class, 'unbanStudent'])->middleware('admin');
 
-Route::get('/Bezetscherm', [BezetController::class, 'index'])->middleware('admin');
+Route::get('/Bezetscherm', [BezetController::class, 'index'])
+    ->middleware('admin')
+    ->name('search');
 
 Route::get('/Klaarzetten', function () {
     return view('Admin/Klaarzetten');

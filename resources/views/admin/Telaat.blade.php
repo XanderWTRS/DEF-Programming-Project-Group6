@@ -7,23 +7,26 @@
         <link rel="icon" href="{{asset('Assets/Logo/logo.png')}}" type="image/png">
         <link rel="stylesheet" href="{{asset('css/index.css')}}">
         <link rel="stylesheet" href="{{asset('css/Admin/Bezetscherm.css')}}">
+        <link rel="stylesheet" href="{{asset('css/Admin/telaat.css')}}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     </head>
     <body>
     <header class="Adminheader"></header>
+    <div class="page">
         <div id="search-container">
             <input type="text" id="search" placeholder="Zoek student">
-        </div>
+        </div>  
+        <button id="navigateButton">all users overzicht</button>
         <table>
             <thead>
                     <tr>
-                        <th>Name</th>
+                        <th>Naam</th>
                         <th>Student ID</th>
-                        <th>date</th>
+                        <th>datum</th>
                         <th>Status</th>
-                        <th>Action</th>
+                        <th>Actie</th>
                     </tr>
             </thead>
             <tbody>
@@ -42,12 +45,25 @@
                         @endforeach
             </tbody>
         </table>
-        @include('jsAdmin.Zoekbalk')
         @include('jsAdmin.Adminheader1')
-
+        </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
         $(document).ready(function(){
+            $('#navigateButton').click(function(){
+            window.location.href = '/Users'; 
+        });
+        $('#search').on('input', function(){
+        var searchText = $(this).val().toLowerCase();
+        $('tbody tr').each(function(){
+            var rowText = $(this).text().toLowerCase();
+            if(rowText.includes(searchText)){
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    });
             $('.ban-btn').click(function(){
                 var userId = $(this).data('userid');
                 var name = $(this).data('username');

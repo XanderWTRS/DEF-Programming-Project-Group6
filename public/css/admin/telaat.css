@@ -1,0 +1,53 @@
+.page {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid white;
+}
+tr:hover {
+    background-color: white;
+}
+#search-container {
+    text-align: center;
+    margin-top: 20px;
+}
+#search {
+    padding: 8px;
+    width: 300px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+#navigateButton {
+    padding: 10px 20px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+#navigateButton:hover {
+    background-color: blue;
+}
+.ban-btn {
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.ban-btn:hover {
+    background-color: red;
+}

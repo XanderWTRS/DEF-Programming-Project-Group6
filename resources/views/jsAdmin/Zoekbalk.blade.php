@@ -26,37 +26,3 @@
         document.getElementById('reset-search-btn').addEventListener('click', resetSearch);
     });
 </script>
-
-
-
-<!--const searchBar = document.querySelector('#search-bar');
-
-searchBar.addEventListener('keyup', () => {
-    const searchText = searchBar.value;
-    if (searchText) {
-        searchTable(searchText);
-    } else {
-        resetTable();
-    }
-});
-
-function searchTable(searchText) {
-    const table = document.querySelector('table');
-    const tbody = table.querySelector('tbody');
-    const rows = Array.from(tbody.querySelectorAll('tr'));
-
-
-    while (tbody.firstChild) {
-        tbody.firstChild.remove();
-    }
-
-    const matchingRows = rows.filter(row => {
-        const productCellText = row.querySelector('td:nth-child(1)').textContent;
-        const studentCellText = row.querySelector('td:nth-child(3)').textContent;
-        return productCellText.includes(searchText) || studentCellText.includes(searchText);
-    });
-
-    matchingRows.forEach(row => {
-        tbody.appendChild(row);
-    });
-} -->
