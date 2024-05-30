@@ -10,7 +10,6 @@ use App\Http\Controllers\ProductToevoegenController;
 use App\Http\Controllers\TerugbrengenController;
 use App\Http\Controllers\AddproductInventarisController;
 use App\Http\Controllers\TelaatController;
-use App\Models\Klaarzetten;
 use App\Http\Controllers\KlaarzettenController;
 use App\Http\Controllers\UsersbanController;
 
