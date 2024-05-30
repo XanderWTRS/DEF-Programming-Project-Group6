@@ -12,9 +12,11 @@ class BanController extends Controller
 {
     public function index()
     {
-        $bans = Ban::all();
+        $bans = Ban::select('user_id', DB::raw('MAX(name) as name'), 'date')
+        ->groupBy('user_id', 'date')
+        ->get();
 
-        return view('admin.Banoverzicht', ['bans' => $bans]);
+return view('admin.Banoverzicht', ['bans' => $bans]);
     }
 
 
