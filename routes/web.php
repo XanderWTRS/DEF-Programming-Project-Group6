@@ -96,6 +96,9 @@ Route::post('/Addproduct/store', [AddproductInventarisController::class, 'store'
 
 Route::get('/Klaarzetten', [KlaarzettenController::class, 'index'])->middleware('admin');
 Route::get('/filter-reservations', [KlaarzettenController::class, 'filter'])->middleware('admin');
+Route::post('/Klaarzetten/{id}/confirm', [KlaarzettenController::class, 'confirm'])->middleware('admin')->name('admin.Klaarzetten.confirm');
+
+
 
 Route::get('/Telaat', function () {
     return view('A  dmin/Telaat');
