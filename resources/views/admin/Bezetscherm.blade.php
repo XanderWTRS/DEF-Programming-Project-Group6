@@ -17,14 +17,18 @@
         <button type="submit" name="action" value="search">
             <img id="search" src="/ASSETS/Icons/ZoekIcon.svg" alt="Search Icon" width="20" height="15">
         </button>
-        <button type="submit" name="action" value="filter">Filter op Beschikbaarheid</button>
     </form>
     
     <table>
         <thead>
             <tr>
                 <th>Product</th>
-                <th id="status-header">Status</th>
+                <th id="status-header">
+                    <form action="{{ route('index') }}" method="get">
+                        <input type="hidden" name="action" value="filter">
+                        <a href="{{ route('index') }}?action=filter">Filter op Beschikbaarheid</a>
+                    </form>
+                </th>
                 <th>Student</th>
             </tr>
         </thead>
