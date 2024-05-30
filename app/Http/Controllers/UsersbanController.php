@@ -9,7 +9,7 @@ class UsersbanController extends Controller
 {
     public function index()
     {
-        $users = User::all();
-        return view('admin.Users', ['users' => $users]);
+            $users = User::all();
+            return view('admin.Users', ['users' => $users]);
     }
 }
