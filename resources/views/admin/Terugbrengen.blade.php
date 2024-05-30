@@ -7,7 +7,6 @@
     <title>Terugbrengen | Admin</title>
 
     <link rel="icon" href="{{asset('Assets/Logo/logo.png')}}" type="image/png">
-    <link rel="stylesheet" href="{{asset('css/index.css')}}">
 
     <link rel="stylesheet" href="{{asset('css/admin/Terugbrengen.css')}}">
 
@@ -32,6 +31,18 @@
                 <button type="submit">Search</button>
             </form>
         </div>
+        <div class="items-list">
+            <h2>List of Items in Reservations</h2>
+            <ul>
+                @foreach($items as $item)
+                    @if($item->confirmed == 1)
+                        <li>{{ $item->id }} - {{ $item->name }} - {{ $item->user_id }} - {{ $item->date }} - taken </li>
+                    @else
+                        <li>{{ $item->id }} - {{ $item->name }} - {{ $item->user_id }} - {{ $item->date }} - not taken </li>
+                    @endif
+                @endforeach
+            </ul>
+        </div>
         <div class="reservationsdiplay">
             @isset($reservation)
                 @if (!$reservation)
@@ -43,6 +54,11 @@
                             <p><b>ID:</b> {{ $reservation->id }}</p>
                             <p><b>Student:</b> {{ $reservation->name }}</p>
                             <p><b>Date:</b> {{ $reservation->date }}</p>
+                                @if($reservation->confirmed == 1)
+                                    <p>Dit item is opgehaald</p>
+                                @else
+                                    <p>Dit item is niet opgehaald</p>
+                                @endif
                             <p>{{ $reservation->other_data }}</p>
 
 
