@@ -1,8 +1,8 @@
 <x-app-layout>
     <!--LAYOUT HOME PAGE -->
     <link rel="stylesheet" href="{{ asset('css/reservations.css') }}">
-        @if ($banned && $banned->status == 'banned')
-            <p class="titles banned">Je bent gebanned tot {{$banned->date}} en kan geen reservaties maken!!!</p>
+        @if ($banned &&  $banned->status == 'banned')
+            <p class="titles banned">JE BENT GEBANNED TOT {{$banned->date}} EN KAN GEEN RESERVATIES MEER MAKEN!!!</p>
         @endif
         <div class="container">
             <div class="section1">
