@@ -12,11 +12,17 @@
 </head>
 <body>
     <header class="Adminheader"></header>
-
+    <form id="search container" action="{{ route('search')}}" method="get">
+        <input class="search-input" type="search" name="query" id="query" value="{{ $searchQuery ?? '' }}" placeholder="Search...">
+        <button type="submit">
+            <img id="search" src="/ASSETS/Icons/ZoekIcon.svg" alt="Search Icon" width="20" height="15">
+        </button>
+    </form>
+    <!--
     <div id="search-container">
         <input type="search" id="search-bar" placeholder="Zoek op naam of product..." name="query"  value="{{ $searchQuery ?? '' }}">
         <img id="search" src="/ASSETS/Icons/ZoekIcon.svg" alt="Search Icon" width="20" height="15">
-    </div>
+    </div>-->
 
     <table>
         <thead>
@@ -39,35 +45,13 @@
                 </tr>
             @endforelse
         </tbody>
-    </table>
+ </table>
 
-    <div class="paginationStyle">
-        {{ $products->appends(['query' => $searchQuery])->links('pagination::bootstrap-4') }}
-    </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const statusHeader = document.getElementById('status-header');
-            let filterApplied = false;
-
-            statusHeader.addEventListener('click', function () {
-                const rows = document.querySelectorAll('#product-table-body tr');
-                if (filterApplied) {
-                    rows.forEach(row => {
-                        row.style.display = '';
-                    });
-                    filterApplied = false;
-                } else {
-                    rows.forEach(row => {
-                        if (row.classList.contains('available')) {
-                            row.style.display = 'none';
-                        }
-                    });
-                    filterApplied = true;
-                }
-            });
-        });
-    </script>
+ {{-- Laat de paginatie knoppen zien --}}
+ <div class="paginationStyle">
+    {{ $products->appends(['query' => $searchQuery])->links('pagination::bootstrap-4') }}
+</div>
 
     @include('jsAdmin.Bezetscherm')
     @include('jsAdmin.Chemark')

@@ -1,6 +1,9 @@
 <x-app-layout>
     <!--LAYOUT HOME PAGE -->
     <link rel="stylesheet" href="{{ asset('css/reservations.css') }}">
+        @if ($banned && $banned->status == 'banned')
+            <p class="titles banned">Je bent gebanned tot {{$banned->date}} en kan geen reservaties maken!!!</p>
+        @endif
         <div class="container">
             <div class="section1">
                 <h1 class="titles">{{ $product->merk }} {{ $product->title }}</h1>
@@ -22,9 +25,6 @@
                     <form action="/product/{{$productid}}" method="POST">
                         @csrf
                         <table class="reservationTable">
-                            @if ($banned && $banned->status == 'banned')
-                                <p class="titles banned">Je bent gebanned tot {{$banned->date}} en kan geen reservaties maken</p>
-                            @endif
                             <thead>
                                 <tr>
                                     <th></th>
