@@ -111,8 +111,8 @@ Route::post('/unbanUser', [BanController::class, 'unbanUser'])->middleware(['aut
 Route::delete('/ban/{user_id}', [BanController::class, 'unbanStudent'])->middleware('admin');
 
 
-Route::get('/Users', [UsersbanController::class, 'index'])->name('gebruikersoverzicht');
-Route::post('/banUser', [BanController::class, 'banUser'])->name('banUser');
+Route::get('/Users', [UsersbanController::class, 'index'])->middleware('admin')->name('gebruikersoverzicht');
+Route::post('/banUser', [BanController::class, 'banUser'])->middleware('admin')->name('banUser');
 
 
   
