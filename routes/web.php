@@ -85,7 +85,7 @@ Route::post('/product/{id}', [ReservationController::class, 'store']);
 
 Route::get('/terugbrengen', [TerugbrengenController::class, 'index'])->middleware('admin')->name('admin.terugbrengen.index');
 Route::get('/terugbrengen/search', [TerugbrengenController::class, 'search'])->middleware('admin')->name('admin.terugbrengen.search');
-Route::post('/terugbrengen/search', [TerugbrengenController::class, 'search'])->middleware('admin');
+Route::post('/terugbrengen/search', [TerugbrengenController::class, 'searchPost'])->middleware('admin')->name('admin.terugbrengen.search.post');
 Route::delete('/terugbrengen/delete/{id}', [TerugbrengenController::class, 'destroy'])->middleware('admin')->name('admin.reservation.delete');
 
 Route::get('/Addproduct', function () {return view('admin/Addproduct');})->middleware('admin');
@@ -111,8 +111,8 @@ Route::post('/unbanUser', [BanController::class, 'unbanUser'])->middleware(['aut
 Route::delete('/ban/{user_id}', [BanController::class, 'unbanStudent'])->middleware('admin');
 
 
-Route::get('/Users', [UsersbanController::class, 'index'])->name('gebruikersoverzicht');
-Route::post('/banUser', [BanController::class, 'banUser'])->name('banUser');
+Route::get('/Users', [UsersbanController::class, 'index'])->middleware('admin')->name('gebruikersoverzicht');
+Route::post('/banUser', [BanController::class, 'banUser'])->middleware('admin')->name('banUser');
 
 
   
