@@ -1634,4 +1634,6 @@ error:0A000086:SSL routines::certificate verify failed at D:\\bob\\DEF-Programmi
 #63 D:\\bob\\DEF-Programming-Project-Group6\\public\\index.php(17): Illuminate\\Foundation\\Application->handleRequest()
 #64 D:\\bob\\DEF-Programming-Project-Group6\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('...')
 #65 {main}
+=======
+>>>>>>> f06010b8bf41ed626bb7015d3e36ee1f0206a5b3
 "} 
