@@ -1,21 +1,17 @@
-*
-{
+* {
     margin: 0;
     padding: 0;
-    font-family:"Roboto", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-weight: 500;
     font-size: 0.94rem;
 }
-.body-class
-{
-    background-image: url("/ASSETS/Logo/ehbBackground.png");
-    background-size: cover;
-    background-position: center;
+
+.body-class {
+    background: url("/ASSETS/Logo/ehbBackground.png") center/cover;
     height: 100vh;
 }
 
-header
-{
+header {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,12 +19,12 @@ header
     text-align: center;
     margin-bottom: 12vh;
 }
-header img
-{
+
+header img {
     width: 500px;
 }
-nav
-{
+
+nav {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -38,9 +34,8 @@ nav
 a {
     display: inline-block;
     border-radius: 4px;
-    background-color: #e30615c6;
-    border: none;
-    color: #ffffff;
+    background: #e30615c6;
+    color: #fff;
     text-align: center;
     font-size: 17px;
     padding: 16px;
@@ -48,31 +43,31 @@ a {
     transition: all 0.5s;
     cursor: pointer;
     margin: 5px;
-   }
+}
 
-   a span {
+a span {
     cursor: pointer;
-    color: #ffffff;
+    color: #fff;
     display: inline-block;
     position: relative;
     transition: 0.5s;
     font-weight: 700;
-   }
+}
 
-   a span:after {
+a span:after {
     content: '»';
     position: absolute;
     opacity: 0;
     top: 0;
     right: -15px;
     transition: 0.5s;
-   }
+}
 
-   a:hover span {
+a:hover span {
     padding-right: 15px;
-   }
+}
 
-   a:hover span:after {
+a:hover span:after {
     opacity: 1;
     right: 0;
-   }
+}
