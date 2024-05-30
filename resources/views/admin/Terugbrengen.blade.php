@@ -21,7 +21,7 @@
 
     <div class="fullwrapper">
         <div class="wrapper input_form">
-            <form method="POST" action="{{ route('admin.terugbrengen.search') }}">
+            <form method="POST" action="{{ route('admin.terugbrengen.search.post') }}">
                 @csrf
                 <div id="search-container">
                     <input id="search-bar" type="text" name="search" placeholder="Geef het product id"><br>
