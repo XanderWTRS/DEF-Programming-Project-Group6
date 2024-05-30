@@ -11,21 +11,21 @@ class BezetController extends Controller
 {
     public function index(Request $request)
     {
+        $searchQuery = $request->input('query'); 
         $query = DB::table('uitleendienst_inventaris');
-        $searchQuery = $request->input('query');
-        $statusFilter = $request->query('status'); // Get the status filter from the query parameters
+        $statusFilter = $request->query('status');
 
-        $productsQuery = Bezet::query();
-
+        if ($searchQuery) {
+            $query->where('title', 'like', '%' . $searchQuery . '%');
+        }
         if ($statusFilter === 'Niet beschikbaar') {
             $productsQuery->whereHas('reservation'); // Filter to only include products that are not available
         }
-
-        $products = $productsQuery->paginate(20);
-
+        $products = Bezet::paginate(20);
+        $productsQuery = Bezet::query();
         foreach ($products as $product) {
             $reservation = Reservation::where('id', $product->id)->first();
-
+            
             if ($reservation) {
                 $product->status = 'Niet beschikbaar';
                 $product->student_name = $reservation->name;
@@ -35,10 +35,10 @@ class BezetController extends Controller
             }
         }
 
-        if ($searchQuery) {
-            $query->where('title', 'like', '%' . $searchQuery . '%');
-        }
-
-        return view('admin.Bezetscherm', ['products' => $products], compact('searchQuery'));
+        return view('admin.bezetscherm', [
+            'products' => $products, 
+            'searchQuery' => $searchQuery
+        ]);
     }
+
 }
