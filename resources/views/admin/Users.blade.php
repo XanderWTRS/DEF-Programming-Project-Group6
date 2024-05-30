@@ -16,9 +16,30 @@
 <body>
 <header class="Adminheader"></header>
 <div class="page">
-<div id="search-container">
-    <input type="text" id="search" placeholder="Zoek gebruiker">
-    <button id="goToOtherPage">Ga naar andere pagina</button>
+<div id="container">
+    <button class="button" onclick="goBack()">
+        <div class="button-box">
+          <span class="button-elem">
+            <svg viewBox="0 0 46 40" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"
+              ></path>
+            </svg>
+          </span>
+          <span class="button-elem">
+            <svg viewBox="0 0 46 40">
+              <path
+                d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"
+              ></path>
+            </svg>
+          </span>
+        </div>
+    </button>
+    <div id="search-container">
+        <input type="text" id="search" placeholder="Zoek gebruiker">
+        <img id="imgsearch" src="/ASSETS/Icons/ZoekIcon.svg" alt="Search Icon" width="20" height="15">
+    </div>
+    <div></div>
 </div>
 <table>
     <thead>
@@ -63,18 +84,20 @@ $(document).ready(function() {
         });
     });
     $('#goToOtherPage').click(function() {
-        window.location.href = '/Telaat'; 
+        window.location.href = '/Telaat';
     });
     $('.ban-btn').click(function() {
         var userId = $(this).data('userid');
-        var userName = $(this).closest('tr').find('td:eq(1)').text(); 
+        var userName = $(this).closest('tr').find('td:eq(1)').text();
+        var userEmail = $(this).closest('tr').find('td:eq(2)').text();
 
         $.ajax({
             url: '/banUser',
             type: 'POST',
             data: {
                 user_id: userId,
-                name: userName, 
+                name: userName,
+                email: userEmail,
                 _token: $('meta[name="csrf-token"]').attr('content')
             },
             success: function(response) {
@@ -87,6 +110,11 @@ $(document).ready(function() {
         });
     });
 });
+
+function goBack()
+{
+    window.history.back();
+}
 
 </script>
 

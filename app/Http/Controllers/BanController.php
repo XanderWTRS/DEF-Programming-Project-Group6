@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Mail\BanMail;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 class BanController extends Controller
 {
     public function index()
@@ -43,7 +44,7 @@ public function banUser(Request $request)
     $ban->status = 'banned';
     $ban->date = $banDate;
     $ban->save();
-    Mail::to($email)->send(new BanMail($name, $banDate));
+    Mail::to($email)->queue(new BanMail($name, $banDate));
 
     return response()->json(['success' => true]);
 }
