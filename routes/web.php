@@ -10,7 +10,6 @@ use App\Http\Controllers\ProductToevoegenController;
 use App\Http\Controllers\TerugbrengenController;
 use App\Http\Controllers\AddproductInventarisController;
 use App\Http\Controllers\TelaatController;
-use App\Models\Klaarzetten;
 use App\Http\Controllers\KlaarzettenController;
 use App\Http\Controllers\UsersbanController;
 
@@ -54,7 +53,7 @@ Route::delete('/ban/{user_id}', [BanController::class, 'unbanStudent'])->middlew
 
 Route::get('/Bezetscherm', [BezetController::class, 'index'])
     ->middleware('admin')
-    ->name('search');
+    ->name('index');
 
 Route::get('/Klaarzetten', function () {
     return view('Admin/Klaarzetten');

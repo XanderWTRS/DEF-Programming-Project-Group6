@@ -12,33 +12,45 @@ class BezetController extends Controller
     public function index(Request $request)
     {
         $searchQuery = $request->input('query'); 
+        $action = $request->input('action');
         $query = DB::table('uitleendienst_inventaris');
-        $statusFilter = $request->query('status');
 
         if ($searchQuery) {
             $query->where('title', 'like', '%' . $searchQuery . '%');
         }
-        if ($statusFilter === 'Niet beschikbaar') {
-            $productsQuery->whereHas('reservation'); // Filter to only include products that are not available
+
+        if ($action === 'filter') {
+            $query->join('reservations', 'uitleendienst_inventaris.id', '=', 'reservations.id')
+                  ->select('uitleendienst_inventaris.*', 'reservations.name as student_name');
+        } else {
+            $query->select('uitleendienst_inventaris.*');
         }
-        $products = Bezet::paginate(20);
-        $productsQuery = Bezet::query();
+
+        $products = $query->paginate(20);
+
         foreach ($products as $product) {
-            $reservation = Reservation::where('id', $product->id)->first();
-            
-            if ($reservation) {
+            if ($action === 'filter') {
                 $product->status = 'Niet beschikbaar';
-                $product->student_name = $reservation->name;
             } else {
-                $product->status = 'Beschikbaar';
-                $product->student_name = null;
+                $reservation = DB::table('reservations')
+                    ->where('id', $product->id)
+                    ->first();
+
+                if ($reservation) {
+                    $product->status = 'Niet beschikbaar';
+                    $product->student_name = $reservation->name;
+                } else {
+                    $product->status = 'Beschikbaar';
+                    $product->student_name = null;
+                }
             }
         }
 
         return view('admin.bezetscherm', [
-            'products' => $products, 
-            'searchQuery' => $searchQuery
+            'products' => $products,
+            'searchQuery' => $searchQuery,
+            'action' => $action
         ]);
     }
-
 }
+

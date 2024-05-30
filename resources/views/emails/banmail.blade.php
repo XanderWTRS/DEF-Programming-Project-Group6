@@ -44,8 +44,8 @@
         <div class="email-body">
             <h2>Hallo, {{ $name }}</h2>
             <p>We moeten u helaas informeren dat uw account is gebanned.</p>
-            <p><strong>Naam:</strong> {{ $name }}</p>
-            <p><strong>Ban Datum:</strong>tot {{ $banDate }}</p>
+            <p><strong>Naam: </strong> {{ $name }}</p>
+            <p><strong>Gebanned tot Datum: </strong>{{ $banDate }}</p>
             <p>Gedurende deze periode heeft u geen toegang tot onze reservaties.</p>
         </div>
         <div class="email-footer">

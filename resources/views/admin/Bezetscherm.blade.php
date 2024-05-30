@@ -12,18 +12,14 @@
 </head>
 <body>
     <header class="Adminheader"></header>
-    <form id="search container" action="{{ route('search')}}" method="get">
+    <form id="search-container" action="{{ route('index') }}" method="get">
         <input class="search-input" type="search" name="query" id="query" value="{{ $searchQuery ?? '' }}" placeholder="Search...">
-        <button type="submit">
+        <button type="submit" name="action" value="search">
             <img id="search" src="/ASSETS/Icons/ZoekIcon.svg" alt="Search Icon" width="20" height="15">
         </button>
+        <button type="submit" name="action" value="filter">Filter op Beschikbaarheid</button>
     </form>
-    <!--
-    <div id="search-container">
-        <input type="search" id="search-bar" placeholder="Zoek op naam of product..." name="query"  value="{{ $searchQuery ?? '' }}">
-        <img id="search" src="/ASSETS/Icons/ZoekIcon.svg" alt="Search Icon" width="20" height="15">
-    </div>-->
-
+    
     <table>
         <thead>
             <tr>
@@ -44,14 +40,12 @@
                     <td colspan="3">Geen producten gevonden.</td>
                 </tr>
             @endforelse
-        </tbody>
- </table>
+        </tbody>    
+    </table>
 
-
- {{-- Laat de paginatie knoppen zien --}}
- <div class="paginationStyle">
-    {{ $products->appends(['query' => $searchQuery])->links('pagination::bootstrap-4') }}
-</div>
+    <div class="paginationStyle">
+        {{ $products->appends(['query' => $searchQuery, 'action' => $action])->links('pagination::bootstrap-4') }}
+    </div>
 
     @include('jsAdmin.Bezetscherm')
     @include('jsAdmin.Chemark')
