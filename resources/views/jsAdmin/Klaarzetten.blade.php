@@ -33,27 +33,30 @@ document.addEventListener('DOMContentLoaded', () => {
     
     fetch(`/filter-reservations?start=${startDate.toISOString().split('T')[0]}&end=${endDate.toISOString().split('T')[0]}`)
         .then(response => response.json())
-        .then(data => {
-            const tableBody = document.getElementById('reservation-table-body');
-            tableBody.innerHTML = '';
-            data.forEach(reservation => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${reservation.name}</td>
-                    <td>${reservation.product ? reservation.product.title : 'Product niet gevonden'}</td>
-                    <td>${reservation.id}</td>
-                    <td><input type="checkbox"></td>
-                `;
-                tableBody.appendChild(row);
+            .then(data => {
+                const tableBody = document.getElementById('reservation-table-body');
+                tableBody.innerHTML = '';
+                data.forEach(reservation => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${reservation.name}</td>
+                        <td>${reservation.product ? reservation.product.title : 'Product niet gevonden'}</td>
+                        <td>${reservation.id}</td>
+                        <td><input type="checkbox"></td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+
+                updateSearchFunctionality();
+            })
+            .catch(error => {
+                console.error('Error:', error);
             });
-
-            updateSearchFunctionality();
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-});
+    });
 
 });
+
+
+
 
 </script>

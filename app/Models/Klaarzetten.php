@@ -11,10 +11,13 @@ class Klaarzetten extends Model
 
     protected $table = 'reservations';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'name',
         'date',
         'id',
+        'confirmed',
     ];
 
     public function product()
