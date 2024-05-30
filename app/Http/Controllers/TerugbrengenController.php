@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 class TerugbrengenController extends Controller
 {
 
+
     public function index()
     {
         $items = TerugbrengenReservatie::all();
@@ -29,10 +30,24 @@ class TerugbrengenController extends Controller
 
         $items = TerugbrengenReservatie::all();
 
-
         return view('Admin.Terugbrengen', ['reservation' => $reservation, 'searchTerm' => $searchTerm, 'items' => $items]);
     }
 
+    public function searchPost(Request $request)
+    {
+        $searchTerm = $request->input('search');
+
+        // Zoek de reservation met de gegeven id en laadt de gerelateerde uitleendienst_inventaris gegevens
+        $reservation = TerugbrengenReservatie::with('uitleendienstInventaris')->find($searchTerm);
+
+        if (!$reservation) {
+            return redirect()->back()->with('error', 'Reservation not found.');
+        }
+
+        $items = TerugbrengenReservatie::all();
+
+        return view('Admin.Terugbrengen', ['reservation' => $reservation, 'searchTerm' => $searchTerm, 'items' => $items]);
+    }
 
     public function destroy($id)
     {
