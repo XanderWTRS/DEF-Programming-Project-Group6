@@ -15,8 +15,8 @@
     <header class="Adminheader"></header>
         <div id="search-container">
             <input type="text" id="search" placeholder="Zoek student">
+            <button id="navigateButton">alle users vieuw</button>
         </div>  
-        <h1>test</h1>
         <table>
             <thead>
                     <tr>
@@ -49,6 +49,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
         $(document).ready(function(){
+            $('#navigateButton').click(function(){
+            window.location.href = '/Users'; 
+        });
             $('.ban-btn').click(function(){
                 var userId = $(this).data('userid');
                 var name = $(this).data('username');

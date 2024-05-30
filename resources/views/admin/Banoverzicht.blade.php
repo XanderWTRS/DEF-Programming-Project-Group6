@@ -21,7 +21,12 @@
 </div>
 <table>
     <thead>
-    
+    <tr>
+        <th>Naam</th>
+        <th>Einddatum</th>
+        <th>Actie</th>
+    </tr>
+    </thead>
     <tbody>
     @foreach($bans as $ban)
 <tr data-student-name="{{ $ban->name }}">
