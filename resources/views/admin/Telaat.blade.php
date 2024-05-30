@@ -15,43 +15,50 @@
     <body>
     <header class="Adminheader"></header>
     <div class="page">
-        <div id="search-container">
-            <input type="text" id="search" placeholder="Zoek student">
-        </div>  
-        <button id="navigateButton">all users overzicht</button>
-        <table>
-            <thead>
-                    <tr>
-                        <th>Naam</th>
-                        <th>Student ID</th>
-                        <th>datum</th>
-                        <th>Status</th>
-                        <th>Actie</th>
-                    </tr>
-            </thead>
-            <tbody>
-                    @php $uniqueUserIds = array(); @endphp
-                        @foreach($telaats as $telaat)
-                            @if(!in_array($telaat->user_id, $uniqueUserIds))
-                                @php $uniqueUserIds[] = $telaat->user_id; @endphp
-                                <tr>
-                                    <td>{{ $telaat->name }}</td>
-                                    <td>{{ $telaat->user_id }}</td>
-                                    <td>{{ $telaat->date }}</td>    
-                                    <td>{{ $telaat->status }}</td>
-                                    <td><button type="button" class="ban-btn" data-userid="{{ $telaat->user_id }}" data-username="{{ $telaat->name }}">Ban</button></td>
-                                </tr>
-                            @endif
-                        @endforeach
-            </tbody>
-        </table>
-        @include('jsAdmin.Adminheader1')
+        <div id="page-1">
+            <div id="left-part"></div>
+            <div id="search-container">
+                <input type="text" id="search" placeholder="Zoek producten...">
+                <img id="imgsearch" src="/ASSETS/Icons/ZoekIcon.svg" alt="Search Icon" width="20" height="15">
+            </div>
+            <button id="navigateButton">Alle Gebruikers</button>
         </div>
+        <div id="page-2">
+            <table>
+                <thead>
+                        <tr>
+                            <th>Naam</th>
+                            <th>Student ID</th>
+                            <th>datum</th>
+                            <th>Status</th>
+                            <th>Actie</th>
+                        </tr>
+                </thead>
+                <tbody>
+                        @php $uniqueUserIds = array(); @endphp
+                            @foreach($telaats as $telaat)
+                                @if(!in_array($telaat->user_id, $uniqueUserIds))
+                                    @php $uniqueUserIds[] = $telaat->user_id; @endphp
+                                    <tr>
+                                        <td>{{ $telaat->name }}</td>
+                                        <td>{{ $telaat->user_id }}</td>
+                                        <td>{{ $telaat->date }}</td>
+                                        <td>{{ $telaat->status }}</td>
+                                        <td><button type="button" class="ban-btn" data-userid="{{ $telaat->user_id }}" data-username="{{ $telaat->name }}">Ban</button></td>
+                                    </tr>
+                                @endif
+                            @endforeach
+                </tbody>
+            </table>
+            @include('jsAdmin.Adminheader1')
+            </div>
+        </div>
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
         $(document).ready(function(){
             $('#navigateButton').click(function(){
-            window.location.href = '/Users'; 
+            window.location.href = '/Users';
         });
         $('#search').on('input', function(){
         var searchText = $(this).val().toLowerCase();
@@ -68,7 +75,7 @@
                 var userId = $(this).data('userid');
                 var name = $(this).data('username');
                 var token = '{{ csrf_token() }}';
-                
+
                 var currentRow = $(this).closest('tr');
 
                 $.ajax({
@@ -77,13 +84,13 @@
                     data: {
                         user_id: userId,
                         name: name,
-                        _token: token 
+                        _token: token
                     },
                     success: function(response){
         if(response.success){
             alert('Gebruiker is verbannen.');
 
-            currentRow.hide(); 
+            currentRow.hide();
 
             currentRow.find('td:eq(3)').text('banned');
         } else {

@@ -73,6 +73,7 @@ img#imgsearch {
 #search-container {
     display: flex;
     justify-content: center;
+    margin-top: 5px;
 }
 
 #backButton

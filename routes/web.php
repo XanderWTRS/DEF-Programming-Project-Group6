@@ -53,7 +53,7 @@ Route::delete('/ban/{user_id}', [BanController::class, 'unbanStudent'])->middlew
 
 Route::get('/Bezetscherm', [BezetController::class, 'index'])
     ->middleware('admin')
-    ->name('search');
+    ->name('index');
 
 Route::get('/Klaarzetten', function () {
     return view('Admin/Klaarzetten');
