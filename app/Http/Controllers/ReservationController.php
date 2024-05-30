@@ -8,11 +8,18 @@ use Carbon\Carbon;
 
 class ReservationController extends Controller
 {
+    // functie dat toont welke weken er kunnen gereserveerd worden en hoeveel van deze producten er beschikbaar zijn
+    // geeft ook mee als je gebanned bent
+    // er worden ook related items meegegeven
     public function show($id): View{
         $currentDate = Carbon::now();
         $productid = $id;
 
         $banned = DB::table('bans')->where('user_id', auth()->user()->id)->first();
+        if (!$banned) {
+            $banned = (object) ['status' => ''];
+        }
+
 
         $product = DB::table('uitleendienst_inventaris')
             ->select('title', 'category', 'merk')
@@ -28,29 +35,34 @@ class ReservationController extends Controller
 
 
         $relatedproducts = DB::table('uitleendienst_inventaris')
-        ->selectRaw('MAX(merk) AS merk, title, MAX(category) AS category, MAX(beschrijving) AS beschrijving, MAX(id) AS id')
-        ->where('category', $product->category)
-        ->where('id', '!=', $id)
-        ->groupBy('title')
-        ->inRandomOrder()
-        ->limit(5)
-        ->get();
+            ->selectRaw('MAX(merk) AS merk, title, MAX(category) AS category, MAX(beschrijving) AS beschrijving, MAX(id) AS id')
+            ->where('category', $product->category)
+            ->where('id', '!=', $id)
+            ->groupBy('title')
+            ->inRandomOrder()
+            ->limit(5)
+            ->get();
 
         $dateThreeWeeksLater = Carbon::now()->addWeeks(8)->toDateString();
         $reserveringen = DB::table('reservations')->whereIn('id', $productids)->where('date', '>', $currentDate)->where('date', '<', $dateThreeWeeksLater)->get();
+
         return view('users.reservations', compact('product','reserveringen','productidsCount','relatedproducts','banned','productid'));
     }
 
+    // functie voor het reserveren van een product en het toevoegen van deze reservering aan de database
     public function store(Request $request, $id)
     {
         try {
             $selected = Carbon::parse($request->input('selected_week'));
+
             $product = DB::table('uitleendienst_inventaris')->where('id', $id)->first();
+
             if (!$product) {
                 return redirect('reservatieoverzicht')->with('error', 'Product not found.');
             }
             $productname = $product->title;
             $productids = DB::table('uitleendienst_inventaris')->where('title', $productname)->pluck('id');
+
             $startOfWeek = $selected->startOfWeek();
 
             if (auth()->check()) {
@@ -85,7 +97,7 @@ class ReservationController extends Controller
                 }
 
                 $date = $selected;
-                $expirationTime = now()->addHour();
+                $expirationTime = now();
                 DB::table('reservations')->insert([
                     'id' => $product,
                     'date' => $date,

@@ -17,11 +17,10 @@
 
 </head>
 <body>
-    <header class="Adminheader"></header>    
-    <h1>Add New Product</h1>
-    <div class="container">
-        
+    <header class="Adminheader"></header>
 
+    <h1>Voeg nieuw product toe</h1>
+    <div class="container">
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
@@ -35,9 +34,9 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
-            
+
             <div class="form-group">
-                <label for="title">Title</label>
+                <label for="title">Titel</label>
                 <input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}">
                 @error('title')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -45,7 +44,15 @@
             </div>
 
             <div class="form-group">
-                <label for="category">Category</label>
+                <label for="photo">Foto</label>
+                <input type="file" name="photo" id="photo" class="form-control" value="{{ old('photo') }}">
+                @error('photo')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="category">Categorie</label>
                 <input type="text" name="category" id="category" class="form-control" value="{{ old('category') }}">
                 @error('category')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -60,7 +67,7 @@
                 @enderror
             </div>
 
-            <button type="submit" class="btn btn-primary">Add Product</button>
+            <button type="submit" class="btn btn-primary">Product Toevoegen</button>
         </form>
     </div>
 
