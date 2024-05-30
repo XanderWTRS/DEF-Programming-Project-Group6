@@ -42,29 +42,37 @@ tbody tr:hover {
 }
 
 /* CSS voor de zoekbalk */
-#search-bar {
+#search-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.search-input {
     padding: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    width: 14vw;
+    width: 30vw;
     border-radius: 16px;
     background-color: white;
     border: none;
     z-index: 1;
-    margin: 20px 0px;
-    width: 30vw;
 }
 
-.nav.navbar
-{
+button[type="submit"] {
+    background: none;
+    border: none;
+    padding: 0;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+button[type="submit"] img {
+    width: 20px;
+    height: 15px;
+}
+
+.nav.navbar {
     margin-top: 0;
-}
-
-img#search
-{
-    left: -30px;
-    margin-top: 29px;
-    position: relative;
-    z-index: 2;
 }
 
 ul.pagination {
@@ -74,21 +82,15 @@ ul.pagination {
     margin-top: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     background-color: white;
-    padding: 4px 0px;
+    padding: 4px 0;
     width: 30vw;
 }
 
-span.page-link
-{
+span.page-link {
     position: relative;
     top: 8px;
 }
 
-#search-container
-{
-    display: flex;
-    justify-content: center;
-}
 #status-header a {
     text-decoration: none;
     color: inherit; 
