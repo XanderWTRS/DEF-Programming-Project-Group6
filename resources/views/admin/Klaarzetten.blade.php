@@ -38,7 +38,6 @@
                     <th>Producten</th>
                     <th>ID</th>
                     <th>Bevestiging</th>
-                    <th>Vergeten</th>
                 </tr>
             </thead>
             <tbody id="reservation-table-body">
@@ -48,7 +47,6 @@
                         <td>{{ $reservation->product->title }}</td>
                         <td>{{ $reservation->id }}</td>
                         <td><input class="bevestigen" type="checkbox" data-id="{{ $reservation->id }}"></td>
-                        <td><input class="vergeten" type="checkbox"></td>
                     </tr>
                 @endforeach
             </tbody>
@@ -56,43 +54,66 @@
     </div>
 
     <script>
-        $(document).ready(function() {
-            $('.bevestigen').on('click', function() {
+    $(document).ready(function() {
+            $('.bevestigen').each(function() {
+                // Get the reservation ID from the data attribute
                 var reservationId = $(this).data('id');
-                var isChecked = $(this).is(':checked'); // Check if the checkbox is checked
-                var token = $('meta[name="csrf-token"]').attr('content');
 
-                console.log('Reservation ID:', reservationId);
-                console.log('Is Checked:', isChecked);
-                console.log('CSRF Token:', token);
-
-                // Send the appropriate value based on whether the checkbox is checked or unchecked
-                var confirmedValue = isChecked ? 1 : 0;
-
+                // Send an AJAX request to get the confirmation status of the reservation
                 $.ajax({
-                    url: '/Klaarzetten/' + reservationId + '/confirm',
-                    type: 'POST',
-                    data: {
-                        _token: token,
-                        confirmed: confirmedValue // Send the confirmed value
-                    },
+                    url: '/Klaarzetten/' + reservationId + '/confirmation-status',
+                    type: 'GET',
                     success: function(response) {
                         console.log('AJAX success response:', response);
-                        if (response.success) {
-                            alert('Reservation confirmed!');
-                            // Optionally, update the UI to reflect the change
-                        } else {
-                            alert('Failed to confirm reservation.');
+                        // If the reservation is confirmed, check the corresponding checkbox
+                        if (response.confirmed) {
+                            $('[data-id="' + reservationId + '"]').prop('checked', true);
                         }
                     },
                     error: function(xhr, status, error) {
                         console.log('AJAX error:', status, error);
                         console.log('XHR:', xhr);
-                        alert('Error confirming reservation.');
                     }
                 });
             });
+
+    
+        $('.bevestigen').on('click', function() {
+            var reservationId = $(this).data('id');
+            var isChecked = $(this).is(':checked'); // Check if the checkbox is checked
+            var token = $('meta[name="csrf-token"]').attr('content');
+
+            console.log('Reservation ID:', reservationId);
+            console.log('Is Checked:', isChecked);
+            console.log('CSRF Token:', token);
+
+            // Send the appropriate value based on whether the checkbox is checked or unchecked
+            var confirmedValue = isChecked ? 1 : 0;
+
+            $.ajax({
+                url: '/Klaarzetten/' + reservationId + '/confirm',
+                type: 'POST',
+                data: {
+                    _token: token,
+                    confirmed: confirmedValue // Send the confirmed value
+                },
+                success: function(response) {
+                    console.log('AJAX success response:', response);
+                    if (response.success) {
+                        alert('Reservation confirmed!');
+                        // Optionally, update the UI to reflect the change
+                    } else {
+                        alert('Failed to confirm reservation.');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log('AJAX error:', status, error);
+                    console.log('XHR:', xhr);
+                    alert('Error confirming reservation.');
+                }
+            });
         });
+    });
 
     </script>
 

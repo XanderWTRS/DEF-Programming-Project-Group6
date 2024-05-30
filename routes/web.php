@@ -99,6 +99,7 @@ Route::post('/Addproduct/store', [AddproductInventarisController::class, 'store'
 Route::get('/Klaarzetten', [KlaarzettenController::class, 'index'])->middleware('admin');
 Route::get('/filter-reservations', [KlaarzettenController::class, 'filter'])->middleware('admin');
 Route::post('/Klaarzetten/{id}/confirm', [KlaarzettenController::class, 'confirm'])->middleware('admin')->name('admin.Klaarzetten.confirm');
+Route::get('/Klaarzetten/{id}/confirmation-status', [KlaarzettenController::class, 'confirmationStatus'])->middleware('admin');
 
 
 

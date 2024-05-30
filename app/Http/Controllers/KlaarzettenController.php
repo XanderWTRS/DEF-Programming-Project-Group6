@@ -37,15 +37,27 @@ class KlaarzettenController extends Controller
         try {
             $reservation = Klaarzetten::findOrFail($id);
             if ($reservation) {
-                $reservation->confirmed = $request->input('confirmed'); // Set the confirmed value
+                $confirmed = $request->input('confirmed');
+                $reservation->confirmed = $confirmed;
                 $reservation->save();
-                return response()->json(['success' => true]);
+                return response()->json(['success' => true, 'confirmed' => $confirmed]); // Return the confirmed status
             }
-    
+
             return response()->json(['success' => false], 404);
         } catch (\Exception $e) {
             Log::error('Error confirming reservation: ' . $e->getMessage());
             return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function confirmationStatus($id)
+    {
+        try {
+            $reservation = Klaarzetten::findOrFail($id);
+            return response()->json(['confirmed' => $reservation->confirmed]);
+        } catch (\Exception $e) {
+            Log::error('Error getting confirmation status: ' . $e->getMessage());
+            return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 }
