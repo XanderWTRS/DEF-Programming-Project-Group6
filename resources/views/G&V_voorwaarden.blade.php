@@ -20,27 +20,23 @@
                 </div>
               </button>
 
-        <div>
-            <h1 class="title-gv">Gebruiks & Verlies overeenkomst</h1>
-            <div id="container">
-                <p<span class="bold">By borrowing an item, you agree to the following terms and conditions:</span></p>
-                    <p>If the borrowed item is not returned or returned late, you will receive a warning. After
-                        receiving 2 warnings, you will be blacklisted and no longer allowed to borrow items.</p>
-                    <p><span class="bold">Additional terms and conditions:</span></p>
+              <div>
+                <h1 class="title-gv">Gebruiks- & Verliesovereenkomst</h1>
+                <div id="container">
+                    <p><span class="bold">Door een item te lenen, gaat u akkoord met de volgende voorwaarden:</span></p>
+                    <p>Als het geleende item niet wordt teruggebracht of te laat wordt teruggebracht, ontvangt u een waarschuwing. Na het ontvangen van 2 waarschuwingen, wordt u op de zwarte lijst geplaatst en mag u geen items meer lenen.</p>
+                    <p><span class="bold">Aanvullende voorwaarden:</span></p>
                     <ul id="ul-list">
-                        <li class="li-list">The borrowed item must be used responsibly and returned in the same condition
-                            as it was borrowed.</li>
-                        <li class="li-list">Any damages or loss of the borrowed item will be your responsibility and may
-                            result in additional charges.</li>
-                        <li class="li-list">Only one item can be borrowed at a time.</li>
-                        <li class="li-list">Extensions on the borrowing period may be granted on a case-by-case basis,
-                            subject to availability.</li>
-                        <li class="li-list">Items must be returned on time. Late returns may result in a warning or
-                            blacklisting.</li>
-                        <li class="li-list">By borrowing an item, you agree to the terms and conditions outlined above.
-                        </li>
+                        <li class="li-list">Het geleende item moet verantwoordelijk worden gebruikt en in dezelfde staat worden teruggebracht als waarin het werd geleend.</li>
+                        <li class="li-list">Eventuele schade of verlies van het geleende item is uw verantwoordelijkheid en kan leiden tot extra kosten.</li>
+                        <li class="li-list">Er kan slechts één item tegelijk worden geleend.</li>
+                        <li class="li-list">Verlengingen van de leentermijn kunnen worden toegestaan op basis van beschikbaarheid en per geval.</li>
+                        <li class="li-list">Items moeten op tijd worden teruggebracht. Te late teruggave kan leiden tot een waarschuwing of plaatsing op de zwarte lijst.</li>
+                        <li class="li-list">Door een item te lenen, gaat u akkoord met de bovenstaande voorwaarden.</li>
                     </ul>
+                </div>
             </div>
+
             <div></div>
 
     </main>
