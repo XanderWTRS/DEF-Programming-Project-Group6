@@ -132,7 +132,7 @@ class ProductsController extends Controller
             $reservationIdsToUpdate[] = $reservation->id;
         }
 
-        Mail::to(Auth::user()->email)->send(new ReservationMail($user, $producten));
+        Mail::to(Auth::user()->email)->queue(new ReservationMail($user, $producten));
         DB::table('reservations')
             ->whereIn('id', $reservationIdsToUpdate)
             ->update(['expires_at' => null]);

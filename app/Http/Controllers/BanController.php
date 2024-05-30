@@ -34,11 +34,7 @@ public function banUser(Request $request)
 {
     $userId = $request->input('user_id');
     $name = $request->input('name');
-
-    $email = DB::table('users')
-    ->select('email')
-    ->where('id', $userId)
-    ->first();
+    $email = $request->input('email');
 
     $banDate = Carbon::today()->addDays(30)->toDateString();
 
@@ -48,7 +44,7 @@ public function banUser(Request $request)
     $ban->status = 'banned';
     $ban->date = $banDate;
     $ban->save();
-    Mail::to($email)->send(new BanMail($name, $banDate));
+    Mail::to($email)->queue(new BanMail($name, $banDate));
 
     return response()->json(['success' => true]);
 }
