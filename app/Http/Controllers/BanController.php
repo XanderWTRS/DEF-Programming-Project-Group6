@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Mail\BanMail;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 class BanController extends Controller
 {
     public function index()
@@ -33,7 +34,11 @@ public function banUser(Request $request)
 {
     $userId = $request->input('user_id');
     $name = $request->input('name');
-    $email = $request->input('email');
+
+    $email = DB::table('users')
+    ->select('email')
+    ->where('id', $userId)
+    ->first();
 
     $banDate = Carbon::today()->addDays(30)->toDateString();
 
