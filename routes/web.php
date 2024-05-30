@@ -10,7 +10,6 @@ use App\Http\Controllers\ProductToevoegenController;
 use App\Http\Controllers\TerugbrengenController;
 use App\Http\Controllers\AddproductInventarisController;
 use App\Http\Controllers\TelaatController;
-use App\Models\Klaarzetten;
 use App\Http\Controllers\KlaarzettenController;
 use App\Http\Controllers\UsersbanController;
 
@@ -98,6 +97,10 @@ Route::post('/Addproduct/store', [AddproductInventarisController::class, 'store'
 
 Route::get('/Klaarzetten', [KlaarzettenController::class, 'index'])->middleware('admin');
 Route::get('/filter-reservations', [KlaarzettenController::class, 'filter'])->middleware('admin');
+Route::post('/Klaarzetten/{id}/confirm', [KlaarzettenController::class, 'confirm'])->middleware('admin')->name('admin.Klaarzetten.confirm');
+Route::get('/Klaarzetten/{id}/confirmation-status', [KlaarzettenController::class, 'confirmationStatus'])->middleware('admin');
+
+
 
 Route::get('/Telaat', function () {
     return view('A  dmin/Telaat');
