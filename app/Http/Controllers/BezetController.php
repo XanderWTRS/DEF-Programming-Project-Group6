@@ -20,8 +20,17 @@ class BezetController extends Controller
         }
 
         if ($action === 'filter') {
+            if ($request->session()->has('filtering')) {
+                $request->session()->forget('filtering');
+                $action = null;
+            } else {
+                $request->session()->put('filtering', true);
+            }
+        }
+
+        if ($action === 'filter' || $request->session()->has('filtering')) {
             $query->join('reservations', 'uitleendienst_inventaris.id', '=', 'reservations.id')
-                  ->select('uitleendienst_inventaris.*', 'reservations.name as student_name');
+                ->select('uitleendienst_inventaris.*', 'reservations.name as student_name');
         } else {
             $query->select('uitleendienst_inventaris.*');
         }
@@ -29,7 +38,7 @@ class BezetController extends Controller
         $products = $query->paginate(20);
 
         foreach ($products as $product) {
-            if ($action === 'filter') {
+            if ($action === 'filter' || $request->session()->has('filtering')) {
                 $product->status = 'Niet beschikbaar';
             } else {
                 $reservation = DB::table('reservations')
@@ -52,5 +61,6 @@ class BezetController extends Controller
             'action' => $action
         ]);
     }
+
 }
 
