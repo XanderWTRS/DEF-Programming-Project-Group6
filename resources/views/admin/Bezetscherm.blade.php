@@ -26,7 +26,7 @@
                 <th id="status-header">
                     <form action="{{ route('index') }}" method="get">
                         <input type="hidden" name="action" value="filter">
-                        <a href="{{ route('index') }}?action=filter">Filter op Beschikbaarheid</a>
+                        <a href="{{ route('index') }}?action=filter">Status</a>
                     </form>
                 </th>
                 <th>Student</th>
