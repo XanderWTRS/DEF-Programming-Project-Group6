@@ -14,11 +14,17 @@
 </head>
 <body>
     <header class="Adminheader"></header>
-
+    <form id="search container" action="{{ route('search')}}" method="get">
+        <input class="search-input" type="search" name="query" id="query" value="{{ $searchQuery ?? '' }}" placeholder="Search...">
+        <button type="submit">
+            <img id="search" src="/ASSETS/Icons/ZoekIcon.svg" alt="Search Icon" width="20" height="15">
+        </button>
+    </form>
+    <!--
     <div id="search-container">
         <input type="text" id="search-bar" placeholder="Zoek op naam of product...">
         <img id="search" src="/ASSETS/Icons/ZoekIcon.svg" alt="Search Icon" width="20" height="15">
-    </div>
+    </div>-->
 
     <table>
     <thead>
@@ -29,7 +35,7 @@
             </tr>
         </thead>
     <tbody>
-        @forelse($products as $product)
+        @foreach($products as $product)
         <tr>
             <td>{{ $product->title }}</td>
             <td><span class="status-icon"></span>{{ $product->status }}</td>
@@ -43,9 +49,8 @@
 
  {{-- Laat de paginatie knoppen zien --}}
  <div class="paginationStyle">
-    {{ $products->links('pagination::bootstrap-4') }}
- </div>
-
+    {{ $products->appends(['query' => $searchQuery])->links('pagination::bootstrap-4') }}
+</div>
     @include('jsAdmin.Bezetscherm')
     @include('jsAdmin.Chemark')
     @include('jsAdmin.Zoekbalk')

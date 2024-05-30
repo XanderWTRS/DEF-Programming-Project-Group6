@@ -5,16 +5,26 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Bezet;
 use App\Models\Reservation;
+use Illuminate\Support\Facades\DB;
 
 class BezetController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Bezet::paginate(20);
-        
+        $searchQuery = $request->input('query'); 
+        $query = DB::table('uitleendienst_inventaris');
+    
+        if ($searchQuery) {
+            $query->where('title', 'like', '%' . $searchQuery . '%');
+        }
+    
+        $products = $query->paginate(20);
+    
         foreach ($products as $product) {
-            $reservation = Reservation::where('id', $product->id)->first();
-            
+            $reservation = DB::table('reservations')
+                ->where('id', $product->id)
+                ->first();
+    
             if ($reservation) {
                 $product->status = 'Niet beschikbaar'; 
                 $product->student_name = $reservation->name;
@@ -23,9 +33,11 @@ class BezetController extends Controller
                 $product->student_name = null;
             }
         }
-
-        $data['products'] = $products;
-        return view('admin.Bezetscherm', ['products' => $products]); 
-    }
+    
+        return view('admin.bezetscherm', [
+            'products' => $products, 
+            'searchQuery' => $searchQuery
+        ]);
+    }    
 
 }
