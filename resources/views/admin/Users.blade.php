@@ -89,6 +89,7 @@ $(document).ready(function() {
     $('.ban-btn').click(function() {
         var userId = $(this).data('userid');
         var userName = $(this).closest('tr').find('td:eq(1)').text();
+        var userEmail = $(this).closest('tr').find('td:eq(2)').text();
 
         $.ajax({
             url: '/banUser',
@@ -96,6 +97,7 @@ $(document).ready(function() {
             data: {
                 user_id: userId,
                 name: userName,
+                email: userEmail,
                 _token: $('meta[name="csrf-token"]').attr('content')
             },
             success: function(response) {
