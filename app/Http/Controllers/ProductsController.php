@@ -148,12 +148,8 @@ class ProductsController extends Controller
             $deletedRows = DB::table('reservations')
                 ->where('id', '=', $id)
                 ->delete();
-
-            if ($deletedRows > 0) {
-                return redirect('reservatieoverzicht');
-            } else {
-                return redirect('reservatieoverzicht');
-            }
+            return redirect('reservatieoverzicht');
+            
         } catch (\Exception $e) {
             \Log::error('Error deleting product: ' . $e->getMessage());
             return redirect('reservatieoverzicht');
@@ -168,12 +164,8 @@ class ProductsController extends Controller
                 ->where('id', '=', $id)
                 ->whereDate('date', '>', now())
                 ->delete();
-
-            if ($deletedRows > 0) {
-                return redirect('itemlist');
-            } else {
-                return redirect('itemlist');
-            }
+            return redirect('itemlist');
+            
         } catch (\Exception $e) {
             \Log::error('Error deleting product: ' . $e->getMessage());
             return redirect('itemlist');
