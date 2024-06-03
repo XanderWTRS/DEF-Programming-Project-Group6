@@ -1,25 +1,21 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+![Programming_Project_-_Groep_6 (1)](https://github.com/XanderWTRS/DEF-Programming-Project-Group6/assets/137180731/a6e53e92-73b9-4906-af63-6d08e1e582d6)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+ 
 
-## About Laravel
+![VScode](https://img.shields.io/badge/VScode-v1.89-blue?style=for-the-badge&logo=visual-studio-code&logoColor=white&labelColor=000000)
+![Node.js](https://img.shields.io/badge/Node.js-v10.7.0-green?style=for-the-badge&logo=node.js&logoColor=white&labelColor=000000)
+![Laravel](https://img.shields.io/badge/Laravel-v11-red?style=for-the-badge&logo=laravel&logoColor=white&labelColor=000000)
+![Composer](https://img.shields.io/badge/Composer-v2.7.6-brown?style=for-the-badge&logo=composer&logoColor=white&labelColor=000000)
+![phpMyAdmin](https://img.shields.io/badge/phpMyAdmin-v5.2.1-orange?style=for-the-badge&logo=phpmyadmin&logoColor=white&labelColor=000000)
+![Git](https://img.shields.io/badge/Git-v2.45.2-gray?style=for-the-badge&logo=git&logoColor=white&labelColor=000000)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+ 
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Intro
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+ 
+
+Welcome to our Fullstack App for MediaLab's Lending Service! This application is designed to streamline the lending process, making it quick and efficient. It features both user and admin interfaces, ensuring a seamless experience for all users. With this app, users can easily browse and borrow items, while admins can manage inventory and oversee operations. Our goal is to enhance the functionality and user experience of the MediaLab's Lending Service, providing a robust solution for all your lending needs.
 
 ## Learning Laravel
 
