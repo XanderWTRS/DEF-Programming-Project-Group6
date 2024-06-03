@@ -67,3 +67,9 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## Resources
 https://youtu.be/_LA9QsgJ0bw?si=alWImTL4meCRdE_K 
+https://chatgpt.com/share/e7b63efd-adc4-45d0-a4ba-b348f1d5ca7f
+https://stackoverflow.com/questions/20618355/how-to-write-a-countdown-timer-in-javascript
+https://www.w3schools.com/php/
+https://www.w3schools.com/jsref/event_onclick.asp
+https://laravel.com/docs/11.x/routing
+
