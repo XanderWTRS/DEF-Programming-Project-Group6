@@ -86,3 +86,6 @@ https://en.wikipedia.org/wiki/Visual_Studio_Code
 
 https://nodejs.org/
 
+https://www.youtube.com/watch?v=Gr1Mmb1KYA8&t
+
+https://www.youtube.com/watch?v=XTDNs4TB_lE&list=PL38wFHH4qYZXH8Gb7PIbmyjdsWdEJLImp
