@@ -31,7 +31,12 @@ About. phpMyAdmin is a free software tool written in PHP, intended to handle the
 ## Setup
 Setup Laravel: https://laravel.com/docs/11.x/installation
 
-Volgende code moet worden toegevoegd aan de .env file:
+Clone het project met volgende code:
+```
+git clone https://github.com/XanderWTRS/DEF-Programming-Project-Group6.git
+```
+
+Voeg deze code toe aan de .env file:
 ```
 MAIL_MAILER=smtp
 MAIL_HOST=smtp.gmail.com
