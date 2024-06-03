@@ -28,6 +28,18 @@ Composer is an application-level dependency manager for the PHP programming lang
 ## phpMyAdmin
 About. phpMyAdmin is a free software tool written in PHP, intended to handle the administration of MySQL over the Web.
 
+## Setup
+Setup Laravel: https://laravel.com/docs/11.x/installation
+
+
+```
+npm run dev
+```
+
+```
+php artisan serve
+```
+
 ## Resources
 https://youtu.be/_LA9QsgJ0bw?si=alWImTL4meCRdE_K
 
