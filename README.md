@@ -56,6 +56,9 @@ npm run dev
 ```
 php artisan serve
 ```
+```
+php artisan queue:work
+```
 
 ## Resources
 https://youtu.be/_LA9QsgJ0bw?si=alWImTL4meCRdE_K
