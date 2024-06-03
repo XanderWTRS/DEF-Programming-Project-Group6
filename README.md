@@ -33,13 +33,13 @@ Setup Laravel: https://laravel.com/docs/11.x/installation
 
 ### .env file
 Volgende code moet worden toegevoegd aan de .env file:
+```
 MAIL_MAILER=smtp
 MAIL_HOST=smtp.gmail.com
 MAIL_PORT=587
 MAIL_USERNAME=programmingprojectgroup6@gmail.com
 MAIL_PASSWORD=aibaqpyqkpsoezxc
 MAIL_ENCRYPTION=tls
- 
 MAIL_FROM_ADDRESS="programmingprojectgroup6@gmail.com"
 MAIL_FROM_NAME="${programming project group 6}"
 
@@ -49,11 +49,11 @@ DB_PORT=3306
 DB_DATABASE=2324ProgProjGR6
 DB_USERNAME=2324ProgProjGR6
 DB_PASSWORD=Wte9q!Tdw
-
+```
+Deze code moet in de terminal worden uitgevoerd om het project te starten:
 ```
 npm run dev
 ```
-
 ```
 php artisan serve
 ```
