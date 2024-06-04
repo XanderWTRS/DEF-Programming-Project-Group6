@@ -33,4 +33,9 @@
             </div>
         </div>
     </div>
+    @if(session('error'))
+        <script>
+            alert("{{ session('error') }}");
+        </script>
+    @endif
 </x-app-layout>

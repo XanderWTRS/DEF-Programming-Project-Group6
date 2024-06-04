@@ -55,7 +55,7 @@
 
         @include('jsAdmin.Bezetscherm')
         @include('jsAdmin.Chemark')
-        @include('jsAdmin.Zoekbalk')
+        <!--@include('jsAdmin.Zoekbalk')-->
         @include('jsAdmin.Filterklaarzetten')
         @include('jsAdmin.Adminheader1')
     </body>
