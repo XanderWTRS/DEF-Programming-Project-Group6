@@ -50,7 +50,13 @@ php artisan queue:work
 ## Resources
 https://youtu.be/_LA9QsgJ0bw?si=alWImTL4meCRdE_K
 
+https://www.youtube.com/watch?v=PeK_tD4T3Og&t=269s
+
 https://chatgpt.com/share/e7b63efd-adc4-45d0-a4ba-b348f1d5ca7f
+
+https://chatgpt.com/share/b9fcf666-db18-4c3d-b5cf-5eb900f4b467
+
+https://chatgpt.com/share/e048c083-f07a-481f-83e1-b5ac05743290
 
 https://stackoverflow.com/questions/20618355/how-to-write-a-countdown-timer-in-javascript
 
