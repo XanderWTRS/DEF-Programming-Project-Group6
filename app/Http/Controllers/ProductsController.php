@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Mail\ReservationMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
+
 use Carbon\Carbon;
 class ProductsController extends Controller
 {
@@ -164,8 +165,12 @@ class ProductsController extends Controller
                 ->where('id', '=', $id)
                 ->whereDate('date', '>', now())
                 ->delete();
-            return redirect('itemlist');
-            
+
+            if ($deletedRows > 0) {
+                return redirect('itemlist');
+            } else {
+                return redirect('itemlist')->with('error', 'Deze reservering kan niet meer geannuleerd worden');
+            }
         } catch (\Exception $e) {
             \Log::error('Error deleting product: ' . $e->getMessage());
             return redirect('itemlist');
