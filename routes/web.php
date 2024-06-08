@@ -10,7 +10,7 @@ use App\Http\Controllers\ProductToevoegenController;
 use App\Http\Controllers\TerugbrengenController;
 use App\Models\Klaarzetten;
 use App\Http\Controllers\KlaarzettenController;
-
+use App\Http\Controllers\TelaatController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -76,6 +76,11 @@ Route::delete('/terugbrengen/delete/{id}', [TerugbrengenController::class, 'dest
 
 Route::get('/Klaarzetten', [KlaarzettenController::class, 'index']);
 Route::get('/filter-reservations', [KlaarzettenController::class, 'filter']);
+
+Route::get('/Telaat', function () {
+    return view('A  dmin/Telaat');
+});
+Route::get('/Telaat', [TelaatController::class, 'index']);
 
 
 require __DIR__.'/auth.php';
