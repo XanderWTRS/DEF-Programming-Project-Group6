@@ -28,7 +28,7 @@
 </div>
 <nav class="zoek">
   <input type="text" id="search" placeholder="Zoek producten...">
-  <button class="buttonToevoegen" onclick="window.location.href='#nowhere'">Product toevoegen</button>
+  <button class="buttonToevoegen" onclick="window.location.href='{{asset('/Addproduct')}}'">Product toevoegen</button>
 </nav>
 <table>
   <thead>
