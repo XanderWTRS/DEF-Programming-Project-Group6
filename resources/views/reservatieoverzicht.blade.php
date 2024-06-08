@@ -38,10 +38,28 @@
                 <input type="checkbox" id="g-v-overeenkomst" name="g-v-overeenkomst">
                 <label for="g-v-overeenkomst">G & V overeenkomst</label>
             </div>
-            <button type="button">Submit</button>
+            <form action="{{ route('timestamp') }}" method="POST">
+                @csrf
+                <button type="submit" onclick="confirmTimestamp()">Submit</button>
+            </form>
         </div>
         </main>
     </body>
+    <script>
+        function confirmTimestamp() {
+            var reservedItems = document.querySelectorAll('.product');
+            var message = 'The following items will be reserved:\n';
+            reservedItems.forEach(function(item) {
+                var title = item.querySelector('h2').textContent;
+                var date = item.querySelectorAll('p')[3].textContent;
+                message += '- ' + title +  ' ('+date+')'+'\n';
+            });
+            alert(message);
+        }
+    </script>
+
+
+
     <!--LAYOUT FOOTER PAGE -->
     <x-slot name='footer'>
         <footer class="footer">
@@ -49,6 +67,9 @@
             <ul>
                 <li>Erasmus Hogeschool Brussel</li>
                 <li>Nijverheidskaai 170</li>
+                @if(!empty($product->date))
+                    <li>Datum: {{ $product->date }}</li>
+                @endif
                 <li>1070 Anderlecht</li>
                 <li>02 559 15 00</li>
             </ul>
@@ -56,7 +77,5 @@
             <div id="center-footer"><span class="link">&#169; Erasmus Hogeschool Brussel</span></div>
             <div id="right-footer"><a href="{{ route('g&v_voorwaarden') }}" class="link">Gebruiks- en Verlies overeenkomst</a></div>
         </footer>
-        </footer>
     </x-slot>
-
 </x-app-layout>

@@ -18,9 +18,9 @@
 </head>
 <body>
     <header class="Adminheader"></header>    
-    
+    <h1>Add New Product</h1>
     <div class="container">
-        <h1>Add New Product</h1>
+        
 
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>

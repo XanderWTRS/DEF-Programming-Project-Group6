@@ -5,3 +5,10 @@ role: student
 email: admin@ehb.be
 ww: admin12345678
 role: admin
+
+email: programmingprojectgroup6
+ww: project6
+
+name: programming project group 6
+ww: aiba qpyq kpso ezxc
+

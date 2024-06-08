@@ -1,11 +1,10 @@
-<?php
-
+<?php 
 namespace App\Http\Controllers;
-
+ 
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+ 
 class ProductsController extends Controller
 {
     public function index(Request $request): View
@@ -13,7 +12,7 @@ class ProductsController extends Controller
         $selectedWeek = $request->input('week');
         $selectedCategory = $request->input('category');
         $searchQuery = $request->input('query');
-
+ 
         $query = DB::table('uitleendienst_inventaris');
         if ($selectedWeek === null) {
             $selectedWeek = DB::table('reservations')
@@ -32,21 +31,22 @@ class ProductsController extends Controller
                 ->toArray();
             $query->whereNotIn('id', $reservedProducts);
         }
-
+ 
         if ($selectedCategory) {
             $query->where('category', $selectedCategory);
         }
-
+ 
         if ($searchQuery) {
             $query->where('title', 'like', '%' . $searchQuery . '%');
         }
-
+ 
         $products = $query->inRandomOrder()->paginate(12);
-
+ 
         return view('home', compact('products', 'selectedWeek', 'selectedCategory', 'searchQuery'));
     }
     public function index3()
     {
+        //test
         $user = auth()->user()->name;
         $reservations = DB::table('reservations')
                         ->where('name', $user)
@@ -58,14 +58,14 @@ class ProductsController extends Controller
             $product = DB::table('uitleendienst_inventaris')->where('id', $reservation->id)->first();
             $found = false;
             foreach ($producten as $key => $item) {
-                if ($item->date == $reservation->date && $item->title == $product->title) {
+                if ($item->date == $reservation->date && $item->title == $product->title && $reservation->expires_at !== null) {
                     $producten[$key]->count++;
                     $count++;
                     $found = true;
                     break;
                 }
             }
-            if (!$found) {
+            if (!$found && $reservation->expires_at !== null) {
                 $producten[$i] = (object) [
                     'id' => $reservation->id,
                     'date' => $reservation->date,
@@ -79,9 +79,22 @@ class ProductsController extends Controller
                 $i++;
             }
         }
-
-
+ 
         return view('reservatieoverzicht', compact('producten'));
+    }
+    public function timestamp(){
+        $user = auth()->user()->name;
+        $reservationIds = DB::table('reservations')
+            ->where('name', $user)
+            ->whereNotNull('expires_at')
+            ->pluck('id')
+            ->toArray();
+        
+        DB::table('reservations')
+            ->whereIn('id', $reservationIds)
+            ->update(['expires_at' => null]);
+
+        return redirect('reservatieoverzicht');
     }
     public function delete($id)
     {
@@ -89,7 +102,7 @@ class ProductsController extends Controller
             $deletedRows = DB::table('reservations')
                 ->where('id', '=', $id)
                 ->delete();
-
+ 
             if ($deletedRows > 0) {
                 return redirect('reservatieoverzicht');
             } else {

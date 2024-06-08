@@ -176,3 +176,76 @@ select {
     padding: 0;
     margin: 20px 0 0 0;
 }
+
+.nav-bar {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    width: 27vw;
+    margin: 12px auto;
+    border-radius: 16px;
+    margin-bottom: 28px;
+    padding: 0 8px;
+}
+
+.nav-bar li {
+    margin: 0 5px;
+}
+
+.nav-bar li a {
+    display: block;
+    padding: 0px 8px;
+    text-decoration: none;
+    color: black;
+    border-radius: 4px;
+    background-color: white;
+}
+
+.nav-item
+{
+    background-color: white;
+}
+
+.nav-bar li a:hover {
+    color: #dd1a1a;
+    transform: scale3d(1.1, 1.1, 1);
+}
+
+#search-form
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input#query.search-input {
+    padding: 8px 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    width: 14vw;
+    margin: 0px auto;
+    border-radius: 16px;
+    background-color: white;
+    z-index: 1;
+}
+
+img#search
+{
+    margin-left: -30px;
+    margin-top: -10px;
+    position: absolute;
+    z-index: 2;
+}
+
+select#weekSelect
+{
+    padding: 8px 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    width: 13vw;
+    margin: 0px auto;
+    margin-left: 10px;
+    border-radius: 16px;
+    background-color: white;
+    z-index: 1;
+}
