@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\TerugbrengenReservatie;
+use App\Models\ResDone;
 use Illuminate\Http\Request;
 
 class TerugbrengenController extends Controller
@@ -33,6 +34,13 @@ class TerugbrengenController extends Controller
         $reservation = TerugbrengenReservatie::find($id);
         
         if ($reservation) {
+
+            ResDone::create([
+                'id' => $reservation->id,
+                'name' => $reservation->name,
+                'date' => $reservation->date,
+            ]);
+
             $reservation->delete();
             return redirect()->route('admin.terugbrengen.index')->with('success', 'Reservation deleted successfully.');
         }
