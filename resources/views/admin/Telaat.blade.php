@@ -27,18 +27,66 @@
             </tr>
         </thead>
         <tbody>
-        @foreach($telaats as $telaat)
-            <tr>
-                <td>{{ $telaat->name }}</td>
-                <td>{{ $telaat->user_id }}</td>
-                <td>{{ $telaat->date }}</td>    
-                <td>te laat</td>
-                <td> <button type="button">Ban</button> </td>
-            </tr>
-        @endforeach
+        @php $uniqueUserIds = array(); @endphp
+@foreach($telaats as $telaat)
+    @if(!in_array($telaat->user_id, $uniqueUserIds))
+        @php $uniqueUserIds[] = $telaat->user_id; @endphp
+        <tr>
+            <td>{{ $telaat->name }}</td>
+            <td>{{ $telaat->user_id }}</td>
+            <td>{{ $telaat->date }}</td>    
+            <td>te laat</td>
+            <td><button type="button" class="ban-btn" data-userid="{{ $telaat->user_id }}" data-username="{{ $telaat->name }}">Ban</button></td>
+        </tr>
+    @endif
+@endforeach
+
 </tbody>
     </table>
     @include('jsAdmin.Zoekbalk')
     @include('jsAdmin.Adminheader1')
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        $('.ban-btn').click(function(){
+            var userId = $(this).data('userid');
+            var name = $(this).data('username');
+            var token = '{{ csrf_token() }}';
+            
+            // Referentie naar de huidige rij
+            var currentRow = $(this).closest('tr');
+
+            // AJAX call om data naar de server te verzenden
+            $.ajax({
+                type: 'POST',
+                url: '{{ route("ban") }}',
+                data: {
+                    user_id: userId,
+                    name: name,
+                    _token: token // Voeg de CSRF-token toe aan het verzoek
+                },
+                success: function(response){
+                    // Handel het antwoord af
+                    if(response.success){
+                        alert('Gebruiker is verbannen.');
+                        
+                        // Verberg de rij nadat de gebruiker is verbannen
+                        currentRow.hide(); // Verberg de huidige rij
+                    } else {
+                        alert('Er is een fout opgetreden bij het verbannen van de gebruiker.');
+                    }
+                },
+                error: function(xhr, status, error){
+                    console.error(xhr.responseText);
+                    alert('Er is een fout opgetreden bij het verbannen van de gebruiker.');
+                }
+            });
+        });
+    });
+</script>
+
+
+
 </body>
 </html>
