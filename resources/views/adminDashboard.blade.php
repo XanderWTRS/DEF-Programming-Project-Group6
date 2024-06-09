@@ -22,6 +22,7 @@
             <a href="{{asset('/terugbrengen')}}" class="QR-scanner">Terugbrengen</a>
             <a href="{{asset('/Bezetscherm')}}" class="Beschikbaarheid">Beschikbaarheid</a>
             <a href="{{asset('/Producttoevoegen')}}" class="Productbeheer">Productbeheer</a>
+            <a href="{{asset('/Telaat')}}" class="Telaat">Telaat</a>
             <a href="{{asset('/Banoverzicht')}}" class="Blacklist">Blacklist</a>
         </div>
     </main>

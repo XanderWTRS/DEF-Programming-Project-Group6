@@ -5,18 +5,16 @@
     align-items: center;
     padding: 5px;
     flex-direction: row-reverse;
-    background-color: lightgray;
     position: sticky;
     top: 0;
     z-index: 100;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
 html, body {
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
-
-    background-color: #f2f2f2;
 }
 
 .navbar .logo {
@@ -34,23 +32,23 @@ html, body {
 
 .nav__links a {
 
-    font-size: 20px;
     text-decoration: none;
-    color: black;
-    font-family: 'Roboto', sans-serif;
-    transition: color 0.3s ease;
-    background-color: transparent;
+    color: #000;
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 10px 15px;
 }
 
 
 .nav__links li {
     background: none;
     border: none;
-    border-radius: 0;
 }
 
 .nav__links a:hover {
 
-    color: #f9a602;
+    text-decoration: underline;
+    text-decoration-color: red;
+    text-underline-offset: 4px;
 }
 

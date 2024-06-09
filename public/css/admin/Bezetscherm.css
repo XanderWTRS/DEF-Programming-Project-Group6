@@ -43,44 +43,49 @@ tbody tr:hover {
 
 /* CSS voor de zoekbalk */
 #search-bar {
-    width: 20%;
-    height: 30px;
-    margin: auto;
-    border: 2px solid black;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    width: 14vw;
+    border-radius: 16px;
+    background-color: white;
+    border: none;
+    z-index: 1;
+    margin: 20px 0px;
+    width: 30vw;
 }
 
-.pagination {
-    margin-top: 20px; 
-    text-align: center;
+.nav.navbar
+{
+    margin-top: 0;
 }
 
-.pagination > .pagination {
-    display: inline-block;
+img#search
+{
+    left: -30px;
+    margin-top: 29px;
+    position: relative;
+    z-index: 2;
 }
 
-.pagination > .pagination > li {
-    display: inline;
+ul.pagination {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    background-color: white;
+    padding: 4px 0px;
+    width: 30vw;
 }
 
-.pagination > .pagination > li > a {
-    display: inline-block;
-    padding: 6px 12px;
-    margin: 2px;
-    font-size: 14px; 
-    line-height: 1.42857143;
-    text-decoration: none;
-    color: #333;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+span.page-link
+{
+    position: relative;
+    top: 8px;
 }
 
-.pagination > .pagination > li > a:hover {
-    background-color: #f5f5f5;
-}
-
-.pagination > .pagination > .active > a {
-    background-color: #337ab7;
-    color: #fff;
-    border-color: #337ab7;
+#search-container
+{
+    display: flex;
+    justify-content: center;
 }
