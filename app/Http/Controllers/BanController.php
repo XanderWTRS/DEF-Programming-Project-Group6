@@ -36,6 +36,7 @@ class BanController extends Controller
         $ban = new Ban();
         $ban->user_id = $userId;
         $ban->name = $name;
+        $ban->status = 'banned';
         $ban->save();
 
         // Geef een succesvol antwoord terug naar de client
