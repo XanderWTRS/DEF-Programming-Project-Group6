@@ -19,7 +19,7 @@
                                         <p>Category: {{ $product->category }}</p>
                                         <p>Merk: {{ $product->merk }}</p>
                                         <p>Beschrijving: {{ $product->beschrijving }}</p>
-                                        <p>datum: {{ $product->date}}</p>
+                                        <p>datum: {{ $product->date}} tot {{ $product->enddate}}</p>
                                         <p>count: {{ $product->count}}</p>
                                     </div>
                                     <form action="{{ route('delete', ['id' => $product->id]) }}" method="POST">

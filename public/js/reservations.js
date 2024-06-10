@@ -27,6 +27,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 function startFunction() {
-    // Your function code here
     console.log("At least one checkbox is now checked!");
 }

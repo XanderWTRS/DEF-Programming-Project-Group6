@@ -70,9 +70,12 @@ class ProductsController extends Controller
                 }
             }
             if (!$found && $reservation->expires_at !== null) {
+                $startDate = Carbon::parse($reservation->date);
+                $endDate = $startDate->copy()->addDays(5)->format('Y-m-d');
                 $producten[$i] = (object) [
                     'id' => $reservation->id,
-                    'date' => $reservation->date,
+                    'date' => $startDate->format('Y-m-d'),
+                    'enddate' => $endDate,
                     'title' => $product->title,
                     'merk' => $product->merk,
                     'category' => $product->category,
@@ -87,39 +90,6 @@ class ProductsController extends Controller
     }
 
     public function timestamp(){
-        // $user = auth()->user()->name;
-        // $reservationIds = DB::table('reservations')
-        //     ->where('name', $user)
-        //     ->whereNotNull('expires_at')
-        //     ->get();
-
-        // $producten = [];
-        // $count = 0;
-        // $i = 0;
-        // foreach ($reservationIds as $reservation) {
-        //     $product = DB::table('uitleendienst_inventaris')->where('id', $reservation->id)->first();
-        //     $found = false;
-        //     foreach ($producten as $key => $item) {
-        //         if ($item->date == $reservation->date && $item->title == $product->title) {
-        //             $producten[$key]->count++;
-        //             $count++;
-        //             $found = true;
-        //             break;
-        //         }
-        //         if (!$found) {
-        //             $producten[$i] = (object) [
-        //                 'id' => $reservation->id,
-        //                 'date' => $reservation->date,
-        //                 'title' => $product->title,
-        //                 'merk' => $product->merk,
-        //                 'category' => $product->category,
-        //                 'beschrijving' => $product->beschrijving,
-        //                 'count' => 1,
-        //             ];
-        //             $count++;
-        //             $i++;
-        //         }
-        //     }
         $user = auth()->user()->name;
         $reservations = DB::table('reservations')
                         ->where('name', $user)
@@ -167,7 +137,7 @@ class ProductsController extends Controller
 
 
 
-        return redirect('reservatieoverzicht');
+        return redirect('home');
     }
     public function delete($id)
     {

@@ -4,9 +4,3 @@ dark mode tailwind css: (dark:bg-red-300)
 
 Q&A:
 Product niet beschikbaar wel zien in homepage?
-
-
-BUG:
-Tijd aanpassen = producten in toekomst of verleden reserveren.
-
-Telaat scherm loopt met datum van pc niet van server.
