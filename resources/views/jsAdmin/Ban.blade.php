@@ -18,33 +18,27 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    const unbanButtons = document.querySelectorAll('button');
+    const unbanButtons = document.querySelectorAll('.unban-btn'); // Update de selector
     unbanButtons.forEach(button => {
         button.addEventListener('click', function() {
-            const row = this.closest('tr');
-            const studentId = row.dataset.studentId;
+            const studentName = this.getAttribute('data-student-name'); // Haal de gebruikersnaam op van het data-attribuut
 
-            fetch('/ban/' + studentId, {
+            fetch('/ban/' + encodeURIComponent(studentName), { // Verzend de gebruikersnaam als onderdeel van de URL
                 method: 'DELETE',
                 headers: {
                     'X-CSRF-TOKEN': csrfToken,
                     'Content-Type': 'application/json'
                 }
             })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
+            .then(response => response.json())
             .then(data => {
                 if (data.success) {
+                    // Row verwijderen
+                    const row = this.closest('tr');
                     row.remove();
-                } else {
-                    console.error('Failed to unban student: ', data.message);
                 }
             })
-            .catch(error => console.error('Failed to unban student: ', error));
+            .catch(error => console.error('Error:', error));
         });
     });
 });
