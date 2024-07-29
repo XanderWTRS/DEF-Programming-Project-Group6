@@ -46,6 +46,10 @@
                             {{ __('Winkelmand') }}
                         </x-dropdown-link>
 
+                        <x-dropdown-link :href="route('itemlist')">
+                            {{ __('Reservatie overzicht') }}
+                        </x-dropdown-link>
+
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -56,9 +60,7 @@
                                 {{ __('Uitloggen') }}
                             </x-dropdown-link>
                         </form>
-                        <x-dropdown-link :href="route('itemlist')">
-                            {{ __('Item list') }}
-                        </x-dropdown-link>
+
                     </x-slot>
                 </x-dropdown>
             </div>

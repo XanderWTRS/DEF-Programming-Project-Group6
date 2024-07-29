@@ -14,6 +14,7 @@
 <body>
     <header class="Adminheader"></header>
     <div class="container">
+
         <div id="top-controls">
             <div class="calendar">
                 <label for="week-select">Selecteer week:</label>
@@ -21,9 +22,13 @@
                 <button id="filter-button">Filter</button>
             </div>
             <div class="searching">
-                <input type="text" id="search" placeholder="Zoek student">
+                <div id="search-container">
+                    <input type="text" id="search-bar" placeholder="Zoek op naam...">
+                    <img id="search" src="/ASSETS/Icons/ZoekIcon.svg" alt="Search Icon" width="20" height="15">
+                </div>
             </div>
         </div>
+
         <table>
             <thead>
                 <tr>
@@ -45,8 +50,8 @@
             </tbody>
         </table>
     </div>
-    
-    
+
+
     @include('jsAdmin.Klaarzetten')
     @include('jsAdmin.Zoekbalk')
     @include('jsAdmin.Adminheader1')
