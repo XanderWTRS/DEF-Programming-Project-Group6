@@ -36,7 +36,6 @@
                 <td>{{ $telaat->user_id }}</td>
                 <td>{{ $telaat->date }}</td>    
                 <td>{{ $telaat->status }}</td>
-
                 <td><button type="button" class="ban-btn" data-userid="{{ $telaat->user_id }}" data-username="{{ $telaat->name }}">Ban</button></td>
             </tr>
         @endif
@@ -76,7 +75,6 @@
             alert('Er is een fout opgetreden bij het verbannen van de gebruiker.');
         }
     },
-
                     error: function(xhr, status, error){
                         console.error(xhr.responseText);
                         alert('Er is een fout opgetreden bij het verbannen van de gebruiker.');

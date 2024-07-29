@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ban;
 use Illuminate\Http\Request;
-
+use Carbon\Carbon;
 
 class BanController extends Controller
 {
@@ -27,17 +27,21 @@ class BanController extends Controller
 }
 
 
-    public function banUser(Request $request)
-    {
-        $userId = $request->input('user_id');
-        $name = $request->input('name');
-        $ban = new Ban();
-        $ban->user_id = $userId;
-        $ban->name = $name;
-        $ban->status = 'banned'; 
-        $ban->save();
-    
-        return response()->json(['success' => true]);
-    }
+public function banUser(Request $request)
+{
+    $userId = $request->input('user_id');
+    $name = $request->input('name');
+
+    $banDate = Carbon::today()->addDays(30)->toDateString(); 
+
+    $ban = new Ban();
+    $ban->user_id = $userId;
+    $ban->name = $name;
+    $ban->status = 'banned';
+    $ban->date = $banDate; 
+    $ban->save();
+
+    return response()->json(['success' => true]);
+}
     
 }
