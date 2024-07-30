@@ -97,6 +97,10 @@
                             <input type="text" class="form-control" id="itemBeschrijving" name="beschrijving">
                         </div>
                         <div class="form-group">
+                            <label for="itemFoto">Foto</label>
+                            <input type="file" class="form-control" id="itemFoto" name="foto">
+                        </div>
+                        <div class="form-group">
                             <label for="itemCategory">Category</label>
                             <input type="text" class="form-control" id="itemCategory" name="category">
                         </div>
